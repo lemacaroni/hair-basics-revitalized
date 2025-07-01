@@ -118,6 +118,8 @@ public class GameControllerScript : MonoBehaviour
         mode = PlayerPrefs.GetString("CurrentMode");
         if (SchoolScene)
         {
+            jackensteinTimer = 210;
+            jackensteinTimerSlider.maxValue = jackensteinTimer / 2;
             if (Random.Range(1, 300) == 28 || IsAprilFools())
             {
                 A.SetActive(true);
@@ -222,6 +224,10 @@ public class GameControllerScript : MonoBehaviour
             {
                 PaninoStart();
             }
+            else if (mode == "jackenstein")
+            {
+                JackensteinStart();
+            }
 
             if (extraStamina == 1)
             {
@@ -306,6 +312,7 @@ public class GameControllerScript : MonoBehaviour
         }
         LockMouse();
         UpdateNotebookCount();
+        AddTp(-6);
         /*if (dm != null)
         {
             dm.largeText = $"{mode.ToUpper()} Mode";
@@ -400,6 +407,44 @@ public class GameControllerScript : MonoBehaviour
         mikoItemLayout.SetActive(true);
         int yellow = yellowFaceOn;
         miko.SetActive(true);
+        if (yellow == 1)
+        {
+            windowedWall.material = broken;
+            FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Break!*", brokenWindow.length, Color.white, windowedWall.transform);
+            yellowFace.SetActive(true);
+            MikoScript yellowey = yellowFace.GetComponent<MikoScript>();
+            yellowey.baldiAudio.PlayOneShot(brokenWindow);
+            camScript.ShakeNow(new Vector3(0.2f, 0.2f, 0.2f), 10);
+        }
+        RenderSettings.fog = true;
+        RenderSettings.fogColor = Color.black;
+        RenderSettings.skybox = night;
+        craftersTime = false;
+    }
+
+    public void JackensteinStart()
+    {
+        baldiTutor.SetActive(false);
+        entrance_0.Lower();
+        entrance_1.Lower();
+        entrance_2.Lower();
+        entrance_3.Lower();
+        player.transform.position = new Vector3(5, 4, 5);
+        cameraTransform.position = new Vector3(5, 5, 5);
+        spoopMode = true;
+        locationText.text = "Panino's Ball, Susie's Idea";
+        locationText.color = new Color(0.6f, 0.15f, 0.4f);
+        playerScript.runSpeed += 8;
+        playerScript.walkSpeed += 6;
+        tpSlider.gameObject.SetActive(true);
+        jackensteinTimerSlider.gameObject.SetActive(true);
+        //treasureItemLayout.SetActive(true); considering adding this...
+        if (PlayerPrefs.GetInt("jackensteinBeat") == 1)
+        {
+            jmSpawner.dialogue = secondTime;
+        }
+        jmSpawner.Spawn();
+        int yellow = yellowFaceOn;
         if (yellow == 1)
         {
             windowedWall.material = broken;
@@ -699,12 +744,41 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
+    public void AddTp(float tpGain)
+    {
+        if (mode != "jackenstein")
+        {
+            return;
+        }
+        tp += tpGain;
+        tpSlider.value += tpGain;
+        tpText.text = $"{(int)tp}%";
+        if (tp >= 100)
+        {
+            tp = 100;
+            tpSlider.value = 100;
+            tpText.text = $"MAX";
+        }
+        if (tp <= 0)
+        {
+            tp = 0;
+            tpSlider.value = 0;
+            tpText.text = $"0%";
+        }
+
+        if (tp >= 70 && jmSpawner.dialogue != secondTime)
+        {
+            jmSpawner.dialogue = tpRemind;
+            jmSpawner.Spawn();
+        }
+    }
+
     public void NotebookDebt()
     {
         ESCAPEmusic.Play();
         dwayneDebt.SetActive(true);
         dwayneDebtTimer = ESCAPEmusic.clip.length;
-        player.stamina += player.maxStamina * 2.50f;
+        player.stamina += player.maxStamina * 2.5f;
         for (int i = 0; i < dwaynes.Length; i++)
         {
             dwaynes[i].transform.position = new Vector3(dwaynes[i].transform.position.x, 4, dwaynes[i].transform.position.z);
@@ -827,6 +901,11 @@ public class GameControllerScript : MonoBehaviour
             finaleMode = true;
             entrance_4.Raise();
         }
+        if (Input.GetKeyDown(KeyCode.Y) && mode == "jackenstein" && tp >= 70)
+        {
+            AddTp(-70);
+            ActivateFinaleMode();
+        }
         if (curseOfRaActive && !gamePaused)
         {
             StartCoroutine(CurseOfRaLogic());
@@ -936,6 +1015,11 @@ public class GameControllerScript : MonoBehaviour
         if (lap2Music.time < 21.25f && playAgain)
         {
             lap2Music.time = 21.25f;
+        }
+        if (mode == "jackenstein")
+        {
+            jackensteinTimer -= Time.deltaTime;
+            jackensteinTimerSlider.value = jackensteinTimer / 2;
         }
         if (Input.GetKeyDown(KeyCode.F1) && mode == "free")
         {
@@ -1092,6 +1176,10 @@ public class GameControllerScript : MonoBehaviour
             dm.size = notebooks;
             dm.maxSize = maxNoteboos;
         }*/
+        if (mode == "jackenstein")
+        {
+            AddTp(4.12f);
+        }
         int highScoreBotenook = PlayerPrefs.GetInt("HighBooks");
         if (mode != "endless" && SceneManager.GetActiveScene().name != "Luck")
         {
@@ -1113,7 +1201,7 @@ public class GameControllerScript : MonoBehaviour
         {
             StartCoroutine(paninoTv.EventTime(1));
         }
-        else if ((notebooks == maxNoteboos))
+        else if ((notebooks == maxNoteboos) && mode != "jackenstein")
         {
             ActivateFinaleMode();
         }
@@ -3063,6 +3151,10 @@ public class GameControllerScript : MonoBehaviour
 
     public bool gamePaused;
 
+    public TextboxSpawner jmSpawner;
+    public Dialogue secondTime;
+    public Dialogue tpRemind;
+
     private bool learningActive;
 
     bool curseOfRaActive;
@@ -3174,6 +3266,7 @@ public class GameControllerScript : MonoBehaviour
     public GameObject algerItemLayout;
     public GameObject stealthyItemLayout;
     public GameObject zombieItemLayout;
+    public GameObject treasureItemLayout;
 
     public VideoPlayer[] tutorals;
 
@@ -3210,6 +3303,13 @@ public class GameControllerScript : MonoBehaviour
     public bool disablePausing;
 
     public int laps;
+
+    public float tp;
+    public Slider tpSlider;
+    public TMP_Text tpText;
+
+    public float jackensteinTimer;
+    public Slider jackensteinTimerSlider;
 
     public bool gameOverPlayed;
 
