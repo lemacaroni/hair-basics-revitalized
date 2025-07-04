@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text:
   - Alright, so here's how this works.
-  - You need to gain TP from Dwaynes...
+  - You need to gain TP from Dwaynes and treasure...
   - And you've got a strict timer, but increased speed.
   - I don't actually know what happens when the timer runs out.
   - So don't. Run out. Of time.

@@ -221,6 +221,13 @@ public class ExitTriggerScript : MonoBehaviour
 				SceneManager.LoadScene("ChallengeBeat");
 				PlayerPrefs.SetString("bonusTextString", "Wow! Panino is IMPRESSED! You're do Great! He gave you \"SLOWER KRILLERS\" powerup. Use in modifier tab.");
 			}
+			else if (gc.mode == "jackenstein")
+			{
+				//gc.tc.GetTrophy(something something);
+				SceneManager.LoadScene("BeatBonusMode");
+				PlayerPrefs.SetInt("jackensteinBeat", 1);
+				PlayerPrefs.SetString("bonusTextString", "Wow! Susie is IMPRESSED! You're do Great!");
+			}
 		}
 	}
 }

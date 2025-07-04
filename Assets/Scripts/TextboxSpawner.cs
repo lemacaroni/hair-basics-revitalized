@@ -14,18 +14,28 @@ public class TextboxSpawner : MonoBehaviour
             a.SetActive(true);
             a.GetComponent<UtTextboxScript>().dialogue = dialogue;
             a.GetComponent<UtTextboxScript>().specialEvent = special;
+            if (special == 3)
+            {
+                a.GetComponent<UtTextboxScript>().takingTooLong = guy;
+            }
         }
         else
         {
+            if (PlayerPrefs.GetInt("seenSusie") >= 1)
+            {
+                textbox.GetComponent<UtTextboxScript>().dialogue = dialogueAlt[0];
+            }
+            if (PlayerPrefs.GetInt("jackensteinBeat") == 1)
+            {
+                textbox.GetComponent<UtTextboxScript>().dialogue = dialogueAlt[1];
+            }
             textbox.SetActive(true);
         }
     }
     public GameObject textbox;
     public Dialogue dialogue;
+    public Dialogue[] dialogueAlt;
     public int special;
-
-    public Dialogue[] dialogues;
-    // 1 - met
-    // 2 - ready?
+    public GameObject guy;
     public bool susieIdea;
 }

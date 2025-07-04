@@ -118,7 +118,7 @@ public class GameControllerScript : MonoBehaviour
         mode = PlayerPrefs.GetString("CurrentMode");
         if (SchoolScene)
         {
-            jackensteinTimer = 210;
+            jackensteinTimer = 240;
             jackensteinTimerSlider.maxValue = jackensteinTimer / 2;
             if (Random.Range(1, 300) == 28 || IsAprilFools())
             {
@@ -150,7 +150,7 @@ public class GameControllerScript : MonoBehaviour
             {
                 objecUsesinit = 8;
             }
-            if (mode == "pizza" || mode == "stealthy" || mode == "alger" || mode == "free" || mode == "panino" || mode == "zombie" || mode == "triple" || mode == "speedy")
+            if (mode == "pizza" || mode == "stealthy" || mode == "alger" || mode == "free" || mode == "panino" || mode == "zombie" || mode == "triple" || mode == "speedy" || mode == "jackenstein")
             {
                 math = 0;
             }
@@ -312,7 +312,7 @@ public class GameControllerScript : MonoBehaviour
         }
         LockMouse();
         UpdateNotebookCount();
-        AddTp(-6);
+        AddTp(-3);
         /*if (dm != null)
         {
             dm.largeText = $"{mode.ToUpper()} Mode";
@@ -438,7 +438,8 @@ public class GameControllerScript : MonoBehaviour
         playerScript.walkSpeed += 6;
         tpSlider.gameObject.SetActive(true);
         jackensteinTimerSlider.gameObject.SetActive(true);
-        //treasureItemLayout.SetActive(true); considering adding this...
+        treasureItemLayout.SetActive(true);
+        darkZoneMusic.Play();
         if (PlayerPrefs.GetInt("jackensteinBeat") == 1)
         {
             jmSpawner.dialogue = secondTime;
@@ -751,13 +752,18 @@ public class GameControllerScript : MonoBehaviour
             return;
         }
         tp += tpGain;
-        tpSlider.value += tpGain;
+        tpSlider.value = tp;
         tpText.text = $"{(int)tp}%";
+        tpText.color = Color.black;
+        tpSliderBgs[0].color = new Color(0, 0, 0.05f);
+        tpSliderBgs[1].color = new Color(0, 0, 0.7843137f);
         if (tp >= 100)
         {
             tp = 100;
             tpSlider.value = 100;
             tpText.text = $"MAX";
+            tpText.color = Color.yellow;
+            tpSliderBgs[1].color = new Color(1, 1, 0);
         }
         if (tp <= 0)
         {
@@ -766,9 +772,14 @@ public class GameControllerScript : MonoBehaviour
             tpText.text = $"0%";
         }
 
-        if (tp >= 70 && jmSpawner.dialogue != secondTime)
+        if (tp >= 80 && !remind)
         {
-            jmSpawner.dialogue = tpRemind;
+            jmSpawner.dialogue = tpRemindAlt;
+            if (PlayerPrefs.GetInt("jackensteinBeat") == 0)
+            {
+                jmSpawner.dialogue = tpRemind;
+            }
+            remind = true;
             jmSpawner.Spawn();
         }
     }
@@ -901,9 +912,9 @@ public class GameControllerScript : MonoBehaviour
             finaleMode = true;
             entrance_4.Raise();
         }
-        if (Input.GetKeyDown(KeyCode.Y) && mode == "jackenstein" && tp >= 70)
+        if (Input.GetKeyDown(KeyCode.Y) && mode == "jackenstein" && tp >= 80 && !finaleMode)
         {
-            AddTp(-70);
+            AddTp(-80);
             ActivateFinaleMode();
         }
         if (curseOfRaActive && !gamePaused)
@@ -1020,6 +1031,13 @@ public class GameControllerScript : MonoBehaviour
         {
             jackensteinTimer -= Time.deltaTime;
             jackensteinTimerSlider.value = jackensteinTimer / 2;
+            if (jackensteinTimer <= 0 && jackensteinTimerSlider.gameObject.activeSelf)
+            {
+                jackensteinTimerSlider.gameObject.SetActive(false); 
+                jmSpawner.dialogue = ohNo;
+                jmSpawner.special = 3;
+                jmSpawner.Spawn();
+            }
         }
         if (Input.GetKeyDown(KeyCode.F1) && mode == "free")
         {
@@ -1178,7 +1196,7 @@ public class GameControllerScript : MonoBehaviour
         }*/
         if (mode == "jackenstein")
         {
-            AddTp(4.12f);
+            AddTp(2.8f);
         }
         int highScoreBotenook = PlayerPrefs.GetInt("HighBooks");
         if (mode != "endless" && SceneManager.GetActiveScene().name != "Luck")
@@ -1553,7 +1571,7 @@ public class GameControllerScript : MonoBehaviour
             player.walkSpeed += 4f;
             player.runSpeed += 6f;
         }
-        if (mode != "miko" & mode != "triple" & mode != "alger" & mode != "stealthy" & mode != "classic" & mode != "zombie")
+        if (mode != "miko" & mode != "triple" & mode != "alger" & mode != "stealthy" & mode != "classic" & mode != "zombie" & mode != "jackenstein")
         {
             timer.isActivated = true;
             if (this.mode == "speedy")
@@ -2634,6 +2652,7 @@ public class GameControllerScript : MonoBehaviour
     public void ExitReached()
     {
         player.stamina += player.maxStamina * 0.5f;
+        AddTp(24);
         exitsReached++;
         if (mode == "miko")
         {
@@ -2700,7 +2719,7 @@ public class GameControllerScript : MonoBehaviour
                 {
                     audioDevice.PlayOneShot(BAL_EscapeHair);
                     FindObjectOfType<SubtitleManager>().Add2DSubtitle("Escape from Hair BASICS!", BAL_EscapeHair.length, Color.cyan);
-                    cameraNormal.fieldOfView += 22.5f;
+                    cameraNormal.fieldOfView += 22.5f; // when did i add this???
                     player.walkSpeed += 2f;
                     player.runSpeed += 6f;
                 }
@@ -3153,7 +3172,10 @@ public class GameControllerScript : MonoBehaviour
 
     public TextboxSpawner jmSpawner;
     public Dialogue secondTime;
+    public Dialogue ohNo;
     public Dialogue tpRemind;
+    public Dialogue tpRemindAlt;
+    bool remind;
 
     private bool learningActive;
 
@@ -3189,7 +3211,7 @@ public class GameControllerScript : MonoBehaviour
     public AudioClip aud_Switch;
 
     public AudioSource schoolMusic;
-
+    public AudioSource darkZoneMusic;
     public AudioSource learnMusic;
 
     public AudioSource pizzaTimeMusic;
@@ -3306,6 +3328,7 @@ public class GameControllerScript : MonoBehaviour
 
     public float tp;
     public Slider tpSlider;
+    public Image[] tpSliderBgs;
     public TMP_Text tpText;
 
     public float jackensteinTimer;

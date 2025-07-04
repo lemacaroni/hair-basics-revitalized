@@ -30,6 +30,11 @@ public class PickupScript : MonoBehaviour
                             if (gc.mode != "endless")
                             {
                                 this.gc.CollectItem(ID);
+                                if (treasure)
+                                {
+                                    gc.AddTp(1.28f);
+                                    gc.playerScript.stamina += 28 * (gc.playerScript.maxStamina / 100);
+                                }
                                 raycastHit.transform.gameObject.SetActive(false);
                             }
                             else
@@ -91,4 +96,5 @@ public class PickupScript : MonoBehaviour
     public bool zombie;
     public Sword swordType;
     public int durability;
+    public bool treasure;
 }

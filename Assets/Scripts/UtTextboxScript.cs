@@ -60,7 +60,7 @@ public class UtTextboxScript : MonoBehaviour
             {
                 GetComponent<AudioSource>().PlayOneShot(dialogue.blips[i]);
             }
-            if (specialEvent != 2)
+            if (specialEvent != 2 && specialEvent != 3)
             {
                 yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
                 yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.Z));
@@ -73,6 +73,7 @@ public class UtTextboxScript : MonoBehaviour
         switch (specialEvent)
         {
             case 1: menus[0].SetActive(false); menus[1].SetActive(true); start.StartGame(); break;
+            case 3: takingTooLong.SetActive(true); break;
         }
         Destroy(gameObject);
     }
@@ -83,12 +84,15 @@ public class UtTextboxScript : MonoBehaviour
     public Dialogue dialogue;
 
     public int specialEvent;
-
-    public GameObject[] menus; // 0 completion menu 1 load screen
-    public StartButton start;
     /*
     0 - nothing
     1 - load jackenstein mode
     2 - autoskip
-    */ 
+    3 - autoskip + YOUR TAKING TOO LONG 
+    */
+
+    public GameObject[] menus; // 0 completion menu 1 load screen
+    public StartButton start;
+
+    public GameObject takingTooLong;
 }

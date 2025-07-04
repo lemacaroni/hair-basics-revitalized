@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text:
   - I think you already know how this works.
-  - Go fast, get treasure, press [Y] at 70%. Good luck!
+  - Go fast, get treasure, press [Y] at 80% TP. Good luck!
   sprites:
   - {fileID: -3318305388929801286, guid: 04d2124341b503d4caecc2da988e0b16, type: 3}
   - {fileID: 7932419815888227622, guid: 04d2124341b503d4caecc2da988e0b16, type: 3}

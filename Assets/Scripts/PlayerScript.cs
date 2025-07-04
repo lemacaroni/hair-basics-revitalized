@@ -660,6 +660,12 @@ public class PlayerScript : MonoBehaviour
 			camscript.ShakeNow(new Vector3(0.1f, 0.1f, 0.1f), 1);
 			gonnaBeKriller = other.transform;
 		}
+		if (other.transform.name == "Guywhoappearswhenyouhavetakentoolonginaball")
+		{
+			health -= 4.5f * (28 * Time.deltaTime);
+			camscript.ShakeNow(new Vector3(0.1f, 0.1f, 0.1f), 1);
+			gonnaBeKriller = other.transform;
+		}
 		if (other.transform.name == "Yellow Face")
 		{
 			health -= 45f * (10 * Time.deltaTime);

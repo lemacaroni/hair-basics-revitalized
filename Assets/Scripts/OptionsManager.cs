@@ -461,6 +461,8 @@ public class OptionsManager : MonoBehaviour
 		PlayerPrefs.SetInt("stealthyBeat", 0);
 		PlayerPrefs.SetInt("classicBeat", 0);
 		PlayerPrefs.SetInt("zombieBeat", 0);
+		PlayerPrefs.SetInt("jackensteinBeat", 0);
+		PlayerPrefs.SetInt("seenSusie", 0);
 		PlayerPrefs.SetInt("paninoBeat", 0);
 		PlayerPrefs.SetInt("speedBoost", 0);
 		PlayerPrefs.SetInt("extraStamina", 0);
