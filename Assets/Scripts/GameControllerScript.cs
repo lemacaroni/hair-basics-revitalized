@@ -2178,6 +2178,10 @@ public class GameControllerScript : MonoBehaviour
                 algerKrilledByPlayer = true;
                 tc.usedItem = true;
                 StartCoroutine(SpawnAlgerAfter(130));
+                if (true || IsAprilFools()) // Random.Range(1, 100) == 28 
+                {
+                    StartCoroutine(Weird(1));
+                }
             }
             else if (hitInfo7.collider.name == "Alger (Alger's Basics)")
             {
@@ -2932,6 +2936,12 @@ public class GameControllerScript : MonoBehaviour
         sliderClickOut.maxValue = at.clickery;
     }
 
+    public IEnumerator Weird(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        audioDevice.PlayOneShot(snd_ominous);
+    }
+
     public bool craftersTime;
 
     public int speedBoost;
@@ -3027,6 +3037,7 @@ public class GameControllerScript : MonoBehaviour
 
     public AudioClip cantCome;
     public AudioClip killedMe;
+    public AudioClip snd_ominous;
 
     public Camera cameraNormal;
 
