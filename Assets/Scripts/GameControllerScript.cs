@@ -2178,7 +2178,7 @@ public class GameControllerScript : MonoBehaviour
                 algerKrilledByPlayer = true;
                 tc.usedItem = true;
                 StartCoroutine(SpawnAlgerAfter(130));
-                if (true || IsAprilFools()) // Random.Range(1, 100) == 28 
+                if (Random.Range(1, 100) == 28 || IsAprilFools()) // Random.Range(1, 100) == 28 
                 {
                     StartCoroutine(Weird(1));
                 }
