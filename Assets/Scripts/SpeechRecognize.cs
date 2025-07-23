@@ -20,6 +20,11 @@ public class SpeechRecognize : MonoBehaviour
             print("ay yo i heard you say EVIL LEAFY so here is EVIL LEAFY");
             gc.SpawnEvilLeafy();
         });
+        keywords.Add("sheep", () =>
+        {
+            print("not a sheep");
+            gc.baba.GetComponent<BabaScript>().Check();
+        });
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
         keywordRecognizer.Start();

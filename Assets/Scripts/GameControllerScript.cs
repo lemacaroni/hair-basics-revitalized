@@ -120,6 +120,10 @@ public class GameControllerScript : MonoBehaviour
         {
             jackensteinTimer = 240;
             jackensteinTimerSlider.maxValue = jackensteinTimer / 2;
+            if (Random.Range(1, 128) == 47)
+            {
+                brother.SetActive(true);
+            }
             if (Random.Range(1, 300) == 28 || IsAprilFools())
             {
                 A.SetActive(true);
@@ -754,7 +758,7 @@ public class GameControllerScript : MonoBehaviour
         tp += tpGain;
         tpSlider.value = tp;
         tpText.text = $"{(int)tp}%";
-        tpText.color = Color.black;
+        tpText.color = Color.white;
         tpSliderBgs[0].color = new Color(0, 0, 0.05f);
         tpSliderBgs[1].color = new Color(0, 0, 0.7843137f);
         if (tp >= 100)
@@ -1340,6 +1344,10 @@ public class GameControllerScript : MonoBehaviour
                 {
                     tutorals[i].Pause();
                 }
+                if (brother.activeSelf)
+                {
+                    brother.GetComponentInChildren<VideoPlayer>().Pause();
+                }
                 for (int i = 0; i < FindObjectsOfType<SongPlayer>().Length; i++)
                 {
                     FindObjectsOfType<SongPlayer>()[i].Pause();
@@ -1367,6 +1375,10 @@ public class GameControllerScript : MonoBehaviour
             for (int i = 0; i < tutorals.Length; i++)
             {
                 tutorals[i].Play();
+            }
+            if (brother.activeSelf)
+            {
+                brother.GetComponentInChildren<VideoPlayer>().Play();
             }
             for (int i = 0; i < FindObjectsOfType<SongPlayer>().Length; i++)
             {
@@ -3302,6 +3314,7 @@ public class GameControllerScript : MonoBehaviour
     public GameObject treasureItemLayout;
 
     public VideoPlayer[] tutorals;
+    public GameObject brother;
 
     public GameObject pharohsWall;
 

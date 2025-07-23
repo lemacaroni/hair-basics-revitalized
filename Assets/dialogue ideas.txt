@@ -77,7 +77,7 @@ Second appearance [random event in Story Mode]
 
 * ..you can't talk? [#0]
 
-* I've heard that quiet people <color=yellow>piss</color>. [#53]
+* I've heard that quiet people piss. [#28]
 
 Third or more appearance[Random event in Story Mode]
 
@@ -89,6 +89,6 @@ Third or more appearance[Random event in Story Mode]
 
 * It's like we're forced to participate in some sort of... [#10]
 
-* ..hair. [#53]
+* ..hair. [#52]
 
 * ..What?? I didn't even say anything! [#9]
