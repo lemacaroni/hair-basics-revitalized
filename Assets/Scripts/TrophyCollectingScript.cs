@@ -44,7 +44,7 @@ public class TrophyCollectingScript : MonoBehaviour
         }
         if (windowCleanAmount == 3872643)
         {
-            GetTrophy(15);
+            GetTrophy(14);
         }
         if (PlayerPrefs.GetInt("algerBeat", 0) == 1)
         {
