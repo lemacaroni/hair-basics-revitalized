@@ -386,7 +386,7 @@ public class GameControllerScript : MonoBehaviour
         {
             baldiScript.baldiSpeedScale = 0.5875f;
         }
-        if (mode == "story" && Random.Range(0, 2) == 1)
+        if (mode == "story" && Random.Range(0, 3) == 1)
         {
             pharohsWall.transform.rotation = Quaternion.Euler(new Vector3(91, 0, 180.5f));
             pharohsWall.GetComponent<MeshCollider>().enabled = false;
@@ -2395,7 +2395,7 @@ public class GameControllerScript : MonoBehaviour
         {
             player.infStamina = true;
             ResetItem();
-            player.Invoke(nameof(player.DisableInfStamina), 5);
+            player.Invoke(nameof(player.DisableInfStamina), 15);
             tc.usedItem = true;
         }
         else if (item[itemSelected] == 26)
@@ -2635,7 +2635,7 @@ public class GameControllerScript : MonoBehaviour
 
     IEnumerator CurseOfRaLogic()
     {
-        yield return new WaitForSeconds(Time.deltaTime);
+        yield return new WaitForSeconds(1/60);
         curseOfRaTime += Time.deltaTime / 2;
         if (Random.Range(1, Mathf.RoundToInt(900 / curseOfRaTime)) <= 2)
         {
