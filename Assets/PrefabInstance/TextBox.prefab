@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 61, y: -2}
+  m_AnchoredPosition: {x: 61, y: -4}
   m_SizeDelta: {x: 372, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6681109375056804247
@@ -228,6 +228,10 @@ MonoBehaviour:
   portrait: {fileID: 6681109376264204204}
   txt: {fileID: 512674929991202166}
   dialogue: {fileID: 11400000, guid: 176d9b54587941c44b9e8114eb4d5873, type: 2}
+  specialEvent: 0
+  menus: []
+  start: {fileID: 0}
+  takingTooLong: {fileID: 0}
 --- !u!82 &3173907439456287475
 AudioSource:
   m_ObjectHideFlags: 0
@@ -433,7 +437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 72.6, y: -2}
+  m_AnchoredPosition: {x: 72.6, y: -4}
   m_SizeDelta: {x: 340, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6825565627556065031

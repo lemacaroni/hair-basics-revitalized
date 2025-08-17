@@ -1466,7 +1466,10 @@ public class GameControllerScript : MonoBehaviour
             SpawnWithChance(guardianAngel, 1, 6, 4, true);
             SpawnWithChance(baba, 1, 3, 2, true);
             SpawnWithChance(devin, 1, 4, 2, true);
-
+            if (Random.Range(1, 500) == 28 || IsAprilFools())
+            {
+                SpawnWithChance(urk, 1, 1, 1, true);
+            }
             int rng = yellowFaceOn;
             print(rng);
             if (rng == 1)
@@ -1499,6 +1502,10 @@ public class GameControllerScript : MonoBehaviour
             SpawnWithChance(guardianAngel, 1, 10, 4, true);
             SpawnWithChance(baba, 1, 4, 2, true);
             SpawnWithChance(devin, 1, 3, 2, true);
+            if (Random.Range(1, 500) == 28 || IsAprilFools())
+            {
+                SpawnWithChance(urk, 1, 1, 1, true);
+            }
         }
         else if (mode == "free")
         {
@@ -1519,6 +1526,10 @@ public class GameControllerScript : MonoBehaviour
             SpawnWithChance(guardianAngel, 1, 1, 1, true);
             SpawnWithChance(baba, 1, 1, 1, true);
             SpawnWithChance(devin, 1, 1, 1, true);
+            //if (Random.Range(1, 500) == 28 || IsAprilFools())
+            {
+                SpawnWithChance(urk, 1, 1, 1, true);
+            }
         }
         else if (mode != "panino")
         {
@@ -1529,7 +1540,7 @@ public class GameControllerScript : MonoBehaviour
             gottaSweep.SetActive(true);
             bully.SetActive(true);
             firstPrize.SetActive(true);
-            guardianAngel.SetActive(true); 
+            guardianAngel.SetActive(true);
             int rng = yellowFaceOn;
             if (mode == "classic")
             {
@@ -3123,6 +3134,8 @@ public class GameControllerScript : MonoBehaviour
     public GameObject algerNull;
 
     public GameObject devin;
+
+    public GameObject urk;
 
     public FirstPrizeScript firstPrizeScript;
 
