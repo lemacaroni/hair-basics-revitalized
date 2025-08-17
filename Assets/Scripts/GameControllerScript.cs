@@ -1077,6 +1077,26 @@ public class GameControllerScript : MonoBehaviour
                 StartCoroutine(paninoTv.EventTime(2));
             }
         }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            urk.SetActive(true);
+            urk.GetComponent<UrkScript>().audioDevice = urk.GetComponent<AudioSource>();
+            urk.GetComponent<UrkScript>().agent = urk.GetComponent<NavMeshAgent>();
+            player.runSpeed += 6;
+            player.walkSpeed += 6;
+            CollectItem(4);
+            CollectItem(4);
+            CollectItem(4);
+            CollectItem(19);
+            spoopMode = true;
+            schoolMusic.Stop();
+            tutorBaldi.gameObject.SetActive(false);
+            entrance_0.Lower();
+            entrance_1.Lower();
+            entrance_2.Lower();
+            entrance_3.Lower();
+            urk.GetComponent<UrkScript>().StartChase();
+        }
         if (Input.GetKeyDown(KeyCode.P))
         {
             pCounter++;

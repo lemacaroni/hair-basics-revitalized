@@ -8648,7 +8648,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Encounter them in Story Mode
+  m_text: Well, if you say so.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0da04a461c84a1e41bbbe240dbdb94b3, type: 2}
   m_sharedMaterial: {fileID: -7416678383220277927, guid: 0da04a461c84a1e41bbbe240dbdb94b3,
@@ -22734,7 +22734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429ab73ab2247ef49932323823df4946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trophy: deltatravelersTrophy
+  trophy: cleartilTrophy
 --- !u!114 &453799444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55739,7 +55739,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Deltatravelers
+  m_text: Cleartil is Better
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f104ab5c06b6f34ab0816f086069b5b, type: 2}
   m_sharedMaterial: {fileID: 824898514370142616, guid: 1f104ab5c06b6f34ab0816f086069b5b,

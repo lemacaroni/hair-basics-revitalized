@@ -12,7 +12,7 @@ public class UrkScript : MonoBehaviour
 
 	public AILocationSelectorScript wanderer;
 
-	private AudioSource audioDevice;
+	public AudioSource audioDevice;
 	private AudioSource audMusic;
 
 	public float coolDown;
@@ -20,7 +20,7 @@ public class UrkScript : MonoBehaviour
 
 	private Vector3 previous;
 
-	private NavMeshAgent agent;
+	public NavMeshAgent agent;
 
 	public GameControllerScript gc;
 
@@ -42,7 +42,7 @@ public class UrkScript : MonoBehaviour
 
 	float speed;
 
-	private void Start()
+	void Start()
 	{
 		audioDevice = GetComponent<AudioSource>();
 		audMusic = gameObject.AddComponent<AudioSource>();
@@ -139,9 +139,12 @@ public class UrkScript : MonoBehaviour
 		coolDown = 1f;
 	}
 
-	void StartChase()
+	public void StartChase()
 	{
-		audMusic.Stop();
+		if (audMusic != null)
+		{
+			audMusic.Stop();
+		}
 		wandering = false;
 		chase = true;
 		agent.speed = gc.player.runSpeed + 2;
@@ -166,13 +169,18 @@ public class UrkScript : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		if (other.transform.name == "UbrSpray(Clone)")
+		{
+			seeCooldown = 1;
+			urkTimer /= 2;
+		}
 		if (other.tag == "Player")
         {
 			if (chase && gc.player.health > 0)
             {
 				gc.player.health = 0;
 				audioDevice.PlayOneShot(music[11]);
-				gc.camScript.SetCharacter(gameObject);
+				gc.camScript.follow = transform;
             }
         }
 		if (other.transform.name == "Yellow Face") // should npc TIE to yellowey?
