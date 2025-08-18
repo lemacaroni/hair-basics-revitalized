@@ -58,12 +58,11 @@ public class UrkScript : MonoBehaviour
 
 	private void Update()
 	{
-		//Move();
 		if (coolDown > 0f)
 		{
 			coolDown -= 1f * Time.deltaTime;
 		}
-		if (wandering && !audMusic.isPlaying)
+		if (wandering && !audMusic.isPlaying && !AudioListener.pause)
         {
 			audMusic.clip = music[Random.Range(0, 7)];
 			audMusic.Play();
@@ -155,24 +154,34 @@ public class UrkScript : MonoBehaviour
 		urkSTimer.gameObject.SetActive(true);
 	}
 
-	private void Move()
+	public void StopChase()
 	{
-		if (gc.isActiveAndEnabled)
-		{
-			if ((base.transform.position == previous) & (coolDown < 0f))
-			{
-				Wander();
-			}
-		}
-		previous = base.transform.position;
+		wandering = true;
+		chase = false;
+		agent.speed = 15;
+		audioDevice.loop = true;
+		audioDevice.Stop();
+		urkSTimer.gameObject.SetActive(false);
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.transform.name == "UbrSpray(Clone)")
 		{
-			seeCooldown = 1;
-			urkTimer /= 2;
+			if (!chase)
+			{
+				seeCooldown = 5;
+				urkTimer /= 1.5f;
+			}
+            else
+			{
+				urkTimer -= 4f;
+				urkSTimer.value = urkTimer;
+				if (urkTimer <= 0)
+                {
+					StopChase();
+                }
+			}
 		}
 		if (other.tag == "Player")
         {
@@ -180,13 +189,29 @@ public class UrkScript : MonoBehaviour
             {
 				gc.player.health = 0;
 				audioDevice.PlayOneShot(music[11]);
-				gc.camScript.follow = transform;
+				gc.player.gonnaBeKriller = transform;
             }
         }
 		if (other.transform.name == "Yellow Face") // should npc TIE to yellowey?
 		{
 			gc.SomeoneTied(gameObject);
 			gameObject.SetActive(false);
+		}
+	}
+
+    private void OnTriggerStay(Collider other)
+    {
+		if (other.transform.name == "UbrSpray(Clone)" || other.transform.name == "Objection(Clone)")
+		{
+			if (chase)
+			{
+				urkTimer -= 0.1f * Time.deltaTime;
+				urkSTimer.value = urkTimer;
+				if (urkTimer <= 0)
+				{
+					StopChase();
+				}
+			}
 		}
 	}
 }

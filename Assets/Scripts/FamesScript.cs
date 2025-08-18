@@ -8,6 +8,7 @@ public class FamesScript : MonoBehaviour
 	private void Start()
 	{
 		this.agent = base.GetComponent<NavMeshAgent>();
+		aud = GetComponent<AudioSource>();
 		this.TargetPlayer();
 	}
 
@@ -17,7 +18,11 @@ public class FamesScript : MonoBehaviour
 		{
 			this.coolDown -= 1f * Time.deltaTime;
 		}
-		howHungry += 2 * Time.deltaTime;
+		howHungry += 0.25f * Time.deltaTime;
+		if (Input.GetKey(KeyCode.F))
+		{
+			howHungry += 1.75f * Time.deltaTime;
+		}
 		print(howHungry);
 		if (howHungry < 25)
 		{
@@ -25,12 +30,24 @@ public class FamesScript : MonoBehaviour
 		}
 		if (howHungry >= 25 && howHungry < 50)
         {
-			agent.speed = gc.player.walkSpeed / 1.2f;
+			agent.speed = 18;
 		}
 		if (howHungry >= 50 && howHungry < 75)
 		{
-			agent.speed = gc.player.runSpeed / 1.2f;
+			agent.speed = 24;
 		}
+		else if (howHungry >= 75)
+		{
+			agent.speed = 32;
+		}
+		if (stop)
+		{
+			agent.speed = 0;
+		}
+		if (howHungry > 100)
+        {
+			howHungry = 100;
+        }
 	}
 
 	private void FixedUpdate()
@@ -39,6 +56,10 @@ public class FamesScript : MonoBehaviour
 		if (Physics.Raycast(base.transform.position + Vector3.up * 2f, direction, out var hitInfo, float.PositiveInfinity, 769, QueryTriggerInteraction.Ignore) & (hitInfo.transform.tag == "Player"))
 		{
 			this.db = true;
+			if (((howHungry >= 25f && HasFoodItem()) || howHungry >= 50f))
+			{
+				TargetPlayer();
+			}
 		}
 		else
 		{
@@ -73,7 +94,7 @@ public class FamesScript : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.transform.name == "Player" && howHungry >= 25f)
+		if (other.transform.name == "Player" && howHungry >= 25f && !stop)
 		{
 			if (howHungry >= 25f && howHungry < 50 && HasFoodItem())
             {
@@ -131,21 +152,28 @@ public class FamesScript : MonoBehaviour
 	{
 		stop = true;
 		anim.SetTrigger("Chomp");
+		aud.PlayOneShot(sounds[0]);
 		yield return new WaitForSeconds(0.4f);
 		if (item)
 		{
 			gc.LoseItem(HasFoodItemWhich());
-			howHungry -= 25;
 		}
         else
-        {
+		{
+			gc.player.gonnaBeKriller = transform;
 			gc.player.health -= 25;
         }
-		if (howHungry < 75)
+		howHungry -= 25;
+		anim.SetInteger("Chew", 1);
+		if (howHungry >= 75)
 		{
-			anim.SetInteger("Chew", 1);
 			yield return new WaitForSeconds(5f);
 		}
+        else
+		{
+			yield return new WaitForSeconds(0.6f);
+		}
+		anim.SetInteger("Chew", 0);
 		stop = false;
 	}
 
@@ -170,4 +198,10 @@ public class FamesScript : MonoBehaviour
 	public List<int> foods;
 
 	bool stop;
+
+	public AudioSource aud;
+	public AudioClip[] sounds;
+	// 0 - chomp
+	// 1-2 - im so hungry i could eat a
+	// 3-5 - roaring fames
 }

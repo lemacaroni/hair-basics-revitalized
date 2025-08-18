@@ -42,7 +42,7 @@ public class GuyWhoAppearsWhenYouTookTooLongInPaninosBallScript : MonoBehaviour
     {
         if (other.transform.name == "UbrSpray(Clone)")
         {
-            pauseTime = 15;
+            pauseTime = 5;
         }
         if (other.transform.name == "Yellow Face")
         {

@@ -1490,6 +1490,10 @@ public class GameControllerScript : MonoBehaviour
             {
                 SpawnWithChance(urk, 1, 1, 1, true);
             }
+            if (Random.Range(1, 500) == 28 || IsAprilFools())
+            {
+                SpawnWithChance(fames, 1, 1, 1, true);
+            }
             int rng = yellowFaceOn;
             print(rng);
             if (rng == 1)
@@ -1526,6 +1530,10 @@ public class GameControllerScript : MonoBehaviour
             {
                 SpawnWithChance(urk, 1, 1, 1, true);
             }
+            if (Random.Range(1, 500) == 28 || IsAprilFools())
+            {
+                SpawnWithChance(fames, 1, 1, 1, true);
+            }
         }
         else if (mode == "free")
         {
@@ -1549,6 +1557,10 @@ public class GameControllerScript : MonoBehaviour
             //if (Random.Range(1, 500) == 28 || IsAprilFools())
             {
                 SpawnWithChance(urk, 1, 1, 1, true);
+            }
+            //if (Random.Range(1, 500) == 28 || IsAprilFools())
+            {
+                SpawnWithChance(fames, 1, 1, 1, true);
             }
         }
         else if (mode != "panino")
@@ -2465,7 +2477,7 @@ public class GameControllerScript : MonoBehaviour
         }
         else if (item[itemSelected] == 27)
         {
-            GameObject a = Instantiate(ubrSpray, playerTransform.position + Vector3.up, Quaternion.Euler(0f, (cameraTransform.rotation.eulerAngles.y), 0f));
+            GameObject a = Instantiate(ubrSpray, playerTransform.position + (playerTransform.right * 0.5f + Vector3.up * (0.25f)), Quaternion.Euler(0f, (cameraTransform.rotation.eulerAngles.y), 0f));
             a.transform.name = "UbrSpray(Clone)";
             audioDevice.PlayOneShot(aud_Spray);
             if (Random.Range(1, 10) != 2)
@@ -3156,6 +3168,7 @@ public class GameControllerScript : MonoBehaviour
     public GameObject devin;
 
     public GameObject urk;
+    public GameObject fames;
 
     public FirstPrizeScript firstPrizeScript;
 
