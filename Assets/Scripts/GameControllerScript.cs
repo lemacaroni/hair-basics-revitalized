@@ -1554,11 +1554,11 @@ public class GameControllerScript : MonoBehaviour
             SpawnWithChance(guardianAngel, 1, 1, 1, true);
             SpawnWithChance(baba, 1, 1, 1, true);
             SpawnWithChance(devin, 1, 1, 1, true);
-            //if (Random.Range(1, 500) == 28 || IsAprilFools())
+            if (Random.Range(1, 500) == 28 || IsAprilFools())
             {
                 SpawnWithChance(urk, 1, 1, 1, true);
             }
-            //if (Random.Range(1, 500) == 28 || IsAprilFools())
+            if (Random.Range(1, 500) == 28 || IsAprilFools())
             {
                 SpawnWithChance(fames, 1, 1, 1, true);
             }
