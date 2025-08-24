@@ -223,7 +223,7 @@ public class ExitTriggerScript : MonoBehaviour
 			}
 			else if (gc.mode == "jackenstein")
 			{
-				//gc.tc.GetTrophy(something something);
+				gc.tc.GetTrophy(41);
 				SceneManager.LoadScene("BeatBonusMode");
 				PlayerPrefs.SetInt("jackensteinBeat", 1);
 				PlayerPrefs.SetString("bonusTextString", "Wow! Susie is IMPRESSED! You're do Great!");

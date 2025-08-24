@@ -26,7 +26,7 @@ public class UrkScript : MonoBehaviour
 
 	bool chase;
 
-	float urkTimer;
+	public float urkTimer;
 	public float urkTimerMax = 16.85f;
 	public Slider urkSTimer;
 
@@ -66,6 +66,10 @@ public class UrkScript : MonoBehaviour
         {
 			audMusic.clip = music[Random.Range(0, 7)];
 			audMusic.Play();
+        }
+		if (chase && !gc.camScript.FuckingDead)
+        {
+			gc.tc.urkTime += Time.deltaTime;
         }
 	}
 
@@ -158,6 +162,7 @@ public class UrkScript : MonoBehaviour
 	{
 		wandering = true;
 		chase = false;
+		gc.tc.urkTime = 0;
 		agent.speed = 15;
 		audioDevice.loop = true;
 		audioDevice.Stop();

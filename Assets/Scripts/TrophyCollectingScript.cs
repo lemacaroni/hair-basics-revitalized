@@ -106,6 +106,10 @@ public class TrophyCollectingScript : MonoBehaviour
         {
             GetTrophy(38);
         }
+        if (urkTime >= 150)
+        {
+            GetTrophy(42);
+        }
     }
 
     public void GetTrophy(int i)
@@ -154,7 +158,7 @@ public class TrophyCollectingScript : MonoBehaviour
 
     public string[] trophyName;
 
-    private bool[] dontCheckAga = new bool[40];
+    private bool[] dontCheckAga = new bool[48];
 
     public int zestyEaten;
     public int esteEaten;
@@ -162,6 +166,7 @@ public class TrophyCollectingScript : MonoBehaviour
     public int devinPipeHit;
     public float pizzafaceTime;
     public float promplyTime;
+    public float urkTime;
     public float hideTime;
 
     public bool babaGotPushed;

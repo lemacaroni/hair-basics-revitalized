@@ -110,6 +110,11 @@ public class FamesScript : MonoBehaviour
 			gc.SomeoneTied(gameObject);
 			gameObject.SetActive(false);
 		}
+		if (other.transform.name == "UbrSpray(Clone)")
+		{
+			howHungry -= 10;
+			Wander();
+		}
 	}
 
 	bool HasFoodItem()
