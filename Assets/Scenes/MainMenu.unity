@@ -22105,9 +22105,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3df6ceb540d718d48bd5b0995da31d9f, type: 3}
   - {fileID: 8300000, guid: 6f794de3ff5f970428f38c604e38bd04, type: 3}
   - {fileID: 8300000, guid: a0fbe32d360baa04eafabcb8015710bc, type: 3}
-  - {fileID: 8300000, guid: 4ff3867adfc552647a065d08f11e8770, type: 3}
+  - {fileID: 8300000, guid: de0cb256a97605c448155a1f0c34398c, type: 3}
   - {fileID: 8300000, guid: 8831d812768e5b341b755f94d84725c8, type: 3}
-  - {fileID: 8300000, guid: 30348963f3a8dc949b4db5df26ac3b11, type: 3}
+  - {fileID: 8300000, guid: bc3a5dc266a236144bff5ae33c5b3798, type: 3}
   - {fileID: 8300000, guid: 8b9173d1531db8242a6539ff4aa1d951, type: 3}
   - {fileID: 8300000, guid: f8965dfd69f4c1b49917049311e8c150, type: 3}
   - {fileID: 8300000, guid: 6fdae01ef93c43044ae5e92c0113d494, type: 3}
@@ -39794,7 +39794,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 195}
-  m_SizeDelta: {x: 340, y: 30}
+  m_SizeDelta: {x: 280, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &915495073
 MonoBehaviour:
@@ -39887,7 +39887,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: World Wide Noise (MIDI)
       m_Image: {fileID: 0}
-    - m_Text: hmmm look what u done did you found a secret
+    - m_Text: A Hairy Secret
       m_Image: {fileID: 0}
     - m_Text: Crazy Apple Eater
       m_Image: {fileID: 0}
