@@ -821,6 +821,27 @@ public class GameControllerScript : MonoBehaviour
         baldiScript.baldiTempAnger = 0f;
     }
 
+    public void CleartilIsBetter()
+    {
+        cleartilMode = true; 
+        baldi.SetActive(false);
+        principal.SetActive(false);
+        firstPrize.SetActive(false);
+        craftersTime = false;
+        crafters.SetActive(false);
+        gottaSweep.SetActive(false);
+        bully.SetActive(false);
+        bigball.SetActive(false);
+        guardianAngel.SetActive(false);
+        baba.SetActive(false);
+        devin.SetActive(false);
+        starstudentWall.SetActive(false);
+        urk.SetActive(true);
+        fames.SetActive(true);
+        frs.enabled = true;
+        // more later
+    }
+
     private void Update()
     {
         if (Time.timeScale > 0)
@@ -846,9 +867,9 @@ public class GameControllerScript : MonoBehaviour
                 scoreDecayTimer -= 1 * Time.deltaTime;
             }
 
-            if (timer.timeLeft < 57 && pizzaTimeMusic.time < 171)
+            if (timer.timeLeft < 58 && pizzaTimeMusic.time < 171)
             {
-                pizzaTimeMusic.time = 171;
+                pizzaTimeMusic.time = 170.5f;
             }
         }
         if (pss.score < 1 & finaleMode & pizzaface.isActiveAndEnabled)
@@ -1065,17 +1086,6 @@ public class GameControllerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F4))
         {
             player.walkSpeed *= 1.25f;
-        }
-        if (Input.GetKeyDown(KeyCode.F12))
-        {
-            if (IsAprilFools())
-            {
-                StartCoroutine(paninoTv.EventTime(3));
-            }
-            else
-            {
-                StartCoroutine(paninoTv.EventTime(2));
-            }
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
@@ -1823,7 +1833,7 @@ public class GameControllerScript : MonoBehaviour
         {
             quarter.SetActive(false);
         }
-        if ((notebooks == 4 && !evilLeafy.activeSelf && (mode == "story" || mode == "pizza" || mode == "free")) || (notebooks == 9 && mode == "endless"))
+        if ((notebooks == 4 && (!evilLeafy.activeSelf && !cleartilMode) && (mode == "story" || mode == "pizza" || mode == "free")) || (notebooks == 9 && mode == "endless"))
         {
             bigball.SetActive(true);
         }
@@ -3169,6 +3179,9 @@ public class GameControllerScript : MonoBehaviour
 
     public GameObject urk;
     public GameObject fames;
+    public GameObject spellingBee;
+
+    bool cleartilMode;
 
     public FirstPrizeScript firstPrizeScript;
 
@@ -3323,7 +3336,7 @@ public class GameControllerScript : MonoBehaviour
 
     public BossControllerScript bsc;
 
-    public Collider playerCollider;
+    public CapsuleCollider playerCollider;
 
     public AILocationSelectorScript AILocationSelector;
 
@@ -3363,6 +3376,8 @@ public class GameControllerScript : MonoBehaviour
     public GameObject brother;
 
     public GameObject pharohsWall;
+    public GameObject starstudentWall;
+    public FireRoomScript frs;
 
     public Image sandUI;
 

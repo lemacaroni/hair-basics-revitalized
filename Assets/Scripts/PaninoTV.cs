@@ -15,11 +15,11 @@ public class PaninoTV : MonoBehaviour
             StartCoroutine(EventTime(TestValue));
             return;
         }
-        if (((gc.mode == "story" || gc.mode == "pizza" || gc.mode == "triple" || gc.mode == "free") && Random.Range(1, 3) == 2) || gc.mode == "endless")
+        if (((gc.mode == "story" || gc.mode == "pizza" || gc.mode == "triple" || gc.mode == "free") && Random.Range(1, 4) == 2) || gc.mode == "endless")
         {
             eventWillHappne = true;
             print("event happens");
-            timmer = Random.Range(70, 350);
+            timmer = Random.Range(70, 280);
         }
     }
 
@@ -34,17 +34,34 @@ public class PaninoTV : MonoBehaviour
             }
             if (timmer <= 0 && eventWillHappne)
             {
-                if (gc.IsAprilFools())
-                {
-                    StartCoroutine(EventTime(3));
-                }
-                else
-                {
-                    StartCoroutine(EventTime(2));
-                }
-                eventWillHappne = false;
+                ItsTimeForARandomEventBrother();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+            if (TestMode)
+            {
+                StartCoroutine(EventTime(TestValue));
+            }
+        }
+    }
+
+    void ItsTimeForARandomEventBrother()
+    {
+        int eventee = Random.Range(3, paninoAnnounce.Length);
+        if (gc.IsAprilFools() || Random.Range(1, 280) == 4)
+        {
+            eventee = 2;
+        }
+        StartCoroutine(EventTime(eventee));
+        if (Random.Range(1, 4) != 3 && eventsDone[eventee] != 1)
+        {
+            timmer = Random.Range(40, 100);
+            return;
+        }
+        eventsDone[eventee] = 1;
+        eventWillHappne = false;
     }
 
     public IEnumerator EventTime(int thing)
@@ -53,18 +70,9 @@ public class PaninoTV : MonoBehaviour
         {
             anim.SetTrigger("neverGoDown");
         }
-        panino.GetComponent<AudioSource>().clip = paninoAnnounce[thing];
         if (thing != 0)
         {
             exclamationSound.Play();
-            if (stillBlabbering)
-            {
-                queued = true;
-                yield return new WaitUntil(() => !stillBlabbering);
-            }
-        }
-        if (thing != 0)
-        {
             if (stillBlabbering)
             {
                 queued = true;
@@ -82,6 +90,7 @@ public class PaninoTV : MonoBehaviour
                 yield return new WaitUntil(() => !stillBlabbering);
             }
         }
+        panino.GetComponent<AudioSource>().clip = paninoAnnounce[thing];
         queued = false;
         panino.SetActive(false);
         exclamation.SetActive(false);
@@ -94,16 +103,14 @@ public class PaninoTV : MonoBehaviour
         {
             case 0: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber0, duration0, colore0); break;
             case 1: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber1, duration1, colore1); break;
-            case 2: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber2, duration2, colore0); break;
-            case 3: FindObjectOfType<SubtitleManager>().Add2DSubtitle("How do I get him off", paninoAnnounce[3].length, Color.white); break;
+            case 2: FindObjectOfType<SubtitleManager>().Add2DSubtitle("How do I get him off", paninoAnnounce[2].length, Color.white); break;
+            case 3: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber2, duration2, colore0); break;
+            case 4: FindObjectOfType<SubtitleManager>().Add2DSubtitle("I agree, let's release the angry bees", paninoAnnounce[4].length, Color.white); break;
         }
-        if (thing == 2)
+        switch (thing)
         {
-            prisonDoor.ItemsAreNowGoingToJail();
-        }
-        if (thing == 3)
-        {
-            washeewashee.SetActive(true);
+            case 2: washeewashee.SetActive(true); break;
+            case 3: prisonDoor.ItemsAreNowGoingToJail(); break;
         }
         yield return new WaitForSeconds(paninoAnnounce[thing].length + 0.5f);
         tvStatic.SetActive(true);
@@ -131,11 +138,13 @@ public class PaninoTV : MonoBehaviour
 
     public GameObject washeewashee;
 
-    public AudioClip[] paninoAnnounce; // 0 - congrattation, 1 - pillar john, 2 - jailed items
+    public AudioClip[] paninoAnnounce;
 
     [SerializeField]
     int TestValue;
     public bool TestMode;
+
+    int[] eventsDone = new int[4];
 
     public PrisonDoor prisonDoor;
 

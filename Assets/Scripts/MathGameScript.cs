@@ -358,7 +358,12 @@ public class MathGameScript : MonoBehaviour
         {
 			gc.SpawnEvilLeafy();
 			ExitGame();
-        }
+		}
+		else if (playerAnswer.text.ToLower() == "cleartil is better")
+		{
+			problem = 4;
+			StartCoroutine(CheatText("Well, if you say so."));
+		}
 		if (problem > 3)
 		{
 			return;

@@ -23,7 +23,6 @@ public class FamesScript : MonoBehaviour
 		{
 			howHungry += 1.75f * Time.deltaTime;
 		}
-		print(howHungry);
 		if (howHungry < 25)
 		{
 			agent.speed = 15;
@@ -96,7 +95,7 @@ public class FamesScript : MonoBehaviour
 	{
 		if (other.transform.name == "Player" && howHungry >= 25f && !stop)
 		{
-			if (howHungry >= 25f && howHungry < 50 && HasFoodItem())
+			if (howHungry >= 25f && howHungry < 50 && HasFoodItemWhich() != -1)
             {
 				StartCoroutine(Chomp(true));
             }

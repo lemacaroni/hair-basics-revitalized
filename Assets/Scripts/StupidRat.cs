@@ -10,7 +10,7 @@ public class StupidRat : MonoBehaviour
         {
             ps.AddPoints(100, 1);
             gc.audioDevice.PlayOneShot(ratDed);
-            FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Rat destroyed*", ratDed.length, Color.cyan, transform);
+            FindObjectOfType<SubtitleManager>().Add2DSubtitle("*Rat destroyed*", ratDed.length, Color.cyan);
             Object.Destroy(gameObject);
             Object.Destroy(other.gameObject);
         }

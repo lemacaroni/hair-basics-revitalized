@@ -179,15 +179,17 @@ public class PizzaScoreScript : MonoBehaviour
         if (points > -1)
         {
             pointAnim.color = Color.cyan;
+            pointAnim.text = $"+{points}";
         }
         else
         {
             pointAnim.color = Color.red;
             pointAnim.text = points.ToString();
         }
+        StopAllCoroutines();
         StartCoroutine(PointAnimThingy(textDieTime));
         UpdateRankSlider();
-        if (points < -5)
+        if (points < -10)
         {
             lostScore = true;
         }
