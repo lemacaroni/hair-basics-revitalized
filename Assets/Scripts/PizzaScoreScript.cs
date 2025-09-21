@@ -93,6 +93,14 @@ public class PizzaScoreScript : MonoBehaviour
         {
             canP = false;
         }
+
+        if (pointGainAnimTime > 0)
+        {
+            pointGainAnimTime -= Time.deltaTime;
+            return;
+        }
+        pointGainAnimText = 0;
+        pointAnim.text = string.Empty;
     }
 
     public void UpdateRankSlider()
@@ -174,31 +182,28 @@ public class PizzaScoreScript : MonoBehaviour
 
     public void AddPoints(int points, float textDieTime)
     {
-        StopAllCoroutines();
         score += points;
-        if (points > -1)
+        pointGainAnimTime += textDieTime;
+        if (pointGainAnimTime > 1.5f)
+        {
+            pointGainAnimTime = 1.5f;
+        }
+        pointGainAnimText += points;
+        if (pointGainAnimText > -1)
         {
             pointAnim.color = Color.cyan;
-            pointAnim.text = $"+{points}";
+            pointAnim.text = $"+{pointGainAnimText}";
         }
         else
         {
             pointAnim.color = Color.red;
-            pointAnim.text = points.ToString();
+            pointAnim.text = pointGainAnimText.ToString();
         }
-        StopAllCoroutines();
-        StartCoroutine(PointAnimThingy(textDieTime));
         UpdateRankSlider();
         if (points < -10)
         {
             lostScore = true;
         }
-    }
-
-    IEnumerator PointAnimThingy(float timer)
-    {
-        yield return new WaitForSeconds(timer);
-        pointAnim.text = string.Empty;
     }
 
     public GameObject[] toppings;
@@ -227,4 +232,7 @@ public class PizzaScoreScript : MonoBehaviour
     public bool ranUpdateScore;
 
     public string rank;
+
+    float pointGainAnimTime;
+    int pointGainAnimText;
 }
