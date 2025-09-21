@@ -55,6 +55,10 @@ public class FireRoomScript : MonoBehaviour
                 if (timer > 0)
                 {
                     timer -= Time.deltaTime;
+                    if (timer < 0.5f && !thatIdiotAud.isPlaying)
+                    {
+                        thatIdiotAud.PlayOneShot(thatIdiotVoicelines[8]);
+                    }
                     return;
                 }
                 thatIdiot.SetTrigger("BURN");
