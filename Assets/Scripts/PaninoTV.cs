@@ -54,13 +54,16 @@ public class PaninoTV : MonoBehaviour
         {
             eventee = 2;
         }
-        StartCoroutine(EventTime(eventee));
-        if (Random.Range(1, 4) != 3 && eventsDone[eventee] != 1)
+        if (eventsDone[eventee] == 0)
+        {
+            StartCoroutine(EventTime(eventee));
+        }
+        eventsDone[eventee] = 1;
+        if (Random.Range(1, 4) != 3)
         {
             timmer = Random.Range(40, 100);
             return;
         }
-        eventsDone[eventee] = 1;
         eventWillHappne = false;
     }
 
