@@ -235,7 +235,7 @@ public class CameraScript : MonoBehaviour
 				offset = frameOffset;
 				camYoffset = ran2;
 
-				yield return null;
+				yield return new WaitForSeconds(1/60);
 			}
 
 			transform.position += accumulatedOffset;
