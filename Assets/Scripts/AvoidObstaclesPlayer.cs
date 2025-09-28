@@ -73,10 +73,6 @@ public class AvoidObstaclesPlayer : MonoBehaviour
             aud.PlayOneShot(hurt[Random.Range(0, 2)]);
             if (hp == 0)
             {
-                if (score > PlayerPrefs.GetInt("obstaclesScore"))
-                {
-                    PlayerPrefs.SetInt("obstaclesScore", Mathf.RoundToInt(score));
-                }
                 FindObjectOfType<MinigamesStartScript>().Lose();
                 CancelInvoke();
                 fluidMidi.gameObject.SetActive(false);
