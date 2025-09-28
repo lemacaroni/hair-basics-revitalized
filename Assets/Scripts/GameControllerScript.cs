@@ -1267,16 +1267,6 @@ public class GameControllerScript : MonoBehaviour
         {
             tc.GetTrophy(18);
         }
-
-        if (notebooks == 12 && (Random.Range(1, 60) == 20 || IsAprilFools()))
-        {
-            for (int i = 0; i < 79; i++)
-            {
-                GameObject a = Instantiate(locust);
-                a.SetActive(true);
-            }
-            tc.GetTrophy(28);
-        }
     }
 
     IEnumerator EventRing()

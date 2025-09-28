@@ -115,6 +115,13 @@ public class PaninoTV : MonoBehaviour
             case 2: washeewashee.SetActive(true); break;
             case 3: prisonDoor.ItemsAreNowGoingToJail(); break;
             case 4: StartCoroutine(RollOutTheAngryBees()); break;
+            case 5:
+                for (int i = 0; i < 79; i++)
+                {
+                    GameObject a = Instantiate(gc.locust);
+                    a.SetActive(true);
+                }
+                break;
         }
         yield return new WaitForSeconds(paninoAnnounce[thing].length + 0.5f);
         tvStatic.SetActive(true);
