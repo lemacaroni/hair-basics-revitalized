@@ -31,6 +31,19 @@ public class AILocationSelectorScript : MonoBehaviour
 			ambience.PlayAudio();
 		}
 	}
+	public Vector3 GetNewTargetQuick(bool hallway)
+	{
+		int a = 0;
+		if (hallway)
+        {
+			a = Mathf.RoundToInt(Random.Range(0f, newLocation.Length - 24));
+		}
+        else
+		{
+			a = Mathf.RoundToInt(Random.Range(0f, newLocation.Length - 1));
+		}
+		return newLocation[a].position;
+	}
 
 	public void QuarterExclusive()
 	{

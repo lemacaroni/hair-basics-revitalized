@@ -590,7 +590,14 @@ public class PlayerScript : MonoBehaviour
 				gc.tc.GetTrophy(27);
             }
 		}
-
+		if (other.transform.name == "BeeGroup(Clone)")
+        {
+			if (cc.velocity.magnitude > 1f)
+            {
+				gonnaBeKriller = other.transform;
+				health -= 5;
+            }
+        }
 		if (other.transform.name == "LeafingWall")
         {
 			SceneManager.LoadScene("MainMenu");

@@ -114,6 +114,7 @@ public class PaninoTV : MonoBehaviour
         {
             case 2: washeewashee.SetActive(true); break;
             case 3: prisonDoor.ItemsAreNowGoingToJail(); break;
+            case 4: StartCoroutine(RollOutTheAngryBees()); break;
         }
         yield return new WaitForSeconds(paninoAnnounce[thing].length + 0.5f);
         tvStatic.SetActive(true);
@@ -124,6 +125,15 @@ public class PaninoTV : MonoBehaviour
         if (!queued)
         {
             anim.SetTrigger("alwaysGoUp");
+        }
+    }
+
+    IEnumerator RollOutTheAngryBees()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Instantiate(angryBees, gc.AILocationSelector.GetNewTargetQuick(false), Quaternion.identity);
+            yield return new WaitForSeconds(5f);
         }
     }
 
@@ -162,4 +172,6 @@ public class PaninoTV : MonoBehaviour
     Color[] colore1 = { Color.white, Color.white, Color.white };
     string[] blabber2 = { "I have decided that any items that you have are a big meanie", "and I will put them into the.", "Jail.", "Good luck breaking them out, assuming you have any." };
     float[] duration2 = { 3.61f, 2.64f, 1f, 2.5f };
+
+    public GameObject angryBees;
 }
