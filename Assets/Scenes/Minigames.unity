@@ -3934,7 +3934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &629851421
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4839,7 +4839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &796460208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6147,6 +6147,7 @@ MonoBehaviour:
   - {fileID: 1942931724}
   - {fileID: 596610083}
   - {fileID: 585352271}
+  strike: 0
   timerSlider: {fileID: 861637912}
   result:
   - {fileID: 8300000, guid: 526b1a6ab84483440a797157404623ff, type: 3}
@@ -7135,7 +7136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1168446875
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7362,12 +7363,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Avoid the Obstacles
-
-
-    Survive an endless wave of obstacles coming
-    your way! Going real fast gives you more score, but get hit 8 times and it''s
-    over.'
+  m_text: This minigame doesn't exist yet! It might be finished or replaced in another
+    update.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f104ab5c06b6f34ab0816f086069b5b, type: 2}
   m_sharedMaterial: {fileID: 824898514370142616, guid: 1f104ab5c06b6f34ab0816f086069b5b,
@@ -7969,14 +7966,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'That minigame doesn''t exist yet!
-
-    Check back next update.
-
-    It
-    might have been finished or
-
-    replaced with another minigame.'
+  m_text: sorry
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f104ab5c06b6f34ab0816f086069b5b, type: 2}
   m_sharedMaterial: {fileID: 824898514370142616, guid: 1f104ab5c06b6f34ab0816f086069b5b,
@@ -9819,7 +9809,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 65, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -150}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 108, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1827666888
@@ -10354,12 +10344,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Avoid the Obstacles
-
-
-    Survive an endless wave of obstacles coming
-    your way! Going real fast gives you more score, but get hit 8 times and it''s
-    over.'
+  m_text: This minigame doesn't exist yet! It might be finished or replaced in another
+    update.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f104ab5c06b6f34ab0816f086069b5b, type: 2}
   m_sharedMaterial: {fileID: 824898514370142616, guid: 1f104ab5c06b6f34ab0816f086069b5b,

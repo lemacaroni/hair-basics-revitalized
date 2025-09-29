@@ -58,9 +58,9 @@ public class MinigamesStartScript : MonoBehaviour
         switch (PlayerPrefs.GetInt("CurrentMinigame", 3))
         {
             case 2:
-                if (minigames[2].GetComponentInChildren<AvoidObstaclesPlayer>().score > PlayerPrefs.GetInt("obstaclesScore"))
+                if (avoidObstacles.GetComponentInChildren<AvoidObstaclesPlayer>().score > PlayerPrefs.GetInt("obstaclesScore"))
                 {
-                    aftermath.text = $"Nice job! You got {minigames[2].GetComponent<AvoidObstaclesPlayer>().score} score, a new record!";
+                    aftermath.text = $"Nice job! You got {avoidObstacles.GetComponent<AvoidObstaclesPlayer>().score} score, a new record!";
                     PlayerPrefs.SetInt("obstaclesScore", Mathf.RoundToInt(minigames[2].GetComponent<AvoidObstaclesPlayer>().score));
                 }
                 else
@@ -71,7 +71,7 @@ public class MinigamesStartScript : MonoBehaviour
             case 3: 
                 if (minigames[3].GetComponent<TriviaMinigame>().questionText.color == Color.green)
                 {
-                    aftermath.text = $"Nice job! You got {minigames[3].GetComponent<TriviaMinigame>().strikes} strikes.";
+                    aftermath.text = $"Nice job! You got {minigames[3].GetComponent<TriviaMinigame>().strike} strikes.";
                 }
                 else
                 {

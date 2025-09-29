@@ -108,7 +108,7 @@ public class TriviaMinigame : MonoBehaviour
     public TMP_Text questionText;
     public TMP_Text[] answersText;
     int question;
-    int strike;
+    public int strike;
     public Slider timerSlider;
     int questionsAsked;
 
