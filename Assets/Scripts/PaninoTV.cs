@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PaninoTV : MonoBehaviour
 {
@@ -122,6 +123,8 @@ public class PaninoTV : MonoBehaviour
                     a.SetActive(true);
                 }
                 break;
+            case 6: StartCoroutine(PizzaTime()); break;
+            case 7: StartCoroutine(TobyFoxReferenceNoWay()); break;
         }
         yield return new WaitForSeconds(paninoAnnounce[thing].length + 0.5f);
         tvStatic.SetActive(true);
@@ -141,6 +144,46 @@ public class PaninoTV : MonoBehaviour
         {
             Instantiate(angryBees, gc.AILocationSelector.GetNewTargetQuick(false), Quaternion.identity);
             yield return new WaitForSeconds(5f);
+        }
+    }
+    IEnumerator PizzaTime()
+    {
+        pizzaMusic.volume = 0.7f;
+        pizzaHud.SetActive(true);
+        pizzaHudText.text = "8";
+        count = 8;
+        pizzaMusic.Play();
+        pizzaSlices.SetActive(true);
+        gc.playerScript.walkSpeed += 10;
+        gc.playerScript.runSpeed += 15;
+        for (int i = 0; i < 48; i++)
+        {
+            yield return new WaitForSeconds(1);
+            pizzaHud.GetComponent<Image>().color -= Color.white / 48;
+            pizzaHud.GetComponent<Image>().color += Color.black;
+            if (pizzaHudText.text == "0")
+            {
+                gc.CollectItem(gc.CollectItemExcluding(0, 2, 3, 6, 8, 7, 9, 10, 14, 15, 16, 18, 22, 23, 24, 25, 26));
+                break; 
+            }
+        }
+        pizzaHud.SetActive(false);
+        gc.playerScript.walkSpeed -= 8;
+        gc.playerScript.runSpeed -= 12;
+        pizzaSlices.SetActive(false);
+        for (int i = 0; i < 20; i++)
+        {
+            pizzaMusic.volume -= 0.035f;
+            yield return new WaitForSeconds(1 / 30);
+        }
+        pizzaMusic.Stop();
+    }
+    IEnumerator TobyFoxReferenceNoWay()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            fox.SetTrigger("hi");
+            yield return new WaitForSeconds(Random.Range(7, 28));
         }
     }
 
@@ -181,4 +224,12 @@ public class PaninoTV : MonoBehaviour
     float[] duration2 = { 3.61f, 2.64f, 1f, 2.5f };
 
     public GameObject angryBees;
+
+    public GameObject pizzaSlices;
+    public AudioSource pizzaMusic;
+    public GameObject pizzaHud;
+    public TMP_Text pizzaHudText;
+    public int count;
+
+    public Animator fox;
 }

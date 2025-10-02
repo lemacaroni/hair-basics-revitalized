@@ -22112,6 +22112,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f8965dfd69f4c1b49917049311e8c150, type: 3}
   - {fileID: 8300000, guid: 6fdae01ef93c43044ae5e92c0113d494, type: 3}
   - {fileID: 8300000, guid: c775eac119ae9d841a04ee8e4641ed75, type: 3}
+  - {fileID: 8300000, guid: 37e82d40d4f8d8040bf99761b7dc3e74, type: 3}
   midis: []
   loopText: {fileID: 1070555668}
 --- !u!82 &431317728
@@ -39900,6 +39901,8 @@ MonoBehaviour:
     - m_Text: The Ball's Ticking...
       m_Image: {fileID: 0}
     - m_Text: An Unexpected Outcome
+      m_Image: {fileID: 0}
+    - m_Text: Partial Pizza Chaos
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -76570,7 +76573,7 @@ MonoBehaviour:
   textbox: {fileID: 4367392186172228232}
   dialogue: {fileID: 11400000, guid: 8c5571de7026de944b2833f3b08a8055, type: 2}
   dialogueAlt:
-  - {fileID: 11400000, guid: ebc8b7cb4a911854dade6c6e412e2ff2, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: fe554571a7acb1d40ae4f8a45fe62d0c, type: 2}
   special: 1
   guy: {fileID: 0}

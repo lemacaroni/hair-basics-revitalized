@@ -63,8 +63,7 @@ public class PizzaScoreScript : MonoBehaviour
         {
             score = 0;
         }
-        scoreText[0].text = score.ToString();
-        scoreText[1].text = score.ToString();
+        scoreText.text = score.ToString();
 
         if (!ranUpdateScore)
         {
@@ -209,7 +208,7 @@ public class PizzaScoreScript : MonoBehaviour
     public GameObject[] toppings;
     public int score;
     public TMP_Text pointAnim;
-    public TMP_Text[] scoreText;
+    public TMP_Text scoreText;
 
     public GameControllerScript gc;
 
