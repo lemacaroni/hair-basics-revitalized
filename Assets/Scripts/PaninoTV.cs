@@ -16,11 +16,11 @@ public class PaninoTV : MonoBehaviour
             StartCoroutine(EventTime(TestValue));
             return;
         }
-        if (((gc.mode == "story" || gc.mode == "pizza" || gc.mode == "triple" || gc.mode == "free") && Random.Range(1, 4) == 2) || gc.mode == "endless")
+        if ((gc.mode == "story" || gc.mode == "pizza" || gc.mode == "triple" || gc.mode == "free") || gc.mode == "endless")
         {
             eventWillHappne = true;
-            print("event happens");
-            timmer = Random.Range(70, 280);
+            timmer = Random.Range(30, 140);
+            print($"event happens in {timmer} seconds");
         }
     }
 
@@ -60,7 +60,7 @@ public class PaninoTV : MonoBehaviour
             StartCoroutine(EventTime(eventee));
         }
         eventsDone[eventee] = 1;
-        if (Random.Range(1, 4) != 3)
+        if (Random.Range(1, 8) != 3)
         {
             timmer = Random.Range(40, 100);
             return;
@@ -207,7 +207,7 @@ public class PaninoTV : MonoBehaviour
     int TestValue;
     public bool TestMode;
 
-    int[] eventsDone = new int[4];
+    int[] eventsDone = new int[7];
 
     public PrisonDoor prisonDoor;
 
