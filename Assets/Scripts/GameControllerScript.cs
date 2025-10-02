@@ -279,6 +279,13 @@ public class GameControllerScript : MonoBehaviour
             {
                 PlayerPrefs.SetInt($"itemWon{i}", 0);
             }
+
+#if UNITY_EDITOR
+            for (int i = 0; i < tutorals.Length; i++)
+            {
+                tutorals[i].gameObject.SetActive(false);
+            }
+#endif
         }
         if (ClassicSchoolScene)
         {
