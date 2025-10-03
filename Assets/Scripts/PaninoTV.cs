@@ -45,6 +45,11 @@ public class PaninoTV : MonoBehaviour
             {
                 StartCoroutine(EventTime(TestValue));
             }
+            else
+            {
+                eventWillHappne = false;
+                TestMode = true;
+            }
         }
     }
 
