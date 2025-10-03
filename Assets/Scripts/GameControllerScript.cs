@@ -1033,7 +1033,7 @@ public class GameControllerScript : MonoBehaviour
             Time.timeScale = 0;
             if (mode == "pizza")
             {
-                pss.AddPoints(Mathf.RoundToInt(-50000 * Time.unscaledDeltaTime), 1);
+                pss.AddPoints(Mathf.RoundToInt(-500 * Time.unscaledDeltaTime), 1);
             }
             if (gameOverDelay < 0)
             {
