@@ -7,7 +7,7 @@ using System.Linq;
 public class SpeechRecognize : MonoBehaviour
 {
     KeywordRecognizer keywordRecognizer;
-    DictationRecognizer dictationRecognizer;
+    //DictationRecognizer dictationRecognizer;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
     public GameControllerScript gc;

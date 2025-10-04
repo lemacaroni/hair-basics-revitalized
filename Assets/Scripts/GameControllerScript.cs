@@ -845,6 +845,7 @@ public class GameControllerScript : MonoBehaviour
         starstudentWall.SetActive(false);
         urk.SetActive(true);
         fames.SetActive(true);
+        cleartil.SetActive(true);
         frs.enabled = true;
         // more later
     }
@@ -1033,7 +1034,7 @@ public class GameControllerScript : MonoBehaviour
             Time.timeScale = 0;
             if (mode == "pizza")
             {
-                pss.AddPoints(Mathf.RoundToInt(-500 * Time.unscaledDeltaTime), 1);
+                pss.AddPoints(Mathf.RoundToInt(-5000 * Time.unscaledDeltaTime), 1);
             }
             if (gameOverDelay < 0)
             {
@@ -1071,48 +1072,15 @@ public class GameControllerScript : MonoBehaviour
                 jmSpawner.Spawn();
             }
         }
-        if (Input.GetKeyDown(KeyCode.F1) && mode == "free")
-        {
-            baldiTutor.SetActive(value: false);
-            principal.SetActive(value: false);
-            crafters.SetActive(false);
-            gottaSweep.SetActive(false);
-            bully.SetActive(false);
-            firstPrize.SetActive(false);
-            guardianAngel.SetActive(false);
-            craftersTime = false;
-            crafters.SetActive(false);
-            schoolMusic.gameObject.SetActive(false);
-            evilLeafy.SetActive(true);
-        }
-        if (Input.GetKeyDown(KeyCode.F8))
-        {
-            notebooks = maxNoteboos;
-            UpdateNotebookCount();
-        }
         if (Input.GetKeyDown(KeyCode.F4))
         {
             player.walkSpeed *= 1.25f;
+            player.runSpeed *= 1.25f;
         }
-        if (Input.GetKeyDown(KeyCode.F2))
+        if (Input.GetKeyDown(KeyCode.F3))
         {
-            urk.SetActive(true);
-            urk.GetComponent<UrkScript>().audioDevice = urk.GetComponent<AudioSource>();
-            urk.GetComponent<UrkScript>().agent = urk.GetComponent<NavMeshAgent>();
-            player.runSpeed += 6;
-            player.walkSpeed += 6;
-            CollectItem(4);
-            CollectItem(4);
-            CollectItem(4);
-            CollectItem(19);
-            spoopMode = true;
-            schoolMusic.Stop();
-            tutorBaldi.gameObject.SetActive(false);
-            entrance_0.Lower();
-            entrance_1.Lower();
-            entrance_2.Lower();
-            entrance_3.Lower();
-            urk.GetComponent<UrkScript>().StartChase();
+            player.walkSpeed /= 1.25f;
+            player.runSpeed /= 1.25f;
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -2984,7 +2952,7 @@ public class GameControllerScript : MonoBehaviour
                 FindObjectOfType<SubtitleManager>().Add3DSubtitle("run", run.length, Color.red, baldiApple.transform);
             }
             paninoAppleTimer -= Time.deltaTime;
-            yield return new WaitForSeconds(0.01667f); // 60fps basically
+            yield return new WaitForSeconds(1 / 60);
         }
         baldi.transform.position = baldiApple.transform.position;
         Destroy(baldiApple);
@@ -3176,7 +3144,7 @@ public class GameControllerScript : MonoBehaviour
 
     public GameObject urk;
     public GameObject fames;
-    public GameObject spellingBee;
+    public GameObject cleartil;
 
     bool cleartilMode;
 
