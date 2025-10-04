@@ -830,6 +830,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void CleartilIsBetter()
     {
+        spoopMode = true;
         cleartilMode = true; 
         baldi.SetActive(false);
         principal.SetActive(false);
@@ -1448,7 +1449,11 @@ public class GameControllerScript : MonoBehaviour
             {
                 return;
             }
-        } 
+        }
+        if (cleartilMode)
+        {
+            return;
+        }
         if (mode == "story" || mode == "pizza")
         {
             baldiTutor.SetActive(value: false);
