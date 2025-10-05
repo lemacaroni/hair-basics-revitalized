@@ -116,13 +116,13 @@ public class ExitTriggerScript : MonoBehaviour
 				PlayerPrefs.SetInt("speedyBeat", 1);
 				SceneManager.LoadScene("ChallengeBeat");
             }
-			else if (gc.mode == "miko")
+			if (gc.mode == "miko")
             {
 				PlayerPrefs.SetInt("mikoBeat", 1);
 				PlayerPrefs.SetString("bonusTextString", "Wow! Panino is IMPRESSED! You're do Great! He gave you \"BLOCK PATH\" powerup. Use in modifier tab. Press T to use!");
 				SceneManager.LoadScene("ChallengeBeat");
 			}
-			else if (gc.mode == "triple")
+			if (gc.mode == "triple")
 			{
 				PlayerPrefs.SetInt("pActive", 0);
 				PlayerPrefs.SetInt("mActive", 0);
@@ -148,7 +148,7 @@ public class ExitTriggerScript : MonoBehaviour
 				SceneManager.LoadScene("TripleBeat");
 				PlayerPrefs.SetString("bonusTextString", "Wow! Panino is IMPRESSED! You're do Great! He gave you \"EXTRA STAMINA\" powerup. Use in modifier tab.");
 			}
-			else if (gc.mode == "pizza")
+			if (gc.mode == "pizza")
             {
 				PlayerPrefs.SetString("pizzaRankNeww", gc.pss.rank);
 				PlayerPrefs.SetInt("pizzaLapsNeww", gc.laps);
@@ -181,7 +181,7 @@ public class ExitTriggerScript : MonoBehaviour
 				gc.SetTime(0);
 				SceneManager.LoadSceneAsync("Ranking");
 			}
-			else if (gc.mode == "stealthy")
+			if (gc.mode == "stealthy")
 			{
 				if (PlayerPrefs.GetInt("yellow", 0) == 1)
                 {
@@ -205,7 +205,7 @@ public class ExitTriggerScript : MonoBehaviour
 					gc.tc.GetTrophy(35);
                 }
 			}
-			else if (gc.mode == "zombie")
+			if (gc.mode == "zombie")
             {
 				if (FindObjectsOfType<ZombieScript>().Length > 1)
                 {
@@ -221,7 +221,7 @@ public class ExitTriggerScript : MonoBehaviour
 				SceneManager.LoadScene("ChallengeBeat");
 				PlayerPrefs.SetString("bonusTextString", "Wow! Panino is IMPRESSED! You're do Great! He gave you \"SLOWER KRILLERS\" powerup. Use in modifier tab.");
 			}
-			else if (gc.mode == "jackenstein")
+			if (gc.mode == "jackenstein")
 			{
 				gc.tc.GetTrophy(41);
 				SceneManager.LoadScene("BeatBonusMode");
