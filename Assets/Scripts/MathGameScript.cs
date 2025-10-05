@@ -154,9 +154,9 @@ public class MathGameScript : MonoBehaviour
 		{
 			baldiFeedTransform.position = new Vector3(-1000f, -1000f, 0f);
 		}
-		if (FindObjectOfType<CleartilScript>().isActiveAndEnabled)
+		if (gc.cleartil.GetComponent<CleartilScript>().enabled)
         {
-			FindObjectOfType<CleartilScript>().waitTime -= 0.09f;
+			gc.cleartil.GetComponent<CleartilScript>().waitTime -= 0.09f;
         }
 		if (gc.mode == "triple")
         {

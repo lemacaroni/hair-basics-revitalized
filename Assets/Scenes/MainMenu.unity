@@ -22755,7 +22755,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 18aa6d12cd6986f469b2a360d596b39a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b2789bcdfddcc7e4990ad7ee76753115, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -34516,7 +34516,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 33fa879e45d8eaa48bc6a11dc6ddd32f, type: 3}
   - {fileID: 21300000, guid: 411a351666f54ec46b18ce05c1e684ce, type: 3}
   - {fileID: 21300000, guid: 875e22d054e5a9248873e5f886eaf8c7, type: 3}
-  - {fileID: 21300000, guid: 18aa6d12cd6986f469b2a360d596b39a, type: 3}
+  - {fileID: 21300000, guid: b2789bcdfddcc7e4990ad7ee76753115, type: 3}
   - {fileID: 21300000, guid: dd398d6eed97e4d44a176fd71af562b2, type: 3}
   - {fileID: 21300000, guid: ab3fc0d95a7a15440b7b571f769095fd, type: 3}
   trophyName:

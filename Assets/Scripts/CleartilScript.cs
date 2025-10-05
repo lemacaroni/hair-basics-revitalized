@@ -10,6 +10,10 @@ public class CleartilScript : MonoBehaviour
     {
         aud = GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
+        string[] text = { "You naughty child! I won't tolerate this behavior.", "Come here, young one, and let me teach you a lesson." }; ;
+        float[] time = { 4.15f, 3.35f};
+        Color[] color = { new Color32(85, 63, 63, 255), new Color32(85, 63, 63, 255) };
+        FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(text, time, color);
     }
 
     // Update is called once per frame

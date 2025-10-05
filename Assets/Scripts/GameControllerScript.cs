@@ -830,19 +830,25 @@ public class GameControllerScript : MonoBehaviour
 
     public void CleartilIsBetter()
     {
-        spoopMode = true;
-        cleartilMode = true; 
-        baldi.SetActive(false);
-        principal.SetActive(false);
-        firstPrize.SetActive(false);
-        craftersTime = false;
-        crafters.SetActive(false);
-        gottaSweep.SetActive(false);
-        bully.SetActive(false);
-        bigball.SetActive(false);
-        guardianAngel.SetActive(false);
-        baba.SetActive(false);
-        devin.SetActive(false);
+        cleartilMode = true;
+        if (spoopMode)
+        {
+            baldi.SetActive(false);
+            principal.SetActive(false);
+            firstPrize.SetActive(false);
+            craftersTime = false;
+            crafters.SetActive(false);
+            gottaSweep.SetActive(false);
+            bully.SetActive(false);
+            bigball.SetActive(false);
+            guardianAngel.SetActive(false);
+            baba.SetActive(false);
+            devin.SetActive(false);
+        }
+        else
+        {
+            ActivateSpoopMode();
+        }
         starstudentWall.SetActive(false);
         urk.SetActive(true);
         fames.SetActive(true);
@@ -1576,10 +1582,34 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
+    IEnumerator YourWin(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (cleartilMode)
+        {
+            tc.GetTrophy(40);
+        }
+        SceneManager.LoadScene("ChallengeBeat");
+    }
+
     private void ActivateFinaleMode()
     {
         if (mode == "endless")
         {
+            return;
+        }
+        if (cleartilMode)
+        {
+            cleartilNice.SetActive(true);
+            cleartilNice.transform.SetPositionAndRotation(playerTransform.position, playerTransform.rotation);
+            cleartilNice.transform.Translate(cleartilNice.transform.forward * -10);
+            cleartilNice.GetComponent<NavMeshAgent>().enabled = true;
+            urk.SetActive(false);
+            fames.SetActive(false);
+            cleartil.SetActive(false);
+            PlayerPrefs.SetString("bonusTextString", "Wow! Panino is IMPRESSED! You're do Great! He gave you \"CLEARTIL IS BETTER\" trophy.");
+            FindObjectOfType<SubtitleManager>().Add3DSubtitle("You have completed all assignments for the day. You can go to your room now.", 5.5f, new Color32(85, 63, 63, 255), cleartilNice.transform); 
+            StartCoroutine(YourWin(5.5f));
             return;
         }
         laps++;
@@ -1620,7 +1650,7 @@ public class GameControllerScript : MonoBehaviour
             }
             else if (mode == "pizza")
             {
-                this.timer.timeLeft = 105f;
+                this.timer.timeLeft = 115f;
                 pizzaTimeTimer.gameObject.SetActive(true);
                 pizzaTimeTimer.SetBool("up", true);
                 pss.AddPoints(500, 0);
@@ -1807,7 +1837,7 @@ public class GameControllerScript : MonoBehaviour
         {
             bigball.SetActive(true);
         }
-        else if ((notebooks == maxNoteboos) & (mode == "story"))
+        else if ((notebooks == maxNoteboos) & (mode == "story") && !cleartilMode)
         {
             StartCoroutine(paninoTv.EventTime(0));
             ESCAPEmusic.Play();
@@ -2302,7 +2332,7 @@ public class GameControllerScript : MonoBehaviour
             this.CollectItem(16);
             tc.usedItem = true;
         }
-        else if (item[itemSelected] == 16) // 1/3 uses :/
+        else if (item[itemSelected] == 16) // 1/3 uses
         {
             if (principalScript.isActiveAndEnabled)
             {
@@ -3151,6 +3181,7 @@ public class GameControllerScript : MonoBehaviour
     public GameObject fames;
     public GameObject cleartil;
 
+    public GameObject cleartilNice;
     bool cleartilMode;
 
     public FirstPrizeScript firstPrizeScript;
