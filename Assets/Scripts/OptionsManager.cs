@@ -516,6 +516,7 @@ public class OptionsManager : MonoBehaviour
 		PlayerPrefs.SetInt("susieTrophy", 0);
 		PlayerPrefs.SetInt("urkTrophy", 0);
 		PlayerPrefs.SetInt("medalTrophy", 0);
+		PlayerPrefs.SetInt("obstaclesScore", 0);
 		PlayerPrefs.Save();
 		SceneManager.LoadScene("BenefondCrates");
 	}

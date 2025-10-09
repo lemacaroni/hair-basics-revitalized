@@ -1301,7 +1301,7 @@ public class GameControllerScript : MonoBehaviour
         notebooks++;
         if (mode == "zombie")
         {
-            for (int i = 0; i < (notebooks + 1.5f) / 5; i++)
+            for (int i = 0; i < (notebooks + 1f) / 7; i++)
             {
                 GameObject zombo = Instantiate(zombie);
                 zombo.SetActive(true);
@@ -1453,6 +1453,10 @@ public class GameControllerScript : MonoBehaviour
         if (mode == "pizza")
         {
             pss.AddPoints(50, 2);
+        }
+        if (mode != "free")
+        {
+            tutorBaldi.gameObject.SetActive(false); //ALWAYS disable him when spoopy mode
         }
         if (evilLeafy != null)
         {
@@ -2480,6 +2484,7 @@ public class GameControllerScript : MonoBehaviour
             }
             pizzaTimeMusic.Play();
             pizzaTimeMusic.time = Random.Range(20, 180);
+            tutorBaldi.gameObject.SetActive(false);
             baldi.SetActive(true);
             baldiScript.timeToMove = 0;
             baldiScript.baldiWait = 0;

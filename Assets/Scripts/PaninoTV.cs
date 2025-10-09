@@ -55,6 +55,11 @@ public class PaninoTV : MonoBehaviour
 
     void ItsTimeForARandomEventBrother()
     {
+        if (totalEventsDone >= 2)
+        {
+            eventWillHappne = false;
+            return; //ENOUGH!! thats ENOUGH
+        }
         int eventee = Random.Range(3, paninoAnnounce.Length);
         if (gc.IsAprilFools() || Random.Range(1, 280) == 4)
         {
@@ -65,9 +70,10 @@ public class PaninoTV : MonoBehaviour
             StartCoroutine(EventTime(eventee));
         }
         eventsDone[eventee] = 1;
+        totalEventsDone++;
         if (Random.Range(1, 8) != 3)
         {
-            timmer = Random.Range(40, 100);
+            timmer = Random.Range(50, 120);
             return;
         }
         eventWillHappne = false;
@@ -213,6 +219,8 @@ public class PaninoTV : MonoBehaviour
     public bool TestMode;
 
     int[] eventsDone = new int[7];
+
+    int totalEventsDone;
 
     public PrisonDoor prisonDoor;
 

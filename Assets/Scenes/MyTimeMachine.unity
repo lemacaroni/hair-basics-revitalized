@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4066,6 +4066,10 @@ MonoBehaviour:
   baba: {fileID: 0}
   algerNull: {fileID: 0}
   devin: {fileID: 0}
+  urk: {fileID: 0}
+  fames: {fileID: 0}
+  cleartil: {fileID: 0}
+  cleartilNice: {fileID: 0}
   firstPrizeScript: {fileID: 0}
   quarter: {fileID: 0}
   tutorBaldi: {fileID: 0}
@@ -4171,6 +4175,8 @@ MonoBehaviour:
   tutorals: []
   brother: {fileID: 0}
   pharohsWall: {fileID: 0}
+  starstudentWall: {fileID: 0}
+  frs: {fileID: 0}
   sandUI: {fileID: 0}
   panic: {fileID: 0}
   locust: {fileID: 0}
@@ -33811,7 +33817,7 @@ MonoBehaviour:
   bald: {fileID: 1998317209}
   balDead: {fileID: 636426971}
   speed: 85
-  interval: 0.72125
+  interval: 0.75
   setMoveFrames: 6
   target: {x: -170, y: 4, z: 155}
   wait: 0
@@ -35001,6 +35007,7 @@ MonoBehaviour:
   devinPipeHit: 0
   pizzafaceTime: 0
   promplyTime: 0
+  urkTime: 0
   hideTime: 0
   babaGotPushed: 0
   usedItem: 0
