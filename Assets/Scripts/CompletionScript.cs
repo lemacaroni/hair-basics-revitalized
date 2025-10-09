@@ -33,11 +33,10 @@ public class CompletionScript : MonoBehaviour
                 }
             }
         }
-        print(percent);
         percent = Mathf.CeilToInt(percent - 0.1f);
-        print(percent);
         percentText.text = $"{percent}%";
         PlayerPrefs.SetInt("completion", Mathf.CeilToInt(percent));
+        susieIdea.anchoredPosition += new Vector2(0, Mathf.CeilToInt(percent));
     }
 
     public bool DoesBroHaveIt(int a)
@@ -81,4 +80,6 @@ public class CompletionScript : MonoBehaviour
 
     public TMP_Text percentText;
     public string[] judgements;
+
+    public RectTransform susieIdea;
 }

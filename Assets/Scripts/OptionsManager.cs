@@ -512,8 +512,12 @@ public class OptionsManager : MonoBehaviour
 		PlayerPrefs.SetInt("lapTrophy", 0);
 		PlayerPrefs.SetInt("richTrophy", 0);
 		PlayerPrefs.SetInt("stupidTrophy", 0);
+		PlayerPrefs.SetInt("cleartilTrophy", 0);
+		PlayerPrefs.SetInt("susieTrophy", 0);
+		PlayerPrefs.SetInt("urkTrophy", 0);
+		PlayerPrefs.SetInt("medalTrophy", 0);
 		PlayerPrefs.Save();
-		SceneManager.LoadScene("Warning");
+		SceneManager.LoadScene("BenefondCrates");
 	}
 
 	public void ClearAllData()

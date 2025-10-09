@@ -797,6 +797,11 @@ public class GameControllerScript : MonoBehaviour
 
     public void NotebookDebt()
     {
+        if (Random.Range(1, 40) == 28 || IsAprilFools())
+        {
+            ESCAPEmusic.clip = BESTESCAPE;
+            tc.GetTrophy(28);
+        }
         ESCAPEmusic.Play();
         dwayneDebt.SetActive(true);
         dwayneDebtTimer = ESCAPEmusic.clip.length;
@@ -1787,11 +1792,6 @@ public class GameControllerScript : MonoBehaviour
         string[] escape = { "Congrattation!", "You found all 7 Dwaynes,", "now all you need to do is...", "GET OUT." };
         float[] duration = { 1.8f, 3f, 2.8f, 1.935f };
         Color[] colors = { Color.white, Color.white, Color.white, Color.white };
-        if (Random.Range(1, 40) == 28 || IsAprilFools())
-        {
-            ESCAPEmusic.clip = BESTESCAPE;
-            tc.GetTrophy(28);
-        }
         ESCAPEmusic.UnPause();
         cameraNormal.cullingMask = cullingMask;
         learningActive = false; 
@@ -1840,6 +1840,11 @@ public class GameControllerScript : MonoBehaviour
         else if ((notebooks == maxNoteboos) & (mode == "story") && !cleartilMode)
         {
             StartCoroutine(paninoTv.EventTime(0));
+            if (Random.Range(1, 40) == 28 || IsAprilFools())
+            {
+                ESCAPEmusic.clip = BESTESCAPE;
+                tc.GetTrophy(28);
+            }
             ESCAPEmusic.Play();
             if (baldiScrpt.isActiveAndEnabled)
             {

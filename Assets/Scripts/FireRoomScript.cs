@@ -58,6 +58,7 @@ public class FireRoomScript : MonoBehaviour
                     if (timer < 0.5f && !thatIdiotAud.isPlaying)
                     {
                         thatIdiotAud.PlayOneShot(thatIdiotVoicelines[8]);
+                        FindObjectOfType<TrophyCollectingScript>().GetTrophy(22);
                     }
                     return;
                 }
