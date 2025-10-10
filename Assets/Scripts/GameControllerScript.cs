@@ -1294,6 +1294,10 @@ public class GameControllerScript : MonoBehaviour
         schoolMusic.gameObject.SetActive(false);
         evilLeafy.SetActive(true);
         math = 0;
+        if (notebooks >= 3)
+        {
+            tc.evilLeafyCheat = true;
+        }
     }
 
     public void CollectNotebook()
@@ -2073,9 +2077,8 @@ public class GameControllerScript : MonoBehaviour
                 PrisonDoor component2 = hitInfo2.collider.gameObject.GetComponent<PrisonDoor>();
                 if (component != null)
                 {
-                    if (!component.johnDoor)
+                    if (!component.johnDoor && component.DoorLocked)
                     {
-
                         component.UnlockDoor();
                         audioDevice.PlayOneShot(aud_Unlock);
                         ResetItem();

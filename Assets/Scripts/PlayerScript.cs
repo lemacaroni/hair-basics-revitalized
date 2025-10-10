@@ -459,6 +459,10 @@ public class PlayerScript : MonoBehaviour
 		{
 			stamina += staminaRate * Time.deltaTime;
 		}
+		if (stamina < -0.3f)
+        {
+			stamina = 0;
+        }
 		staminaBar.value = stamina / maxStamina * 100f;
 		percent.text = $"{Mathf.RoundToInt(stamina / maxStamina * 100f)}%";
 		if (infStamina)

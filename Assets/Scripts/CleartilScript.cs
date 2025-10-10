@@ -48,6 +48,11 @@ public class CleartilScript : MonoBehaviour
             wait += 5;
             waitTime += 0.1f;
         }
+        if (other.transform.name == "Yellow Face")
+        {
+            FindObjectOfType<GameControllerScript>().SomeoneTied(gameObject);
+            gameObject.SetActive(false);
+        }
     }
 
     public float waitTime = 2.4f;

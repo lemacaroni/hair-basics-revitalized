@@ -173,6 +173,7 @@ public class TrophyCollectingScript : MonoBehaviour
     public bool usedItem;
     public bool onlyWooden;
     public bool ruleBreak;
+    public bool evilLeafyCheat;
 
     public int collectedToppings;
     public int collectToppingsNeeded;

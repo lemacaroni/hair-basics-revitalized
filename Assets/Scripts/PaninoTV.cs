@@ -132,6 +132,7 @@ public class PaninoTV : MonoBehaviour
                 {
                     GameObject a = Instantiate(gc.locust);
                     a.SetActive(true);
+                    a.transform.name = "Locust";
                 }
                 break;
             case 6: StartCoroutine(PizzaTime()); break;
@@ -174,7 +175,16 @@ public class PaninoTV : MonoBehaviour
             pizzaHud.GetComponent<Image>().color += Color.black;
             if (pizzaHudText.text == "0")
             {
-                gc.CollectItem(gc.CollectItemExcluding(0, 2, 3, 6, 8, 7, 9, 10, 14, 15, 16, 18, 22, 23, 24, 25, 26));
+                if (gc.HasItemInInventory(0))
+                {
+                    gc.CollectItem(gc.CollectItemExcluding(0, 2, 3, 6, 8, 7, 9, 10, 14, 15, 16, 18, 22, 23, 24, 25, 26));
+                }
+                else
+                {
+                    gc.player.health += 50;
+                    gc.player.stamina += 50;
+                }
+                gc.player.stamina += 100;
                 break; 
             }
         }

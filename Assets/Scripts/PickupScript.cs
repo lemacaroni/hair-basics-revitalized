@@ -81,6 +81,10 @@ public class PickupScript : MonoBehaviour
                         raycastHit.transform.gameObject.SetActive(false);
                         gc.paninoTv.count -= 1;
                         gc.paninoTv.pizzaHudText.text = gc.paninoTv.count.ToString();
+                        if (gc.mode == "pizza")
+                        {
+                            gc.pss.AddPoints(150, 0.5f);
+                        }
                     }
                 }
             }

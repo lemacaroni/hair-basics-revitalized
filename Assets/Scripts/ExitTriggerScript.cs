@@ -200,7 +200,7 @@ public class ExitTriggerScript : MonoBehaviour
 			{
 				SceneManager.LoadScene("ClassicEnding");
 				PlayerPrefs.SetInt("classicBeat", 1);
-				if (gc.evilLeafy.activeSelf)
+				if (gc.evilLeafy.activeSelf && !gc.tc.evilLeafyCheat)
                 {
 					gc.tc.GetTrophy(35);
                 }

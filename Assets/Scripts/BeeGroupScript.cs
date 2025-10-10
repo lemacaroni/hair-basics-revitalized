@@ -39,6 +39,15 @@ public class BeeGroupScript : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.name == "Yellow Face")
+        {
+            FindObjectOfType<GameControllerScript>().SomeoneTied(gameObject);
+            gameObject.SetActive(false);
+        }
+    }
+
     Transform bee;
     public Sprite[] beeSprite;
 
