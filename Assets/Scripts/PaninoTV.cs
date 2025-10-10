@@ -55,7 +55,7 @@ public class PaninoTV : MonoBehaviour
 
     void ItsTimeForARandomEventBrother()
     {
-        if (totalEventsDone >= 2)
+        if (totalEventsDone >= 2 && gc.mode != "endless")
         {
             eventWillHappne = false;
             return; //ENOUGH!! thats ENOUGH
@@ -69,11 +69,18 @@ public class PaninoTV : MonoBehaviour
         {
             StartCoroutine(EventTime(eventee));
         }
-        eventsDone[eventee] = 1;
-        totalEventsDone++;
+        if (gc.mode != "endless")
+        {
+            eventsDone[eventee] = 1;
+            totalEventsDone++;
+        }
         if (Random.Range(1, 8) != 3)
         {
             timmer = Random.Range(50, 120);
+            if (gc.mode == "endless")
+            {
+                timmer += Random.Range(15, 45);
+            }
             return;
         }
         eventWillHappne = false;

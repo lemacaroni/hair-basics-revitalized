@@ -154,10 +154,13 @@ public class MathGameScript : MonoBehaviour
 		{
 			baldiFeedTransform.position = new Vector3(-1000f, -1000f, 0f);
 		}
-		if (gc.cleartil.GetComponent<CleartilScript>().enabled)
-        {
-			gc.cleartil.GetComponent<CleartilScript>().waitTime -= 0.09f;
-        }
+		if (gc.mode != "classic")
+		{
+			if (gc.cleartil.GetComponent<CleartilScript>().enabled)
+			{
+				gc.cleartil.GetComponent<CleartilScript>().waitTime -= 0.09f;
+			}
+		}
 		if (gc.mode == "triple")
         {
 			baldiScript.GetAngry(2);
