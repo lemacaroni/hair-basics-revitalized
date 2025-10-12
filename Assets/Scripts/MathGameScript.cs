@@ -159,6 +159,10 @@ public class MathGameScript : MonoBehaviour
 			if (gc.cleartil.GetComponent<CleartilScript>().enabled)
 			{
 				gc.cleartil.GetComponent<CleartilScript>().waitTime -= 0.09f;
+				if (gc.slowerKriller == 1)
+				{
+					gc.cleartil.GetComponent<CleartilScript>().waitTime += 0.04f;
+				}
 			}
 		}
 		if (gc.mode == "triple")
