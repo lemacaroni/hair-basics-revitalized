@@ -11,6 +11,7 @@ public class AvoidObstaclesPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fluidMidi.gameObject.SetActive(true);
         Invoke(nameof(SummonObstacle), 3);
         aud = GetComponent<AudioSource>();
         tc = FindObjectOfType<TrophyCollectingScript>();
@@ -57,14 +58,14 @@ public class AvoidObstaclesPlayer : MonoBehaviour
 
         transform.localPosition = new Vector2(x, y);
 
-        fluidMidi.Tempo = Mathf.Clamp(speed / 20, 0.65f, 2f);
+        fluidMidi.Tempo = Mathf.Clamp(speed / 20, 0.5f, 2.5f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.name == "Obstacle(Clone)")
         {
-            speed -= 3.5f;
+            speed -= 3f;
             hp--;
             healthMeter.value--;
             Destroy(other.gameObject);
@@ -72,11 +73,10 @@ public class AvoidObstaclesPlayer : MonoBehaviour
             aud.PlayOneShot(hurt[Random.Range(0, 2)]);
             if (hp == 0)
             {
-                if (score > PlayerPrefs.GetInt("obstaclesScore"))
-                {
-                    PlayerPrefs.SetInt("obstaclesScore", Mathf.RoundToInt(score));
-                }
-                SceneManager.LoadScene("MainMenu");
+                FindObjectOfType<MinigamesStartScript>().Lose();
+                CancelInvoke();
+                fluidMidi.gameObject.SetActive(false);
+                this.enabled = false;
             }
         }
     }
@@ -125,7 +125,7 @@ public class AvoidObstaclesPlayer : MonoBehaviour
 
     public float speed = 2;
     int hp = 10;
-    float score = 0;
+    public float score = 0;
 
     public Slider speedometer;
     public TMP_Text scoreText;

@@ -168,6 +168,14 @@ public class DoorScript : MonoBehaviour
 		}
 	}
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.name == "UbrSpray(Clone)")
+        {
+			silentOpens++;
+        }
+    }
+
     public void LockDoor(float time)
 	{
 		if (!bDoorLocked)

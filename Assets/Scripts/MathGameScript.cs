@@ -154,6 +154,13 @@ public class MathGameScript : MonoBehaviour
 		{
 			baldiFeedTransform.position = new Vector3(-1000f, -1000f, 0f);
 		}
+		if (gc.mode != "classic")
+		{
+			if (gc.cleartil.GetComponent<CleartilScript>().enabled)
+			{
+				gc.cleartil.GetComponent<CleartilScript>().waitTime -= 0.09f;
+			}
+		}
 		if (gc.mode == "triple")
         {
 			baldiScript.GetAngry(2);
@@ -358,7 +365,12 @@ public class MathGameScript : MonoBehaviour
         {
 			gc.SpawnEvilLeafy();
 			ExitGame();
-        }
+		}
+		else if (playerAnswer.text.ToLower() == "cleartil is better")
+		{
+			problem = 4;
+			StartCoroutine(CheatText("Well, if you say so."));
+		}
 		if (problem > 3)
 		{
 			return;

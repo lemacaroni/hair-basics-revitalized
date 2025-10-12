@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PaninoTV : MonoBehaviour
 {
@@ -15,11 +16,11 @@ public class PaninoTV : MonoBehaviour
             StartCoroutine(EventTime(TestValue));
             return;
         }
-        if (((gc.mode == "story" || gc.mode == "pizza" || gc.mode == "triple" || gc.mode == "free") && Random.Range(1, 3) == 2) || gc.mode == "endless")
+        if ((gc.mode == "story" || gc.mode == "pizza" || gc.mode == "triple" || gc.mode == "free") || gc.mode == "endless")
         {
             eventWillHappne = true;
-            print("event happens");
-            timmer = Random.Range(70, 350);
+            timmer = Random.Range(30, 140);
+            print($"event happens in {timmer} seconds");
         }
     }
 
@@ -34,10 +35,55 @@ public class PaninoTV : MonoBehaviour
             }
             if (timmer <= 0 && eventWillHappne)
             {
-                StartCoroutine(EventTime(2));
-                eventWillHappne = false;
+                ItsTimeForARandomEventBrother();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+            if (TestMode)
+            {
+                StartCoroutine(EventTime(TestValue));
+            }
+            else
+            {
+                eventWillHappne = false;
+                TestMode = true;
+            }
+        }
+    }
+
+    void ItsTimeForARandomEventBrother()
+    {
+        if (totalEventsDone >= 2 && gc.mode != "endless")
+        {
+            eventWillHappne = false;
+            return; //ENOUGH!! thats ENOUGH
+        }
+        int eventee = Random.Range(3, paninoAnnounce.Length);
+        if (gc.IsAprilFools() || Random.Range(1, 280) == 4)
+        {
+            eventee = 2;
+        }
+        if (eventsDone[eventee] == 0)
+        {
+            StartCoroutine(EventTime(eventee));
+        }
+        if (gc.mode != "endless")
+        {
+            eventsDone[eventee] = 1;
+            totalEventsDone++;
+        }
+        if (Random.Range(1, 8) != 3)
+        {
+            timmer = Random.Range(50, 120);
+            if (gc.mode == "endless")
+            {
+                timmer += Random.Range(15, 45);
+            }
+            return;
+        }
+        eventWillHappne = false;
     }
 
     public IEnumerator EventTime(int thing)
@@ -46,18 +92,9 @@ public class PaninoTV : MonoBehaviour
         {
             anim.SetTrigger("neverGoDown");
         }
-        panino.GetComponent<AudioSource>().clip = paninoAnnounce[thing];
         if (thing != 0)
         {
             exclamationSound.Play();
-            if (stillBlabbering)
-            {
-                queued = true;
-                yield return new WaitUntil(() => !stillBlabbering);
-            }
-        }
-        if (thing != 0)
-        {
             if (stillBlabbering)
             {
                 queued = true;
@@ -75,6 +112,7 @@ public class PaninoTV : MonoBehaviour
                 yield return new WaitUntil(() => !stillBlabbering);
             }
         }
+        panino.GetComponent<AudioSource>().clip = paninoAnnounce[thing];
         queued = false;
         panino.SetActive(false);
         exclamation.SetActive(false);
@@ -87,11 +125,25 @@ public class PaninoTV : MonoBehaviour
         {
             case 0: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber0, duration0, colore0); break;
             case 1: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber1, duration1, colore1); break;
-            case 2: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber2, duration2, colore0); break;
+            case 2: FindObjectOfType<SubtitleManager>().Add2DSubtitle("How do I get him off", paninoAnnounce[2].length, Color.white); break;
+            case 3: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber2, duration2, colore0); break;
+            case 4: FindObjectOfType<SubtitleManager>().Add2DSubtitle("I agree, let's release the angry bees", paninoAnnounce[4].length, Color.white); break;
         }
-        if (thing == 2)
+        switch (thing)
         {
-            prisonDoor.ItemsAreNowGoingToJail();
+            case 2: washeewashee.SetActive(true); break;
+            case 3: prisonDoor.ItemsAreNowGoingToJail(); break;
+            case 4: StartCoroutine(RollOutTheAngryBees()); break;
+            case 5:
+                for (int i = 0; i < 79; i++)
+                {
+                    GameObject a = Instantiate(gc.locust);
+                    a.SetActive(true);
+                    a.transform.name = "Locust";
+                }
+                break;
+            case 6: StartCoroutine(PizzaTime()); break;
+            case 7: StartCoroutine(TobyFoxReferenceNoWay()); break;
         }
         yield return new WaitForSeconds(paninoAnnounce[thing].length + 0.5f);
         tvStatic.SetActive(true);
@@ -102,6 +154,64 @@ public class PaninoTV : MonoBehaviour
         if (!queued)
         {
             anim.SetTrigger("alwaysGoUp");
+        }
+    }
+
+    IEnumerator RollOutTheAngryBees()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Instantiate(angryBees, gc.AILocationSelector.GetNewTargetQuick(false), Quaternion.identity);
+            yield return new WaitForSeconds(5f);
+        }
+    }
+    IEnumerator PizzaTime()
+    {
+        pizzaMusic.volume = 0.7f;
+        pizzaHud.SetActive(true);
+        pizzaHudText.text = "8";
+        count = 8;
+        pizzaMusic.Play();
+        pizzaSlices.SetActive(true);
+        gc.playerScript.walkSpeed += 10;
+        gc.playerScript.runSpeed += 15;
+        for (int i = 0; i < 48; i++)
+        {
+            yield return new WaitForSeconds(1);
+            pizzaHud.GetComponent<Image>().color -= Color.white / 48;
+            pizzaHud.GetComponent<Image>().color += Color.black;
+            if (pizzaHudText.text == "0")
+            {
+                if (gc.HasItemInInventory(0))
+                {
+                    gc.CollectItem(gc.CollectItemExcluding(0, 2, 3, 6, 8, 7, 9, 10, 14, 15, 16, 18, 22, 23, 24, 25, 26));
+                }
+                else
+                {
+                    gc.player.health += 50;
+                    gc.player.stamina += 50;
+                }
+                gc.player.stamina += 100;
+                break; 
+            }
+        }
+        pizzaHud.SetActive(false);
+        gc.playerScript.walkSpeed -= 8;
+        gc.playerScript.runSpeed -= 12;
+        pizzaSlices.SetActive(false);
+        for (int i = 0; i < 20; i++)
+        {
+            pizzaMusic.volume -= 0.035f;
+            yield return new WaitForSeconds(1 / 30);
+        }
+        pizzaMusic.Stop();
+    }
+    IEnumerator TobyFoxReferenceNoWay()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            fox.SetTrigger("hi");
+            yield return new WaitForSeconds(Random.Range(7, 28));
         }
     }
 
@@ -117,11 +227,17 @@ public class PaninoTV : MonoBehaviour
     [SerializeField]
     bool eventWillHappne;
 
-    public AudioClip[] paninoAnnounce; // 0 - congrattation, 1 - pillar john, 2 - jailed items
+    public GameObject washeewashee;
+
+    public AudioClip[] paninoAnnounce;
 
     [SerializeField]
     int TestValue;
     public bool TestMode;
+
+    int[] eventsDone = new int[7];
+
+    int totalEventsDone;
 
     public PrisonDoor prisonDoor;
 
@@ -136,4 +252,14 @@ public class PaninoTV : MonoBehaviour
     Color[] colore1 = { Color.white, Color.white, Color.white };
     string[] blabber2 = { "I have decided that any items that you have are a big meanie", "and I will put them into the.", "Jail.", "Good luck breaking them out, assuming you have any." };
     float[] duration2 = { 3.61f, 2.64f, 1f, 2.5f };
+
+    public GameObject angryBees;
+
+    public GameObject pizzaSlices;
+    public AudioSource pizzaMusic;
+    public GameObject pizzaHud;
+    public TMP_Text pizzaHudText;
+    public int count;
+
+    public Animator fox;
 }
