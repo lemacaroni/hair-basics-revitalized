@@ -16,7 +16,15 @@ public class TrophyCollectingScript : MonoBehaviour
                 dontCheckAga[i] = true;
             }
         }
-
+        if (PlayerPrefs.GetInt("jugglerTrophy") == 1) // fix
+        {
+            PlayerPrefs.DeleteKey("jugglerTrophy");
+            PlayerPrefs.SetInt("timeTrophy", 1);
+        }
+        if (PlayerPrefs.GetInt("noiseTrophy") == 1 || PlayerPrefs.GetString("pizzaRankBest") == "P")
+        {
+            PlayerPrefs.SetInt("gotP", 1);
+        }
         if (SceneManager.GetActiveScene().name == "EsteSecret")
         {
             PlayerPrefs.SetInt("piecesFound", 4);
@@ -106,7 +114,7 @@ public class TrophyCollectingScript : MonoBehaviour
         {
             GetTrophy(38);
         }
-        if (urkTime >= 150)
+        if (urkTime >= 90)
         {
             GetTrophy(42);
         }

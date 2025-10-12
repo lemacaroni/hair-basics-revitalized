@@ -78,7 +78,11 @@ public class ExitTriggerScript : MonoBehaviour
 			if (gc.pss.rank == "D" && gc.mode == "pizza")
             {
 				gc.tc.GetTrophy(10);
-            }
+			}
+			if (gc.pss.rank == "P" && gc.mode == "pizza")
+			{
+				PlayerPrefs.SetInt("gotP", 1);
+			}
 			if (!gc.tc.ruleBreak && gc.mode == "story")
             {
 				gc.tc.GetTrophy(24);

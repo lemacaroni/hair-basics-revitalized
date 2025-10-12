@@ -887,9 +887,9 @@ public class GameControllerScript : MonoBehaviour
                 scoreDecayTimer -= 1 * Time.deltaTime;
             }
 
-            if (timer.timeLeft < 58 && pizzaTimeMusic.time < 171)
+            if (timer.timeLeft < 58 && pizzaTimeMusic.time < 170)
             {
-                pizzaTimeMusic.time = 170.5f;
+                pizzaTimeMusic.time = 170f;
             }
         }
         if (pss.score < 1 & finaleMode & pizzaface.isActiveAndEnabled)
@@ -1598,7 +1598,7 @@ public class GameControllerScript : MonoBehaviour
     IEnumerator YourWin(float time)
     {
         yield return new WaitForSeconds(time);
-        if (cleartilMode)
+        if (cleartilMode && mode == "story")
         {
             tc.GetTrophy(40);
         }
@@ -1621,6 +1621,10 @@ public class GameControllerScript : MonoBehaviour
             fames.SetActive(false);
             cleartil.SetActive(false);
             PlayerPrefs.SetString("bonusTextString", "Wow! Panino is IMPRESSED! You're do Great! He gave you \"CLEARTIL IS BETTER\" trophy.");
+            if (mode != "story")
+            {
+                PlayerPrefs.SetString("bonusTextString", "Wow! Panino is IMPRESSED! You're do Great! He gave you nothing.");
+            }
             FindObjectOfType<SubtitleManager>().Add3DSubtitle("You have completed all assignments for the day. You can go to your room now.", 5.5f, new Color32(85, 63, 63, 255), cleartilNice.transform); 
             StartCoroutine(YourWin(5.5f));
             return;

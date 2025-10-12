@@ -7,6 +7,7 @@ public class BeeGroupScript : MonoBehaviour
 {
     void Start()
     {
+        transform.name = "Angry Bees";
         spot = FindObjectOfType<AILocationSelectorScript>();
         agent = GetComponent<NavMeshAgent>();
         bee = transform.GetChild(0);

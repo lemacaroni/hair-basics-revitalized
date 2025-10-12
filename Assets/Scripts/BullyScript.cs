@@ -40,6 +40,10 @@ public class BullyScript : MonoBehaviour
 		if (waitTime > 0f)
 		{
 			waitTime -= Time.deltaTime;
+			if (gc.HasItemInInventory(25))
+            {
+				waitTime = 0;
+            }
 		}
 		else if (!active)
 		{
