@@ -46,7 +46,7 @@ public class DoorScript : MonoBehaviour
 
 	private AudioSource myAudio;
 
-	public bool johnDoor;
+	public bool johnDoor, devinDoor;
 
 	public bool DoorLocked => bDoorLocked;
 
@@ -147,7 +147,7 @@ public class DoorScript : MonoBehaviour
 
 	public void OpenDoor()
 	{
-		if (silentOpens <= 0 && !bDoorOpen)
+		if (silentOpens <= 0 && openTime <= 0)
 		{
 			myAudio.PlayOneShot(doorOpen, 1f);
 			FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Door opens*", 0.6f, Color.white, transform);
@@ -184,7 +184,10 @@ public class DoorScript : MonoBehaviour
 			FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Lock!*", baldi.gc.aud_Lock.length, Color.white, transform);
 			lockTime = time;
 			openTime = 0;
-			locked.enabled = true;
+			if (!devinDoor)
+			{
+				locked.enabled = true;
+			}
 			bDoorLocked = true;
 		}
 	}
@@ -193,7 +196,10 @@ public class DoorScript : MonoBehaviour
 	{
 		bDoorLocked = false;
 		lockTime = 0;
-		locked.enabled = false;
+		if (!devinDoor)
+		{
+			locked.enabled = false;
+		}
 		outside.material = closed;
 		inside.material = closed;
 		myAudio.PlayOneShot(baldi.gc.aud_Unlock);
