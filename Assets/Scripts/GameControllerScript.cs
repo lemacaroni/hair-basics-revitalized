@@ -1598,6 +1598,11 @@ public class GameControllerScript : MonoBehaviour
     IEnumerator YourWin(float time)
     {
         yield return new WaitForSeconds(time);
+        if (ModifierOn())
+        {
+            SceneManager.LoadScene("Anticheat");
+            yield break;
+        }
         if (cleartilMode && mode == "story")
         {
             tc.GetTrophy(40);
