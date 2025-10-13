@@ -92,7 +92,7 @@ public class DevinScript : MonoBehaviour
 			}
 			pipe.anchoredPosition = new Vector2(pipe.anchoredPosition.x, (pipeTime / 4) * 800);
 		}
-		if (Vector3.Distance(transform.position, spawn) > 10 && goingToRoom)
+		if (Vector3.Distance(transform.position, spawn) <= 10 && goingToRoom)
         {
 			sign.sprite = signState[0];
         }
@@ -108,7 +108,7 @@ public class DevinScript : MonoBehaviour
 		if (Physics.Raycast(base.transform.position + Vector3.up * 2f, direction, out var hitInfo, float.PositiveInfinity, 769, QueryTriggerInteraction.Ignore) & (hitInfo.transform.name == "Player"))
 		{
 			db = true;
-			if (pipeCoolDown <= 0f && (goingToRoom && Vector3.Distance(transform.position, spawn) > 20))
+			if (pipeCoolDown <= 0f && goingToRoom && Vector3.Distance(transform.position, spawn) > 50)
 			{
 				TargetPlayer();
 			}
