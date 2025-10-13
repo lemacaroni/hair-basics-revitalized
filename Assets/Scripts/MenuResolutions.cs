@@ -21,7 +21,7 @@ public class MenuResolutions : MonoBehaviour
         for (int i = 0; i < filteredRes.Count; i++)
         {
             string resolutionOption = filteredRes[i].width + "x" + filteredRes[i].height;
-            if (!options.Contains(resolutionOption))
+            //if (!options.Contains(resolutionOption)) FUCK
             {
                 options.Add(resolutionOption);
             }
