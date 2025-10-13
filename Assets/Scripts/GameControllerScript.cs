@@ -1287,6 +1287,7 @@ public class GameControllerScript : MonoBehaviour
         {
             evilLeafy.GetComponent<EvilLeafyScript>().baldiWait -= 0.2f;
         }
+        evilLeafy.SetActive(true);
         if (spoopMode)
         {
             baldi.SetActive(false);
@@ -1305,7 +1306,6 @@ public class GameControllerScript : MonoBehaviour
         {
             ActivateSpoopMode();
         }
-        evilLeafy.SetActive(true);
         math = 0;
         if (notebooks >= 3)
         {
@@ -1475,12 +1475,9 @@ public class GameControllerScript : MonoBehaviour
         {
             tutorBaldi.gameObject.SetActive(false); //ALWAYS disable him when spoopy mode
         }
-        if (evilLeafy != null)
+        if (evilLeafy.activeSelf)
         {
-            if (evilLeafy.activeSelf)
-            {
-                return;
-            }
+            return;
         }
         if (cleartilMode)
         {
@@ -1788,7 +1785,7 @@ public class GameControllerScript : MonoBehaviour
         {
             pizzaface.pauseTime = 4.5f;
         }
-        if (laps > 2)
+        if (laps <= 2)
         {
             pss.AddPoints(3000, 1);
         }

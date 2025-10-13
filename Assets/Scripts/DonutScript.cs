@@ -19,7 +19,7 @@ public class DonutScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         string namey = collision.collider.gameObject.name;
-        if (name.Contains("Wall") && !name.Contains("DontTeleportIntoThis"))
+        if (namey.Contains("Wall") && !namey.Contains("DontTeleportIntoThis"))
         {
             player.position = new Vector3(transform.position.x, player.position.y, transform.position.z);
             if (Random.Range(0, 600) == 28 || (gc.IsAprilFools() && Random.Range(1, 5) == 2))
