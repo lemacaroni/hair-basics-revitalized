@@ -60,8 +60,8 @@ public class MinigamesStartScript : MonoBehaviour
             case 2:
                 if (avoidObstacles.GetComponentInChildren<AvoidObstaclesPlayer>().score > PlayerPrefs.GetInt("obstaclesScore"))
                 {
-                    aftermath.text = $"Nice job! You got {avoidObstacles.GetComponentInChildren<AvoidObstaclesPlayer>().score} score, a new record!";
-                    PlayerPrefs.SetInt("obstaclesScore", Mathf.RoundToInt(minigames[2].GetComponentInChildren<AvoidObstaclesPlayer>().score));
+                    aftermath.text = $"Nice job! You got {Mathf.RoundToInt(avoidObstacles.GetComponentInChildren<AvoidObstaclesPlayer>().score)} score, a new record!";
+                    PlayerPrefs.SetInt("obstaclesScore", Mathf.RoundToInt(avoidObstacles.GetComponentInChildren<AvoidObstaclesPlayer>().score));
                 }
                 else
                 {
