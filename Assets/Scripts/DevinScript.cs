@@ -95,7 +95,8 @@ public class DevinScript : MonoBehaviour
 		if (Vector3.Distance(transform.position, spawn) <= 10 && goingToRoom)
         {
 			sign.sprite = signState[0];
-        }
+			wanderCount = 0;
+		}
         else
 		{
 			sign.sprite = signState[1];
@@ -112,7 +113,7 @@ public class DevinScript : MonoBehaviour
 			{
 				TargetPlayer();
 			}
-			else if (goingToRoom && Vector3.Distance(transform.position, spawn) > 50)
+			else if (goingToRoom && Vector3.Distance(transform.position, spawn) > 120)
             {
 				TargetPlayer();
             }
@@ -131,10 +132,9 @@ public class DevinScript : MonoBehaviour
 	private void Wander()
 	{
 		int rng = Random.Range(0, wander.Length);
-		if (wanderCount >= 11)
+		if (wanderCount >= 5)
         {
 			agent.SetDestination(spawn);
-			wanderCount = 0;
 			goingToRoom = true;
 			coolDown = 60f;
 		}
@@ -228,6 +228,7 @@ public class DevinScript : MonoBehaviour
 		gc.player.pipeGameGravity += 8 * Time.deltaTime;
 		pipeCoolDown = 20;
 		agent.speed = 20;
+		Wander();
 		if (pipeDucks == 5)
 		{
 			pipeDucks = 0;

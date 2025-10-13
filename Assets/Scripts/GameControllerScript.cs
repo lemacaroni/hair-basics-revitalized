@@ -835,6 +835,10 @@ public class GameControllerScript : MonoBehaviour
 
     public void CleartilIsBetter()
     {
+        if (mode == "classic")
+        {
+            return;
+        }
         cleartilMode = true;
         if (spoopMode)
         {
@@ -1282,16 +1286,24 @@ public class GameControllerScript : MonoBehaviour
         {
             evilLeafy.GetComponent<EvilLeafyScript>().baldiWait -= 0.2f;
         }
-        baldiTutor.SetActive(value: false);
-        principal.SetActive(value: false);
-        crafters.SetActive(false);
-        gottaSweep.SetActive(false);
-        bully.SetActive(false);
-        firstPrize.SetActive(false);
-        guardianAngel.SetActive(false);
-        craftersTime = false;
-        crafters.SetActive(false);
-        schoolMusic.gameObject.SetActive(false);
+        if (spoopMode)
+        {
+            baldi.SetActive(false);
+            principal.SetActive(false);
+            firstPrize.SetActive(false);
+            craftersTime = false;
+            crafters.SetActive(false);
+            gottaSweep.SetActive(false);
+            bully.SetActive(false);
+            bigball.SetActive(false);
+            guardianAngel.SetActive(false);
+            baba.SetActive(false);
+            devin.SetActive(false);
+        }
+        else
+        {
+            ActivateSpoopMode();
+        }
         evilLeafy.SetActive(true);
         math = 0;
         if (notebooks >= 3)
