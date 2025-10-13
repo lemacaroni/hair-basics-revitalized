@@ -12,6 +12,8 @@ public class DoorScript : MonoBehaviour
 	public AlgerScript alger;
 	public BaldiPlayerScript baldiPlayer;
 
+	DevinScript devin;
+
 	public MeshCollider barrier;
 	public NavMeshObstacle locked;
 
@@ -53,6 +55,10 @@ public class DoorScript : MonoBehaviour
 	private void Start()
 	{
 		myAudio = GetComponent<AudioSource>();
+		if (devinDoor)
+        {
+			devin = baldi.gc.devin.GetComponent<DevinScript>();
+        }
 	}
 
 	private void Update()
@@ -133,7 +139,17 @@ public class DoorScript : MonoBehaviour
 				FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Rattling*", rattle.length, Color.white, transform);
 			}
 		}
-
+		if (devinDoor && devin != null)
+        {
+			if (Vector3.Distance(transform.position, devin.transform.position) <= 10 && DoorLocked && devin.goingToRoom)
+            {
+				UnlockDoor();
+            }
+			else if (Vector3.Distance(transform.position, devin.transform.position) > 10 && !DoorLocked && !devin.goingToRoom)
+            {
+				LockDoor(999999);
+            }
+        }
 		if (baldi.gc == null)
         {
 			return;
@@ -180,7 +196,7 @@ public class DoorScript : MonoBehaviour
 	{
 		if (!bDoorLocked)
 		{
-			baldi.gc.audioDevice.PlayOneShot(baldi.gc.aud_Lock);
+			myAudio.PlayOneShot(baldi.gc.aud_Lock);
 			FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Lock!*", baldi.gc.aud_Lock.length, Color.white, transform);
 			lockTime = time;
 			openTime = 0;

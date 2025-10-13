@@ -9,6 +9,10 @@ public class PaninoTV : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < paninoAnnounce.Length; i++)
+        {
+            eventsDone.Add(0);
+        }
         exclamationSound = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         if (TestMode)
@@ -128,6 +132,11 @@ public class PaninoTV : MonoBehaviour
             case 2: FindObjectOfType<SubtitleManager>().Add2DSubtitle("How do I get him off", paninoAnnounce[2].length, Color.white); break;
             case 3: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber2, duration2, colore0); break;
             case 4: FindObjectOfType<SubtitleManager>().Add2DSubtitle("I agree, let's release the angry bees", paninoAnnounce[4].length, Color.white); break;
+            case 5: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber3, duration3, colore3); break;
+            case 6: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber4, duration4, colore3); break;
+                //mandatory break i promise you its very madatory
+                //for something that ruined counting for me
+            case 7: FindObjectOfType<SubtitleManager>().Add2DSubtitle("Look at this", paninoAnnounce[7].length, Color.white); break;
         }
         switch (thing)
         {
@@ -143,6 +152,8 @@ public class PaninoTV : MonoBehaviour
                 }
                 break;
             case 6: StartCoroutine(PizzaTime()); break;
+                //mandatory break i promise you its very madatory
+                //for something that ruined counting for me
             case 7: StartCoroutine(TobyFoxReferenceNoWay()); break;
         }
         yield return new WaitForSeconds(paninoAnnounce[thing].length + 0.5f);
@@ -235,7 +246,7 @@ public class PaninoTV : MonoBehaviour
     int TestValue;
     public bool TestMode;
 
-    int[] eventsDone = new int[7];
+    List<int> eventsDone = new List<int>();
 
     int totalEventsDone;
 
@@ -252,6 +263,11 @@ public class PaninoTV : MonoBehaviour
     Color[] colore1 = { Color.white, Color.white, Color.white };
     string[] blabber2 = { "I have decided that any items that you have are a big meanie", "and I will put them into the.", "Jail.", "Good luck breaking them out, assuming you have any." };
     float[] duration2 = { 3.61f, 2.64f, 1f, 2.5f };
+    string[] blabber3 = { "Ummm we kinda angered a god and now we have to deal with locusts.", "Sorry." };
+    float[] duration3 = { 5f, 1f };
+    Color[] colore3 = { Color.white, Color.white };
+    string[] blabber4 = { "There's a pizza party going on!", "Get the slices of pizza to earn yourself a free item.", "Be quick though!" };
+    float[] duration4 = { 2f, 3.5f, 1f };
 
     public GameObject angryBees;
 

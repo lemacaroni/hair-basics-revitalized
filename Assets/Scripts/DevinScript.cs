@@ -27,6 +27,8 @@ public class DevinScript : MonoBehaviour
 
 	private Vector3 previous;
 
+	Vector3 spawn;
+
 	private NavMeshAgent agent;
 
 	public GameControllerScript gc;
@@ -45,8 +47,16 @@ public class DevinScript : MonoBehaviour
 	public RectTransform pipe;
 	private float pipeTime;
 
+	int wanderCount;
+
+	public bool goingToRoom;
+
+	public SpriteRenderer sign;
+	public Sprite[] signState;
+
 	private void Start()
 	{
+		spawn = transform.position;
 		audioDevice = GetComponent<AudioSource>();
 		agent = GetComponent<NavMeshAgent>();
 		anim = GetComponentInChildren<Animator>();
@@ -82,6 +92,14 @@ public class DevinScript : MonoBehaviour
 			}
 			pipe.anchoredPosition = new Vector2(pipe.anchoredPosition.x, (pipeTime / 4) * 800);
 		}
+		if (Vector3.Distance(transform.position, spawn) > 10 && goingToRoom)
+        {
+			sign.sprite = signState[0];
+        }
+        else
+		{
+			sign.sprite = signState[1];
+		}
 	}
 
 	private void FixedUpdate()
@@ -90,7 +108,7 @@ public class DevinScript : MonoBehaviour
 		if (Physics.Raycast(base.transform.position + Vector3.up * 2f, direction, out var hitInfo, float.PositiveInfinity, 769, QueryTriggerInteraction.Ignore) & (hitInfo.transform.name == "Player"))
 		{
 			db = true;
-			if (pipeCoolDown <= 0f)
+			if (pipeCoolDown <= 0f && (goingToRoom && Vector3.Distance(transform.position, spawn) > 20))
 			{
 				TargetPlayer();
 			}
@@ -109,19 +127,31 @@ public class DevinScript : MonoBehaviour
 	private void Wander()
 	{
 		int rng = Random.Range(0, wander.Length);
-		wanderer.GetNewTarget();
-		agent.SetDestination(wanderTarget.position);
-		coolDown = 1f;
-		if (Random.Range(1, 12) == 5 && !audioDevice.isPlaying && pipeCoolDown <= 0)
+		if (wanderCount >= 11)
         {
-			anim.SetBool("oh", false);
-			audioDevice.PlayOneShot(wander[rng]);
-			switch (rng)
-            {
-				case 1: FindObjectOfType<SubtitleManager>().Add3DSubtitle("Where'd you go, Bob?", wander[rng].length, new Color(255, 165, 0), transform); break;
-				case 2: FindObjectOfType<SubtitleManager>().Add3DSubtitle("Do do do do...", wander[rng].length, new Color(255, 165, 0), transform); break;
+			agent.SetDestination(spawn);
+			wanderCount = 0;
+			goingToRoom = true;
+			coolDown = 60f;
+		}
+        else
+		{
+			goingToRoom = false;
+			wanderer.GetNewTarget();
+			agent.SetDestination(wanderTarget.position);
+			coolDown = 1f;
+			wanderCount++;
+			if (Random.Range(1, 12) == 5 && !audioDevice.isPlaying && pipeCoolDown <= 0)
+			{
+				anim.SetBool("oh", false);
+				audioDevice.PlayOneShot(wander[rng]);
+				switch (rng)
+				{
+					case 1: FindObjectOfType<SubtitleManager>().Add3DSubtitle("Where'd you go, Bob?", wander[rng].length, new Color(255, 165, 0), transform); break;
+					case 2: FindObjectOfType<SubtitleManager>().Add3DSubtitle("Do do do do...", wander[rng].length, new Color(255, 165, 0), transform); break;
+				}
 			}
-        }
+		}
 	}
 
 	public void TargetPlayer()
@@ -159,7 +189,7 @@ public class DevinScript : MonoBehaviour
 		audioDevice.PlayOneShot(ready);
 		FindObjectOfType<SubtitleManager>().Add3DSubtitle("Duck under this pole 5 times. Ready? Go!", ready.length, new Color(255, 165, 0), transform);
 		agent.Warp(new Vector3(player.position.x, transform.position.y, player.position.z));
-		agent.Move(Vector3.back * 7.5f);
+		agent.Move(transform.forward * -7.5f);
 	}
 
 	void DuckedPipe()
@@ -201,7 +231,7 @@ public class DevinScript : MonoBehaviour
             }
 			if (gc.HasItemInInventory(0))
 			{
-				gc.CollectItem(gc.CollectItemExcluding(3, 8, 13, 14, 15, 16, 21, 24));
+				gc.CollectItem(gc.CollectItemExcluding(24));
 			}
             else
             {
