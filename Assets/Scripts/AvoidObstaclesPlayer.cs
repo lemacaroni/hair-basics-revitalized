@@ -58,6 +58,8 @@ public class AvoidObstaclesPlayer : MonoBehaviour
 
         transform.localPosition = new Vector2(x, y);
 
+        fakeBob.color = GetComponent<SpriteRenderer>().color;
+
         fluidMidi.Tempo = Mathf.Clamp(speed / 20, 0.5f, 2.5f);
     }
 
@@ -146,4 +148,6 @@ public class AvoidObstaclesPlayer : MonoBehaviour
     public SongPlayer fluidMidi;
 
     TrophyCollectingScript tc;
+
+    public Image fakeBob;
 }

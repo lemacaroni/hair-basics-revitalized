@@ -594,7 +594,7 @@ public class PlayerScript : MonoBehaviour
 				gc.tc.GetTrophy(27);
             }
 		}
-		if (other.transform.name == "BeeGroup(Clone)")
+		if (other.transform.name == "Angry Bees")
         {
 			if (cc.velocity.magnitude > 1f)
             {

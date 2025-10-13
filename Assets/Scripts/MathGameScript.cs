@@ -370,10 +370,14 @@ public class MathGameScript : MonoBehaviour
 			gc.SpawnEvilLeafy();
 			ExitGame();
 		}
-		else if (playerAnswer.text.ToLower() == "cleartil is better")
+		else if (playerAnswer.text.ToLower().Contains("cleartil is better"))
 		{
+			gc.CleartilIsBetter();
+			if (gc.notebooks >= 2 && gc.mode == "classic" && !gc.spoopMode)
+            {
+				gc.ActivateSpoopMode();
+            }
 			problem = 4;
-			StartCoroutine(CheatText("Well, if you say so."));
 		}
 		if (problem > 3)
 		{

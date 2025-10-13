@@ -835,7 +835,12 @@ public class GameControllerScript : MonoBehaviour
 
     public void CleartilIsBetter()
     {
+        if (mode == "classic")
+        {
+            return;
+        }
         cleartilMode = true;
+        math = 0;
         if (spoopMode)
         {
             baldi.SetActive(false);
@@ -1282,17 +1287,25 @@ public class GameControllerScript : MonoBehaviour
         {
             evilLeafy.GetComponent<EvilLeafyScript>().baldiWait -= 0.2f;
         }
-        baldiTutor.SetActive(value: false);
-        principal.SetActive(value: false);
-        crafters.SetActive(false);
-        gottaSweep.SetActive(false);
-        bully.SetActive(false);
-        firstPrize.SetActive(false);
-        guardianAngel.SetActive(false);
-        craftersTime = false;
-        crafters.SetActive(false);
-        schoolMusic.gameObject.SetActive(false);
         evilLeafy.SetActive(true);
+        if (spoopMode)
+        {
+            baldi.SetActive(false);
+            principal.SetActive(false);
+            firstPrize.SetActive(false);
+            craftersTime = false;
+            crafters.SetActive(false);
+            gottaSweep.SetActive(false);
+            bully.SetActive(false);
+            bigball.SetActive(false);
+            guardianAngel.SetActive(false);
+            baba.SetActive(false);
+            devin.SetActive(false);
+        }
+        else
+        {
+            ActivateSpoopMode();
+        }
         math = 0;
         if (notebooks >= 3)
         {
@@ -1462,12 +1475,9 @@ public class GameControllerScript : MonoBehaviour
         {
             tutorBaldi.gameObject.SetActive(false); //ALWAYS disable him when spoopy mode
         }
-        if (evilLeafy != null)
+        if (evilLeafy.activeSelf)
         {
-            if (evilLeafy.activeSelf)
-            {
-                return;
-            }
+            return;
         }
         if (cleartilMode)
         {
@@ -1738,7 +1748,7 @@ public class GameControllerScript : MonoBehaviour
             lap2Music.Stop();
             wwnMusic.Play();
         }
-        if (laps <= 15)
+        if (laps <= 25)
         {
             player.walkSpeed += 0.75f;
             player.runSpeed += 1.25f;
@@ -1775,14 +1785,18 @@ public class GameControllerScript : MonoBehaviour
         {
             pizzaface.pauseTime = 4.5f;
         }
-        if (laps > 2)
+        if (laps <= 2)
         {
             pss.AddPoints(3000, 1);
         }
         else
         {
-            pss.AddPoints(1750 - (laps * 5), 1);
-
+            int a = 2500 - (laps * 25);
+            if (a <= 750)
+            {
+                a = 750;
+            }
+            pss.AddPoints(a, 1);
         }
         player.stamina += player.maxStamina * 0.75f;
         audioDevice.PlayOneShot(getInPortal);
@@ -1790,7 +1804,7 @@ public class GameControllerScript : MonoBehaviour
         playerCharacter.enabled = false;
         playerCollider.enabled = false;
         timer.timeLeft += 5;
-        if (laps > 30)
+        if (laps > 15)
         {
             timer.timeLeft += 15;
         }
