@@ -840,6 +840,7 @@ public class GameControllerScript : MonoBehaviour
             return;
         }
         cleartilMode = true;
+        math = 0;
         if (spoopMode)
         {
             baldi.SetActive(false);
