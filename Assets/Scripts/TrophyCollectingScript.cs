@@ -85,7 +85,7 @@ public class TrophyCollectingScript : MonoBehaviour
             {
                 GetTrophy(13);
             }
-            if (gc.laps >= 40)
+            if (gc.laps >= 28)
             {
                 GetTrophy(39);
             }

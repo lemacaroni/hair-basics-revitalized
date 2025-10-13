@@ -69,7 +69,7 @@ public class DevinScript : MonoBehaviour
 	private void Update()
 	{
 		Move();
-		if (coolDown > 0f)
+		if (coolDown > 0f && agent.velocity.magnitude < 0.1)
 		{
 			coolDown -= 1f * Time.deltaTime;
 		}
@@ -108,10 +108,14 @@ public class DevinScript : MonoBehaviour
 		if (Physics.Raycast(base.transform.position + Vector3.up * 2f, direction, out var hitInfo, float.PositiveInfinity, 769, QueryTriggerInteraction.Ignore) & (hitInfo.transform.name == "Player"))
 		{
 			db = true;
-			if (pipeCoolDown <= 0f && goingToRoom && Vector3.Distance(transform.position, spawn) > 50)
+			if (pipeCoolDown <= 0f && !goingToRoom)
 			{
 				TargetPlayer();
 			}
+			else if (goingToRoom && Vector3.Distance(transform.position, spawn) > 50)
+            {
+				TargetPlayer();
+            }
 		}
 		else
 		{
@@ -137,10 +141,14 @@ public class DevinScript : MonoBehaviour
         else
 		{
 			goingToRoom = false;
+			if (agent.remainingDistance < 5)
+			{
+				wanderCount++;
+				print($"im WANDERIN!! {wanderCount}");
+			}
 			wanderer.GetNewTarget();
 			agent.SetDestination(wanderTarget.position);
 			coolDown = 1f;
-			wanderCount++;
 			if (Random.Range(1, 12) == 5 && !audioDevice.isPlaying && pipeCoolDown <= 0)
 			{
 				anim.SetBool("oh", false);

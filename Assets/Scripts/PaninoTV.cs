@@ -133,7 +133,7 @@ public class PaninoTV : MonoBehaviour
             case 3: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber2, duration2, colore0); break;
             case 4: FindObjectOfType<SubtitleManager>().Add2DSubtitle("I agree, let's release the angry bees", paninoAnnounce[4].length, Color.white); break;
             case 5: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber3, duration3, colore3); break;
-            case 6: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber4, duration4, colore3); break;
+            case 6: FindObjectOfType<SubtitleManager>().AddChained2DSubtitle(blabber4, duration4, colore1); break;
                 //mandatory break i promise you its very madatory
                 //for something that ruined counting for me
             case 7: FindObjectOfType<SubtitleManager>().Add2DSubtitle("Look at this", paninoAnnounce[7].length, Color.white); break;

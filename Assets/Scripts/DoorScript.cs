@@ -168,8 +168,11 @@ public class DoorScript : MonoBehaviour
 			myAudio.PlayOneShot(doorOpen, 1f);
 			FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Door opens*", 0.6f, Color.white, transform);
 		}
-		barrier.enabled = false;
-		invisibleBarrier.enabled = false;
+		if (!devinDoor) // lol screw you not yet
+		{
+			barrier.enabled = false;
+			invisibleBarrier.enabled = false;
+		}
 		bDoorOpen = true;
 		inside.material = open;
 		outside.material = open;

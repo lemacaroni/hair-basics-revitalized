@@ -1738,7 +1738,7 @@ public class GameControllerScript : MonoBehaviour
             lap2Music.Stop();
             wwnMusic.Play();
         }
-        if (laps <= 15)
+        if (laps <= 20)
         {
             player.walkSpeed += 0.75f;
             player.runSpeed += 1.25f;
@@ -1781,8 +1781,12 @@ public class GameControllerScript : MonoBehaviour
         }
         else
         {
-            pss.AddPoints(1750 - (laps * 5), 1);
-
+            int a = 1750 - (laps * 25);
+            if (a <= 750)
+            {
+                a = 750;
+            }
+            pss.AddPoints(a, 1);
         }
         player.stamina += player.maxStamina * 0.75f;
         audioDevice.PlayOneShot(getInPortal);
@@ -1790,7 +1794,7 @@ public class GameControllerScript : MonoBehaviour
         playerCharacter.enabled = false;
         playerCollider.enabled = false;
         timer.timeLeft += 5;
-        if (laps > 30)
+        if (laps > 15)
         {
             timer.timeLeft += 15;
         }
