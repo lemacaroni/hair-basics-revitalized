@@ -1748,7 +1748,7 @@ public class GameControllerScript : MonoBehaviour
             lap2Music.Stop();
             wwnMusic.Play();
         }
-        if (laps <= 20)
+        if (laps <= 25)
         {
             player.walkSpeed += 0.75f;
             player.runSpeed += 1.25f;
@@ -1791,7 +1791,7 @@ public class GameControllerScript : MonoBehaviour
         }
         else
         {
-            int a = 1750 - (laps * 25);
+            int a = 2500 - (laps * 25);
             if (a <= 750)
             {
                 a = 750;
