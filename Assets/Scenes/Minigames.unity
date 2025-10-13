@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2558,6 +2558,7 @@ MonoBehaviour:
   usedItem: 0
   onlyWooden: 0
   ruleBreak: 0
+  evilLeafyCheat: 0
   collectedToppings: 0
   collectToppingsNeeded: 5
   windowsCleaned: 0
@@ -5192,6 +5193,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 48606d2f159650349b9eb41dad3c425b, type: 3}
   - {fileID: 8300000, guid: 1115a734d69d76a4bb521a22d6657b16, type: 3}
   fluidMidi: {fileID: 1765976581}
+  fakeBob: {fileID: 1607617750}
 --- !u!65 &830777831
 BoxCollider:
   m_ObjectHideFlags: 0
