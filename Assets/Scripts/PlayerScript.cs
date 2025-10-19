@@ -7,6 +7,8 @@ using TMPro;
 
 public class PlayerScript : MonoBehaviour
 {
+	public static PlayerScript Instance;
+
 	public GameControllerScript gc;
 
 	public BaldiScript baldi;
@@ -128,6 +130,7 @@ public class PlayerScript : MonoBehaviour
 
 	private void Start()
 	{
+		Instance = this;
 		height = base.transform.position.y;
 		stamina = maxStamina;
 		health = 100;

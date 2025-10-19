@@ -103,7 +103,7 @@ public class DoorScript : MonoBehaviour
 		}
 		if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E)) && Time.timeScale != 0f && Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0f)), out var hitInfo) && ((hitInfo.collider == trigger) & (Vector3.Distance(player.position, base.transform.position) < openingDistance)))
 		{
-			if (!bDoorLocked && !devinDoor) // no opening for you yet
+			if (!bDoorLocked)
 			{
 				OpenDoor();
 				if (baldi.isActiveAndEnabled & (silentOpens <= 0))
@@ -168,11 +168,8 @@ public class DoorScript : MonoBehaviour
 			myAudio.PlayOneShot(doorOpen, 1f);
 			FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Door opens*", 0.6f, Color.white, transform);
 		}
-		if (!devinDoor) // lol screw you not yet
-		{
-			barrier.enabled = false;
-			invisibleBarrier.enabled = false;
-		}
+		barrier.enabled = false;
+		invisibleBarrier.enabled = false;
 		bDoorOpen = true;
 		inside.material = open;
 		outside.material = open;

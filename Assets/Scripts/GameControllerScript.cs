@@ -46,6 +46,7 @@ public class ObjectionItem
 
 public class GameControllerScript : MonoBehaviour
 {
+    public static GameControllerScript Instance;
     public TrophyCollectingScript tc;
     public bool SchoolScene;
     public bool ClassicSchoolScene;
@@ -81,6 +82,7 @@ public class GameControllerScript : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         if (SceneManager.GetActiveScene().name == "Luck")
         {
             disablePausing = true;
