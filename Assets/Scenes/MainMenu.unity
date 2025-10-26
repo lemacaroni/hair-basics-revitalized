@@ -26541,7 +26541,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 662093131}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -30333,7 +30333,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Kiker Baller
+  m_text: Kicker Baller
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f104ab5c06b6f34ab0816f086069b5b, type: 2}
   m_sharedMaterial: {fileID: 824898514370142616, guid: 1f104ab5c06b6f34ab0816f086069b5b,
