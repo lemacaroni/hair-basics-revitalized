@@ -2726,7 +2726,7 @@ public class GameControllerScript : MonoBehaviour
 
     IEnumerator CurseOfRaLogic()
     {
-        yield return new WaitForSeconds(1/60);
+        yield return new WaitForSeconds(1/60f);
         curseOfRaTime += Time.deltaTime / 2;
         if (Random.Range(1, Mathf.RoundToInt(900 / curseOfRaTime)) <= 2)
         {
@@ -3025,7 +3025,7 @@ public class GameControllerScript : MonoBehaviour
                 FindObjectOfType<SubtitleManager>().Add3DSubtitle("run", run.length, Color.red, baldiApple.transform);
             }
             paninoAppleTimer -= Time.deltaTime;
-            yield return new WaitForSeconds(1 / 60);
+            yield return new WaitForSeconds(1 / 60f);
         }
         baldi.transform.position = baldiApple.transform.position;
         Destroy(baldiApple);
