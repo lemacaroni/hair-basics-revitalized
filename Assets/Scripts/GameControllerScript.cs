@@ -1229,11 +1229,12 @@ public class GameControllerScript : MonoBehaviour
         int highScoreBotenook = PlayerPrefs.GetInt("HighBooks");
         if (mode != "endless" && SceneManager.GetActiveScene().name != "Luck")
         {
-            notebookCount.text = $"{notebooks}/{maxNoteboos} Dwaynes";
+            notebookCount.text = notebooks + (notebooks == 6 || notebooks == 16 ? string.Empty : $"/{maxNoteboos}") + " Dwaynes";
         }
         else if (SceneManager.GetActiveScene().name != "Luck")
         {
-            notebookCount.text = $"{notebooks}/{highScoreBotenook} H.S. Dwaynes";
+            string endless = notebooks == 67 ? string.Empty : notebooks.ToString();
+            notebookCount.text = endless + ((notebooks % 10 == 6 && highScoreBotenook % 10 == 7) || notebooks == 67 || highScoreBotenook == 67 ? (notebooks == 67 ? string.Empty : " ") : $"/{highScoreBotenook} H.S. ") + "Dwaynes";
         }
         else
         {
