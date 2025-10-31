@@ -140,7 +140,7 @@ public class PaninoTV : MonoBehaviour
         }
         switch (thing)
         {
-            case 2: washeewashee.SetActive(true); break;
+            case 2: washeewashee.SetActive(true); gc.tc.GetTrophy(28); break;
             case 3: prisonDoor.ItemsAreNowGoingToJail(); break;
             case 4: StartCoroutine(RollOutTheAngryBees()); break;
             case 5:
