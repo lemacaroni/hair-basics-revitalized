@@ -887,7 +887,7 @@ public class GameControllerScript : MonoBehaviour
             {
                 pss.AddPoints(-5, 0.5f);
                 scoreDecayTimer = 1;
-                player.stamina += player.maxStamina / 20;
+                player.stamina += player.maxStamina / 18;
             }
             else if (!player.inSecret)
             {
