@@ -157,7 +157,7 @@ public class FamesScript : MonoBehaviour
 		stop = true;
 		anim.SetTrigger("Chomp");
 		aud.PlayOneShot(sounds[0]);
-		FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Chomp*", aud.clip.length, new Color32(32, 96, 35, 255), transform);
+		FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Chomp*", 0.75f, new Color32(32, 96, 35, 255), transform);
 		yield return new WaitForSeconds(0.4f);
 		if (item)
 		{
