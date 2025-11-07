@@ -187,6 +187,7 @@ public class PlayerScript : MonoBehaviour
         {
 			PipegameMove();
 			StaminaCheck();
+			HealthCheck();
 			MouseMove();
 		}
 		if (Time.timeScale != 0)

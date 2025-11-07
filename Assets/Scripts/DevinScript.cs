@@ -113,7 +113,7 @@ public class DevinScript : MonoBehaviour
 			{
 				TargetPlayer();
 			}
-			else if (goingToRoom && Vector3.Distance(transform.position, spawn) > 120)
+			else if (pipeCoolDown <= 0f && goingToRoom && Vector3.Distance(transform.position, spawn) > 120)
             {
 				TargetPlayer();
             }
