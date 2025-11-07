@@ -183,11 +183,7 @@ public class GameControllerScript : MonoBehaviour
             {
                 entrance_4.Lower();
             }
-            if (mode == "speedy")
-            {
-                this.SpeedyStart();
-            }
-            else if (mode == "story" || mode == "endless" || mode == "pizza" || mode == "free")
+            if (mode == "story" || mode == "endless" || mode == "pizza" || mode == "free")
             {
                 this.NormalStart();
 
@@ -208,37 +204,17 @@ public class GameControllerScript : MonoBehaviour
                     asdaa.SetActive(false);
                 }
             }
-            else if (mode == "miko")
+            switch (mode)
             {
-                this.MikoStart();
-            }
-            else if (mode == "triple")
-            {
-                this.TripleStart();
-            }
-            else if (mode == "alger")
-            {
-                this.AlgerStart();
-            }
-            else if (mode == "stealthy")
-            {
-                StealthyStart();
-            }
-            else if (mode == "zombie")
-            {
-                ZombieStart();
-            }
-            else if (mode == "panino")
-            {
-                PaninoStart();
-            }
-            else if (mode == "jackenstein")
-            {
-                JackensteinStart();
-            }
-            else if (mode == "devin")
-            {
-                DevinStart();
+                case "speedy": SpeedyStart(); break;
+                case "miko": MikoStart(); break;
+                case "triple": TripleStart(); break;
+                case "alger": AlgerStart(); break;
+                case "stealthy": StealthyStart(); break;
+                case "zombie": ZombieStart(); break;
+                case "panino": PaninoStart(); break;
+                case "jackenstein": JackensteinStart(); break;
+                case "devin": DevinStart(); break;
             }
 
             if (extraStamina == 1)
