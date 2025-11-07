@@ -34,10 +34,8 @@ public class CleartilScript : MonoBehaviour
         anim.SetTrigger("step");
         agent.speed = 84;
         aud.Play();
-        for (int i = 0; i < 10; i++)
-        {
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
+        FindObjectOfType<SubtitleManager>().Add3DSubtitle("*step*", aud.clip.length, new Color32(85, 63, 63, 255), transform);
+        yield return new WaitForSeconds(Time.deltaTime * 10);
         agent.speed = 0;
     }
 

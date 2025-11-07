@@ -156,6 +156,16 @@ public class CameraScript : MonoBehaviour
 					base.transform.position = character.transform.position + character.transform.forward * -1f + new Vector3(2f, 3.85f, 0f) + offset;
 					base.transform.LookAt(new Vector3(character.transform.position.x, character.transform.position.y + 3.85f, character.transform.position.z) + offset);
 				}
+				else if (character.name == "Alger (Hair Basics)")
+				{
+					base.transform.position = character.transform.position + character.transform.forward * -1f + new Vector3(2f, 3.55f, 0f) + offset;
+					base.transform.LookAt(new Vector3(character.transform.position.x, character.transform.position.y + 3.55f, character.transform.position.z) + offset);
+				}
+				else if (character.name == "Cleartil")
+				{
+					base.transform.position = character.transform.position + character.transform.forward * -1f + new Vector3(2f, 4.85f, 0f) + offset;
+					base.transform.LookAt(new Vector3(character.transform.position.x, character.transform.position.y + 4.85f, character.transform.position.z) + offset);
+				}
 				else if (character.name == "Bob")
 				{
 					ps.bob.gameObject.layer = 9;

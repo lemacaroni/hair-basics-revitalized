@@ -1252,23 +1252,23 @@ public class GameControllerScript : MonoBehaviour
             dm.size = notebooks;
             dm.maxSize = maxNoteboos;
         }*/
-        if (mode == "jackenstein")
-        {
-            AddTp(2.8f);
-        }
         int highScoreBotenook = PlayerPrefs.GetInt("HighBooks");
         if (mode != "endless" && SceneManager.GetActiveScene().name != "Luck")
         {
-            notebookCount.text = notebooks + (notebooks == 6 || notebooks == 16 ? string.Empty : $"/{maxNoteboos}") + " Dwaynes";
+            notebookCount.text = notebooks + (notebooks == 6 || notebooks == 16 ? $"/This Many" : $"/{maxNoteboos}") + " Dwaynes";
         }
         else if (SceneManager.GetActiveScene().name != "Luck")
         {
-            string endless = notebooks == 67 ? string.Empty : notebooks.ToString();
-            notebookCount.text = endless + ((notebooks % 10 == 6 && highScoreBotenook % 10 == 7) || notebooks == 67 || highScoreBotenook == 67 ? (notebooks == 67 ? string.Empty : " ") : $"/{highScoreBotenook} H.S. ") + "Dwaynes";
+            string endless = notebooks == 68-1 ? "This Many" : notebooks.ToString();
+            notebookCount.text = endless + ((notebooks % 10 == 6 && highScoreBotenook % 10 == 7) || notebooks == 68-1 || highScoreBotenook == 68-1 ? (notebooks == 68-1 ? "This Many" : " ") : $"/{highScoreBotenook} H.S. ") + "Dwaynes";
         }
         else
         {
             notebookCount.text = $"{notebooks} left";
+        }
+        if (mode == "endless" && notebooks >= 2)
+        {
+            math = 0;
         }
         if ((notebooks == maxNoteboos) & (mode == "story" || mode == "free"))
         {
@@ -1860,6 +1860,10 @@ public class GameControllerScript : MonoBehaviour
         string[] escape = { "Congrattation!", "You found all 7 Dwaynes,", "now all you need to do is...", "GET OUT." };
         float[] duration = { 1.8f, 3f, 2.8f, 1.935f };
         Color[] colors = { Color.white, Color.white, Color.white, Color.white };
+        if (mode == "jackenstein")
+        {
+            AddTp(2.8f);
+        }
         ESCAPEmusic.UnPause();
         cameraNormal.cullingMask = cullingMask;
         learningActive = false; 

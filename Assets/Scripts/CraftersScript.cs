@@ -69,6 +69,7 @@ public class CraftersScript : MonoBehaviour
 				{
 					angry = true;
 					audioDevice.PlayOneShot(aud_Intro);
+					FindObjectOfType<SubtitleManager>().Add3DSubtitle("P R O M P L Y", aud_Intro.length, Color.green, transform); 
 					spriteImage.sprite = angrySprite;
 				}
 			}
@@ -96,6 +97,7 @@ public class CraftersScript : MonoBehaviour
 		if (!audioDevice.isPlaying)
 		{
 			audioDevice.PlayOneShot(aud_Loop);
+			FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Promply jumply noises*", aud_Loop.length / audioDevice.pitch, Color.green, transform);
 		}
 	}
 

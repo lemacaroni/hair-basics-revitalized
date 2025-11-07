@@ -66,7 +66,8 @@ public class UrkScript : MonoBehaviour
         {
 			audMusic.clip = music[Random.Range(0, 7)];
 			audMusic.Play();
-        }
+			FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Music*", audMusic.clip.length, Color.gray, transform, audMusic);
+		}
 		if (chase && !gc.camScript.FuckingDead)
         {
 			gc.tc.urkTime += Time.deltaTime;
@@ -92,6 +93,8 @@ public class UrkScript : MonoBehaviour
 				audioDevice.loop = true;
 				audioDevice.clip = music[9];
 				audioDevice.Play();
+				FindObjectOfType<SubtitleManager>().RemoveSubtitle("*Music*");
+				FindObjectOfType<SubtitleManager>().Add3DSubtitle("*!!!*", music[8].length / 2, Color.gray, transform, audioDevice);
 			}
 			seeCooldown = 1.75f;
 			agent.speed = 0;
