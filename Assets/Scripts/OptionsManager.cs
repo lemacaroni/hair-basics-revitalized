@@ -448,6 +448,7 @@ public class OptionsManager : MonoBehaviour
 		PlayerPrefs.SetInt("HighBooks", 0);
 		PlayerPrefs.SetInt("secretEnd", 0);
 		PlayerPrefs.SetInt("did3872643", 0);
+		PlayerPrefs.SetInt("didP", 0);
 		PlayerPrefs.SetInt("pizzaBeat", 0);
 		PlayerPrefs.SetInt("pizzaScoreBest", 0);
 		PlayerPrefs.SetString("pizzaRankBest", "D");
