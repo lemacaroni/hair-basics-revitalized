@@ -219,7 +219,7 @@ public class GameControllerScript : MonoBehaviour
 
             if (extraStamina == 1)
             {
-                player.maxStamina = 200;
+                player.maxStamina += 100;
             }
             if (!ClassicSchoolScene)
             {
@@ -258,6 +258,8 @@ public class GameControllerScript : MonoBehaviour
                     break;
                 case "zombie":
                     break;
+                case "stealthy":
+                    break;
             }
             for (int i = 0; i < 4; i++)
             {
@@ -293,7 +295,7 @@ public class GameControllerScript : MonoBehaviour
             this.ClassicStart();
             if (extraStamina == 1)
             {
-                player.maxStamina = 200;
+                player.maxStamina += 100;
             }
             for (int i = 0; i < secretWalls.Length; i++)
             {
