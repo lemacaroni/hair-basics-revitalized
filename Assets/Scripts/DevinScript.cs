@@ -240,7 +240,12 @@ public class DevinScript : MonoBehaviour
             }
 			if (gc.HasItemInInventory(0))
 			{
-				gc.CollectItem(gc.CollectItemExcluding(24));
+				int itemee = gc.CollectItemExcluding(24);
+				gc.CollectItem(itemee);
+				if (itemee == 22 || itemee == 25 || itemee == 26)
+                {
+					gc.tc.GetTrophy(45);
+                }
 			}
             else
             {

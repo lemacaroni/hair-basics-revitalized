@@ -60,7 +60,7 @@ public class GameControllerScriptSimple : MonoBehaviour
         }
         if (mode == "devin") foreach (Canvas hud in FindObjectsOfType<Canvas>()) hud.gameObject.SetActive(false);
         yield return new WaitForSecondsRealtime(mode == "devin" ? 5 : 15);
-        PlayerPrefs.SetInt("devin", 0);
+        PlayerPrefs.SetInt("devin", 2);
         SceneManager.LoadScene("BenefondCrates");
     }
 

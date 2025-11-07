@@ -11148,7 +11148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c37589ff95908aa4aa4f375ae22f9829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountToGive: 1.7857143
+  amountToGive: 1.7241379
   percent: 0
   requirements:
   - mikoUnlocked
@@ -11207,7 +11207,9 @@ MonoBehaviour:
   - susieTrophy
   - urkTrophy
   - medalTrophy
-  valueInt: 0100000001000000010000000100000001000000010000000100000001000000010000000100000001000000110000000700000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  - devinTrophy
+  - whyTrophy
+  valueInt: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000001100000007000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
   valueString: []
   percentText: {fileID: 24955880}
   judgements:
@@ -13815,7 +13817,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Get 6500 score in Avoid the Obstacles or 300 score in Volleyball with Panino
+  m_text: 'Devin Devin Devin Devin De
+
+    vin Devin Devin Devin Devin
+
+    Devin
+    Devin Devin Devin'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0da04a461c84a1e41bbbe240dbdb94b3, type: 2}
   m_sharedMaterial: {fileID: -7416678383220277927, guid: 0da04a461c84a1e41bbbe240dbdb94b3,
@@ -17971,7 +17978,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Expelled
+  m_text: Why This?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f104ab5c06b6f34ab0816f086069b5b, type: 2}
   m_sharedMaterial: {fileID: 824898514370142616, guid: 1f104ab5c06b6f34ab0816f086069b5b,
@@ -23567,7 +23574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &466750165
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24581,7 +24588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &490794514
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25678,7 +25685,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Get depression for 99 seconds
+  m_text: Get a weird item from Devin
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0da04a461c84a1e41bbbe240dbdb94b3, type: 2}
   m_sharedMaterial: {fileID: -7416678383220277927, guid: 0da04a461c84a1e41bbbe240dbdb94b3,
@@ -67666,7 +67673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429ab73ab2247ef49932323823df4946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trophy: expelledTrophy
+  trophy: whyTrophy
 --- !u!114 &1656296752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67686,7 +67693,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 33fa879e45d8eaa48bc6a11dc6ddd32f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2422893d07638044d88725078bec7102, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -67754,7 +67761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429ab73ab2247ef49932323823df4946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trophy: fieldTrophy
+  trophy: devinTrophy
 --- !u!114 &1656924329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67774,7 +67781,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3b8a02865b5ef534ab82c89e9d872860, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b9c755428b774874696d1653ebd2cadd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -75767,7 +75774,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bob's Field Day
+  m_text: Devin
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f104ab5c06b6f34ab0816f086069b5b, type: 2}
   m_sharedMaterial: {fileID: 824898514370142616, guid: 1f104ab5c06b6f34ab0816f086069b5b,

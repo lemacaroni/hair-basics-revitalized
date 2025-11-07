@@ -869,7 +869,6 @@ public class GameControllerScript : MonoBehaviour
             baldi.SetActive(false);
             principal.SetActive(false);
             firstPrize.SetActive(false);
-            craftersTime = false;
             crafters.SetActive(false);
             gottaSweep.SetActive(false);
             bully.SetActive(false);
@@ -882,6 +881,8 @@ public class GameControllerScript : MonoBehaviour
         {
             ActivateSpoopMode();
         }
+        craftersTime = false;
+        crafters.SetActive(false);
         starstudentWall.SetActive(false);
         urk.SetActive(true);
         fames.SetActive(true);

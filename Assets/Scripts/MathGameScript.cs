@@ -238,28 +238,34 @@ public class MathGameScript : MonoBehaviour
 				if (sign == 0)
 				{
 					solution = num1 + this.num2;
-					questionText.text = "SOLVE MATH Q" + problem + ": \n \n" + num1 + "+" + this.num2 + "=";
+					questionText.text = "SOLVE MATH Q" + problem + ": \n \n" + num1 + "+" + this.num2;
 				}
 				else if (sign == 1)
 				{
 					solution = num1 - this.num2;
-					questionText.text = "SOLVE MATH Q" + problem + ": \n \n" + num1 + "-" + this.num2 + "=";
+					questionText.text = "SOLVE MATH Q" + problem + ": \n \n" + num1 + "-" + this.num2;
 				}
 				else if (sign == 2)
 				{
 					solution = num1 * this.num2;
-					questionText.text = "SOLVE MATH Q" + problem + ": \n \n" + num1 + "x" + this.num2 + "=";
+					questionText.text = "SOLVE MATH Q" + problem + ": \n \n" + num1 + "x" + this.num2;
 				}
 				else if (sign == 3)
 				{
 					solution = num1 * this.num2 + num3 - num4;
-					questionText.text = "SOLVE MATH Q" + problem + ": \n \n" + num1 + "x" + this.num2 + "+" + num3 + "-" + num4 + "=";
+					questionText.text = "SOLVE MATH Q" + problem + ": \n \n" + num1 + "x" + this.num2 + "+" + num3 + "-" + num4;
 				}
 				else if (sign == 4)
 				{
 					solution = num1 * this.num2 - num3 + num4 - num3;
-					questionText.text = "SOLVE MATH Q" + problem + ": \n \n" + num1 + "x" + this.num2 + "-" + num3 + "+" + num4 + "-" + num3 + "=";
+					questionText.text = "SOLVE MATH Q" + problem + ": \n \n" + num1 + "x" + this.num2 + "-" + num3 + "+" + num4 + "-" + num3;
 				}
+				if (solution == 68 - 1)
+                {
+					solution++;
+					questionText.text += "+1";
+                }
+				questionText.text += "=";
 			}
 			else
 			{
@@ -371,7 +377,7 @@ public class MathGameScript : MonoBehaviour
 			StartCoroutine(CheatText("Set your FPS to 2763! That way you'll get something special once you come back here!"));
 		}
 		else if (playerAnswer.text.ToLower().Contains("evil leafy"))
-        {
+		{
 			gc.SpawnEvilLeafy();
 			ExitGame();
 		}
@@ -379,13 +385,13 @@ public class MathGameScript : MonoBehaviour
 		{
 			gc.CleartilIsBetter();
 			if (gc.notebooks >= 2 && gc.mode == "classic" && !gc.spoopMode)
-            {
+			{
 				gc.ActivateSpoopMode();
-            }
+			}
 			problem = 4;
 		}
 		else if (playerAnswer.text.ToLower().Contains("devin") && !devinA && gc.mode != "devin")
-        {
+		{
 			StartCoroutine(CheatText("DEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVIN"));
 			StartCoroutine(Devin());
 			StartCoroutine(Devin2());
@@ -393,6 +399,10 @@ public class MathGameScript : MonoBehaviour
 			PlayerPrefs.SetString("CurrentMode", "devin");
 			devinA = true;
 		}
+		else if (playerAnswer.text == (68 - 1).ToString())
+		{
+			UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.FatalError);
+        }
 		if (problem > 3)
 		{
 			return;
