@@ -383,7 +383,7 @@ public class OptionsManager : MonoBehaviour
 			}
 			else if (Input.GetKeyDown(KeyCode.Period) || Input.GetKeyDown(KeyCode.Comma))
 			{
-				this.scaleFactor.text += ",";
+				this.scaleFactor.text += ".";
 			}
 			else if (Input.GetKeyDown(KeyCode.Backspace))
 			{
