@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2294,6 +2294,24 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5138afb7ce5f8ab448193a3a8d2c736e, type: 3}
   - {fileID: 21300000, guid: b86371fdeedc7b94f82da25abc17d75f, type: 3}
   - {fileID: 21300000, guid: 21eed736c36ae7442ac92772712667f8, type: 3}
+  - {fileID: 21300000, guid: 8f9823491c4c01d4d939d8a304a797bd, type: 3}
+  - {fileID: 21300000, guid: 3b860c383fef27344951117be97bebb8, type: 3}
+  - {fileID: 21300000, guid: 520d4b58bae9ed6429f8cc218554e179, type: 3}
+  - {fileID: 21300000, guid: fb59ab5c5fa9c154cafcb6b9e4168be5, type: 3}
+  - {fileID: 21300000, guid: 078a2a4c040364549b64545f917a2568, type: 3}
+  - {fileID: 21300000, guid: 316202a457641d349985c4a365966a8b, type: 3}
+  - {fileID: 21300000, guid: 53d05b04627196341a1e4bcbc04e0b54, type: 3}
+  - {fileID: 21300000, guid: c8b021d9c9bfa994e98a43bf91ebb58c, type: 3}
+  - {fileID: 21300000, guid: 3b8a02865b5ef534ab82c89e9d872860, type: 3}
+  - {fileID: 21300000, guid: 33fa879e45d8eaa48bc6a11dc6ddd32f, type: 3}
+  - {fileID: 21300000, guid: 411a351666f54ec46b18ce05c1e684ce, type: 3}
+  - {fileID: 21300000, guid: 875e22d054e5a9248873e5f886eaf8c7, type: 3}
+  - {fileID: 21300000, guid: b2789bcdfddcc7e4990ad7ee76753115, type: 3}
+  - {fileID: 21300000, guid: dd398d6eed97e4d44a176fd71af562b2, type: 3}
+  - {fileID: 21300000, guid: ab3fc0d95a7a15440b7b571f769095fd, type: 3}
+  - {fileID: 21300000, guid: a7e3a8de38815a54080b822b19e2d865, type: 3}
+  - {fileID: 21300000, guid: b9c755428b774874696d1653ebd2cadd, type: 3}
+  - {fileID: 21300000, guid: 2422893d07638044d88725078bec7102, type: 3}
   trophyName:
   - congrattationTrophy
   - cleanTrophy
@@ -2315,14 +2333,32 @@ MonoBehaviour:
   - secretsTrophy
   - desperateTrophy
   - prankedTrophy
-  - woodTrophy
+  - hurtTrophy
   - modeTrophy
   - looreTrophy
   - raTrophy
-  - ruleTropphy
+  - ruleTrophy
   - problemTrophy
   - sorryTrophy
   - congratulationsTrophy
+  - aprilTrophy
+  - timeTrophy
+  - sorgyTrophy
+  - slowTrophy
+  - kikerTrophy
+  - richTrophy
+  - stupidTrophy
+  - evilTrophy
+  - fieldTrophy
+  - expelledTrophy
+  - findTrophy
+  - lapTrophy
+  - cleartilTrophy
+  - susieTrophy
+  - urkTrophy
+  - medalTrophy
+  - devinTrophy
+  - whyTrophy
   zestyEaten: 0
   esteEaten: 0
   devinPipeHit: 0

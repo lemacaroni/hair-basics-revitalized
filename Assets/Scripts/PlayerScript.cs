@@ -468,6 +468,10 @@ public class PlayerScript : MonoBehaviour
         }
 		staminaBar.value = stamina / maxStamina * 100f;
 		percent.text = $"{Mathf.RoundToInt(stamina / maxStamina * 100f)}%";
+		if (percent.text.Contains((68 - 1).ToString()))
+		{
+			percent.text.Replace((68 - 1).ToString(), "ThisMuch");
+		}
 		if (infStamina)
         {
 			stamina = Mathf.Infinity;
@@ -488,6 +492,10 @@ public class PlayerScript : MonoBehaviour
 	private void HealthCheck()
     {
 		hercent.text = $"{Mathf.RoundToInt(health)}%";
+		if (hercent.text.Contains((68 - 1).ToString()))
+		{
+			hercent.text.Replace((68-1).ToString(), "ThisMuch");
+		}
 		healthBar.value = health / 100 * 100f;
 		if (health < 100)
         {
