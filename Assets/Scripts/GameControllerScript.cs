@@ -66,6 +66,8 @@ public class GameControllerScript : MonoBehaviour
 
     private int pCounter;
 
+    public GameObject llaw;
+
     public GameControllerScript()
     {
         itemSelectOffset = new int[4] { -134, -94, -50, -6 };
@@ -233,6 +235,10 @@ public class GameControllerScript : MonoBehaviour
             else if (mode == "jackenstein")
             {
                 JackensteinStart();
+            }
+            else if (mode == "devin")
+            {
+                DevinStart();
             }
 
             if (extraStamina == 1)
@@ -682,6 +688,21 @@ public class GameControllerScript : MonoBehaviour
         playerHudStuff[2].SetActive(false);
     }
 
+    public void DevinStart()
+    {
+        RenderSettings.ambientLight = new Color(4, 1, 0);
+        RenderSettings.skybox = player.blackSky;
+        baldiTutor.SetActive(false);
+        spoopMode = true;
+        llaw.transform.localRotation *= Quaternion.Euler(0, 0, -60);
+        locationText.text = "Panino's Ball, Devin:Devin";
+        locationText.color = Color.red;
+        for (int i = 0; i < tutorals.Length; i++)
+        {
+            tutorals[i].gameObject.SetActive(false);
+        }
+    }
+
     public bool ModifierOn()
     {
         if (speedBoost == 1)
@@ -837,7 +858,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void CleartilIsBetter()
     {
-        if (mode == "classic")
+        if (mode == "classic" || mode == "devin")
         {
             return;
         }
@@ -1136,6 +1157,15 @@ public class GameControllerScript : MonoBehaviour
                 baldiAgent.Warp(player.transform.position);
             }
         }
+        if (mode == "devin" && finaleMode && exitsReached == 5)
+        {
+            environment[Random.Range(0, environment.Length)].localPosition += new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f)) * ((Time.time - timeStamp) / 4);
+            environment[Random.Range(0, environment.Length)].localScale += new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), Random.Range(-0.1f, 0.05f)) * ((Time.time - timeStamp));
+            if (Random.Range(0, 212) == 0) Instantiate(devin).SetActive(true);
+            player.health++;
+            player.walkSpeed += Time.deltaTime;
+            player.runSpeed += Time.deltaTime;
+        }
     }
 
     public void SomeoneTied(GameObject gObject, bool yellow = true)
@@ -1286,6 +1316,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void SpawnEvilLeafy()
     {
+        if (mode == "devin") return;
         if (evilLeafy.activeSelf)
         {
             evilLeafy.GetComponent<EvilLeafyScript>().baldiWait -= 0.2f;
@@ -1655,12 +1686,15 @@ public class GameControllerScript : MonoBehaviour
             escapeCollect.SetActive(true);
         }
         finaleMode = true;
-        entrance_0.Raise();
-        if (mode != "stealthy")
+        if (mode != "devin")
         {
-            entrance_1.Raise();
-            entrance_2.Raise();
-            entrance_3.Raise();
+            entrance_0.Raise();
+            if (mode != "stealthy")
+            {
+                entrance_1.Raise();
+                entrance_2.Raise();
+                entrance_3.Raise();
+            }
         }
         if (mode == "classic")
         {
@@ -2781,7 +2815,7 @@ public class GameControllerScript : MonoBehaviour
                 entrance_2.Raise();
             }
         }
-        else if (mode != "alger" && mode != "classic" && mode != "zombie")
+        else if (mode != "alger" && mode != "classic" && mode != "zombie" && mode != "devin")
         {
             if (exitsReached == 0)
             {
@@ -2899,7 +2933,7 @@ public class GameControllerScript : MonoBehaviour
                 audioDevice.time = 0.02f;
             }
         }
-        else if (mode == "alger" || mode == "zombie")
+        else if (mode == "alger" || mode == "zombie" || mode == "devin")
         {
             if (exitsReached == 1)
             {
@@ -2922,7 +2956,29 @@ public class GameControllerScript : MonoBehaviour
                 notebookCount.text = "4/5 Exits";
                 entrance_4.Raise();
             }
+            if (exitsReached == 5 && mode == "devin")
+            {
+                environment = GameObject.Find("Environment").GetComponentsInChildren<Transform>();
+                notebookCount.text = "NaN";
+                audioDevice.PlayOneShot(Resources.Load<AudioClip>("devin"));
+                StartCoroutine(Devin());
+            }
         }
+    }
+
+    public IEnumerator Devin()
+    {
+        PlayerPrefs.SetInt("devin", 1);
+        timeStamp = Time.time;
+        yield return new WaitForSeconds(97);
+        audioDevice.ignoreListenerPause = true;
+        cameraNormal.cullingMask = 0;
+        disablePausing = true;
+        AudioListener.pause = true;
+        foreach (Canvas hud in FindObjectsOfType<Canvas>()) hud.gameObject.SetActive(false);
+        yield return new WaitForSeconds(5);
+        if (!Application.isEditor) UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.FatalError);
+        yield break;
     }
 
     public void FoundTreasure()
@@ -3484,4 +3540,7 @@ public class GameControllerScript : MonoBehaviour
     public GameObject retroCanvas;
 
     public GameObject A;
+
+    public Transform[] environment;
+    private float timeStamp;
 }

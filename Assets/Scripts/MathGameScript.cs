@@ -175,6 +175,10 @@ public class MathGameScript : MonoBehaviour
 				gc.DeactivateLearningGame(gameObject);
 			}
         }
+		if (gc.mode == "devin")
+        {
+			StartCoroutine(DevinG());
+		}
 	}
 
 	private void Update()
@@ -209,6 +213,7 @@ public class MathGameScript : MonoBehaviour
 
 	private void NewProblem()
 	{
+		if (devinA) return;
 		playerAnswer.text = string.Empty;
 		problem++;
 		playerAnswer.ActivateInputField();
@@ -379,6 +384,15 @@ public class MathGameScript : MonoBehaviour
             }
 			problem = 4;
 		}
+		else if (playerAnswer.text.ToLower().Contains("devin") && !devinA && gc.mode != "devin")
+        {
+			StartCoroutine(CheatText("DEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVINDEVIN"));
+			StartCoroutine(Devin());
+			StartCoroutine(Devin2());
+			StartCoroutine(DevinG());
+			PlayerPrefs.SetString("CurrentMode", "devin");
+			devinA = true;
+		}
 		if (problem > 3)
 		{
 			return;
@@ -539,4 +553,35 @@ public class MathGameScript : MonoBehaviour
 			yield return new WaitForEndOfFrame();
 		}
 	}
+
+	private IEnumerator Devin()
+    {
+		while (isActiveAndEnabled)
+        {
+			audioDevice.PlayOneShot(devin);
+			transform.GetChild(UnityEngine.Random.Range(0, transform.childCount)).localScale = new Vector3(UnityEngine.Random.Range(0.5f, 2), UnityEngine.Random.Range(0.5f, 2), 1);
+			yield return null;
+        }
+		yield break;
+    }
+
+	private IEnumerator Devin2()
+    {
+		yield return new WaitForSecondsRealtime(5);
+		SceneManager.LoadSceneAsync("School");
+	}
+
+	private IEnumerator DevinG()
+    {
+		while (isActiveAndEnabled)
+        {
+			transform.GetChild(UnityEngine.Random.Range(0, transform.childCount)).localScale += new Vector3(UnityEngine.Random.Range(-0.1f, 0.1f), UnityEngine.Random.Range(-0.1f, 0.1f), 0);
+			yield return null;
+		}
+		yield break;
+	}
+
+	public AudioClip devin;
+
+	public bool devinA;
 }

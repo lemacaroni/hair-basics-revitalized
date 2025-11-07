@@ -8,7 +8,7 @@ public class TutorBaldiScript : MonoBehaviour
     void Start()
     {
         string a = PlayerPrefs.GetString("CurrentMode");
-        if (a == "speedy" || a == "miko" || a == "triple" || a == "stealthy" || a == "alger")
+        if (a == "speedy" || a == "miko" || a == "triple" || a == "stealthy" || a == "alger" || a == "devin")
         {
             return;
         }

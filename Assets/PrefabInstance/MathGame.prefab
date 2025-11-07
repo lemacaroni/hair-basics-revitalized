@@ -3087,6 +3087,8 @@ MonoBehaviour:
   playerScript: {fileID: 0}
   YCTP_Stupid: {fileID: 8300000, guid: da254ca532128f1428eb775cc2f3f135, type: 3}
   audioDevice: {fileID: 82721180359154920}
+  devin: {fileID: 8300000, guid: 296f02411c80e3e4fbfd9a7a0f80370f, type: 3}
+  devinA: 0
 --- !u!82 &82721180359154920
 AudioSource:
   m_ObjectHideFlags: 0

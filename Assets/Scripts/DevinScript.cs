@@ -264,7 +264,11 @@ public class DevinScript : MonoBehaviour
 			FindObjectOfType<SubtitleManager>().Add3DSubtitle("Oops, you got hit, see you later.", outcome[1].length, new Color(255, 165, 0), transform);
 			audioDevice.PlayOneShot(pipeHit);
 			anim.SetBool("oh", true);
-        }
+			if (gc.exitsReached == 5)
+			{
+				Destroy(gameObject);
+			}
+		}
     }
 
 	private void OnTriggerStay(Collider other)

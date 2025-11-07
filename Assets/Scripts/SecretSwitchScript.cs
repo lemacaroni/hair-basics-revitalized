@@ -9,11 +9,11 @@ public class SecretSwitchScript : MonoBehaviour
 		if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E)) && Time.timeScale != 0f && Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3((float)(Screen.width / 2), (float)(Screen.height / 2), 0f)), out raycastHit) && (raycastHit.transform.tag == "Interactable" & Vector3.Distance(this.player.position, base.transform.position) < this.openingDistance))
 		{
 			gameObject.tag = "Untagged";
-			RenderSettings.ambientLight = Color.gray;
+			RenderSettings.ambientLight = gc.mode == "devin" ? Color.black : Color.gray;
 			gc.audioDevice.Stop();
 			gc.audioDevice.PlayOneShot(switchOn);
 			StartCoroutine(gc.SwitchPressed());
-			sm.Add3DSubtitle("*Switch on*", switchOn.length, Color.white, transform, gc.audioDevice);
+			sm.Add3DSubtitle("*Switch " + (gc.mode == "devin" ? "off" : "on") + "*", switchOn.length, Color.white, transform, gc.audioDevice);
 		}
 	}
 
