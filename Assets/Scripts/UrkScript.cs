@@ -182,6 +182,9 @@ public class UrkScript : MonoBehaviour
 			{
 				seeCooldown = 5;
 				urkTimer /= 1.5f;
+				urkSTimer.gameObject.SetActive(false);
+				audioDevice.Stop();
+				audioDevice.PlayOneShot(music[10]);
 			}
             else
 			{
