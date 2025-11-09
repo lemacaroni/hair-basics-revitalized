@@ -1243,7 +1243,7 @@ public class GameControllerScript : MonoBehaviour
         else if (SceneManager.GetActiveScene().name != "Luck")
         {
             string endless = notebooks == 68-1 ? "This Many" : notebooks.ToString();
-            notebookCount.text = endless + ((notebooks % 10 == 6 && highScoreBotenook % 10 == 7) || notebooks == 68-1 || highScoreBotenook == 68-1 ? (notebooks == 68-1 ? "This Many" : " ") : $"/{highScoreBotenook} H.S. ") + "Dwaynes";
+            notebookCount.text = endless + ((notebooks % 10 == 6 && highScoreBotenook % 10 == 7) || notebooks == 68-1 || highScoreBotenook == 68-1 ? (notebooks == 68-1 ? string.Empty : " ") : $"/{highScoreBotenook} H.S. ") + "Dwaynes";
         }
         else
         {
