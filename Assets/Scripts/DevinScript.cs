@@ -113,7 +113,7 @@ public class DevinScript : MonoBehaviour
 			{
 				TargetPlayer();
 			}
-			else if (goingToRoom && Vector3.Distance(transform.position, spawn) > 120)
+			else if (pipeCoolDown <= 0f && goingToRoom && Vector3.Distance(transform.position, spawn) > 120)
             {
 				TargetPlayer();
             }
@@ -240,7 +240,12 @@ public class DevinScript : MonoBehaviour
             }
 			if (gc.HasItemInInventory(0))
 			{
-				gc.CollectItem(gc.CollectItemExcluding(24));
+				int itemee = gc.CollectItemExcluding(24);
+				gc.CollectItem(itemee);
+				if (itemee == 22 || itemee == 25 || itemee == 26)
+                {
+					gc.tc.GetTrophy(45);
+                }
 			}
             else
             {
@@ -264,7 +269,11 @@ public class DevinScript : MonoBehaviour
 			FindObjectOfType<SubtitleManager>().Add3DSubtitle("Oops, you got hit, see you later.", outcome[1].length, new Color(255, 165, 0), transform);
 			audioDevice.PlayOneShot(pipeHit);
 			anim.SetBool("oh", true);
-        }
+			if (gc.exitsReached == 5)
+			{
+				Destroy(gameObject);
+			}
+		}
     }
 
 	private void OnTriggerStay(Collider other)

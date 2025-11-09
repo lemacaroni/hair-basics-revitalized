@@ -118,12 +118,13 @@ public class CameraScript : MonoBehaviour
 			verticalLook = 0;
 		}
 		if (!FuckingDead & !cutsceneCam)
-        {
+		{
 			base.transform.position = player.transform.position + offset;
 		}
 
 		if (FuckingDead & !cutsceneCam)
 		{
+			cam.fieldOfView = 60;
 			base.transform.position = follow.position + follow.forward * -15f + new Vector3(0f, 7.5f, 0f);
 			cam.useOcclusionCulling = false;
 			transform.LookAt(follow.position);
@@ -155,6 +156,16 @@ public class CameraScript : MonoBehaviour
 				{
 					base.transform.position = character.transform.position + character.transform.forward * -1f + new Vector3(2f, 3.85f, 0f) + offset;
 					base.transform.LookAt(new Vector3(character.transform.position.x, character.transform.position.y + 3.85f, character.transform.position.z) + offset);
+				}
+				else if (character.name == "Alger (Hair Basics)")
+				{
+					base.transform.position = character.transform.position + character.transform.forward * -1f + new Vector3(2f, 3.55f, 0f) + offset;
+					base.transform.LookAt(new Vector3(character.transform.position.x, character.transform.position.y + 3.55f, character.transform.position.z) + offset);
+				}
+				else if (character.name == "Cleartil")
+				{
+					base.transform.position = character.transform.position + character.transform.forward * -1f + new Vector3(2f, 4.85f, 0f) + offset;
+					base.transform.LookAt(new Vector3(character.transform.position.x, character.transform.position.y + 4.85f, character.transform.position.z) + offset);
 				}
 				else if (character.name == "Bob")
 				{

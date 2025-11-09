@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class TitleScreen : MonoBehaviour
 {
-    private void OnEnable()
-    {
-        if (System.DateTime.Now.Month == 4 && System.DateTime.Now.Day == 1 && !chess)
-        {
-            CHESStitle.SetActive(true);
-            gameObject.SetActive(false);
-        }
-    }
-
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         if (System.DateTime.Now.Month == 4 && System.DateTime.Now.Day == 1)
         {
             primaaprilis.SetActive(true);
         }
-
+        if (System.DateTime.Now.Month == 4 && System.DateTime.Now.Day == 1 && !chess)
+        {
+            CHESStitle.SetActive(true);
+            gameObject.SetActive(false);
+        }
         if (evil && PlayerPrefs.GetInt("duplicatedBalls") == 1)
         {
             ebs.ExitGame();

@@ -66,7 +66,8 @@ public class UrkScript : MonoBehaviour
         {
 			audMusic.clip = music[Random.Range(0, 7)];
 			audMusic.Play();
-        }
+			FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Music*", audMusic.clip.length, Color.gray, transform, audMusic);
+		}
 		if (chase && !gc.camScript.FuckingDead)
         {
 			gc.tc.urkTime += Time.deltaTime;
@@ -92,6 +93,8 @@ public class UrkScript : MonoBehaviour
 				audioDevice.loop = true;
 				audioDevice.clip = music[9];
 				audioDevice.Play();
+				FindObjectOfType<SubtitleManager>().RemoveSubtitle("*Music*");
+				FindObjectOfType<SubtitleManager>().Add3DSubtitle("*!!!*", music[8].length / 2, Color.gray, transform, audioDevice);
 			}
 			seeCooldown = 1.75f;
 			agent.speed = 0;
@@ -152,7 +155,7 @@ public class UrkScript : MonoBehaviour
 		chase = true;
 		agent.speed = gc.player.runSpeed + 2;
 		audioDevice.loop = true;
-		audioDevice.spatialBlend = 0;
+		audioDevice.spatialBlend = 0.1f;
 		audioDevice.clip = music[7];
 		audioDevice.Play();
 		urkSTimer.gameObject.SetActive(true);
@@ -160,9 +163,11 @@ public class UrkScript : MonoBehaviour
 
 	public void StopChase()
 	{
+		seeCooldown = 5;
 		wandering = true;
 		chase = false;
 		gc.tc.urkTime = 0;
+		audioDevice.spatialBlend = 0f;
 		agent.speed = 15;
 		audioDevice.loop = true;
 		audioDevice.Stop();
@@ -177,6 +182,9 @@ public class UrkScript : MonoBehaviour
 			{
 				seeCooldown = 5;
 				urkTimer /= 1.5f;
+				urkSTimer.gameObject.SetActive(false);
+				audioDevice.Stop();
+				audioDevice.PlayOneShot(music[10]);
 			}
             else
 			{
@@ -210,7 +218,7 @@ public class UrkScript : MonoBehaviour
 		{
 			if (chase)
 			{
-				urkTimer -= 0.1f * Time.deltaTime;
+				urkTimer -= 0.18f * Time.deltaTime;
 				urkSTimer.value = urkTimer;
 				if (urkTimer <= 0)
 				{

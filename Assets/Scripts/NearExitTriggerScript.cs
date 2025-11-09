@@ -39,7 +39,7 @@ public class NearExitTriggerScript : MonoBehaviour
         {
 			gc.baldiPlayerScript.Die();
         }
-		if ((gc.exitsReached < gc.amountOfExit) & gc.finaleMode & (other.tag == "Player" || other.name == "Player (EVIL)"))
+		if ((gc.exitsReached < gc.amountOfExit + (gc.mode == "devin" ? 1 : 0)) & gc.finaleMode & (other.tag == "Player" || other.name == "Player (EVIL)"))
 		{
 			gc.ExitReached();
 			es.Lower();

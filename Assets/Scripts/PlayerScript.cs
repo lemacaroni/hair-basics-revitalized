@@ -7,6 +7,8 @@ using TMPro;
 
 public class PlayerScript : MonoBehaviour
 {
+	public static PlayerScript Instance;
+
 	public GameControllerScript gc;
 
 	public BaldiScript baldi;
@@ -128,6 +130,7 @@ public class PlayerScript : MonoBehaviour
 
 	private void Start()
 	{
+		Instance = this;
 		height = base.transform.position.y;
 		stamina = maxStamina;
 		health = 100;
@@ -184,6 +187,7 @@ public class PlayerScript : MonoBehaviour
         {
 			PipegameMove();
 			StaminaCheck();
+			HealthCheck();
 			MouseMove();
 		}
 		if (Time.timeScale != 0)
@@ -252,7 +256,7 @@ public class PlayerScript : MonoBehaviour
     {
 		if (pipeGameGravity != 0)
 		{
-			if (Input.GetKey(KeyCode.LeftShift) && stamina > 0)
+			if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftControl)) && stamina > 0)
 			{
 				stamina -= staminaRate * Time.deltaTime;
 				cc.Move(1.8f * runSpeed * Time.deltaTime * transform.forward);
@@ -465,6 +469,10 @@ public class PlayerScript : MonoBehaviour
         }
 		staminaBar.value = stamina / maxStamina * 100f;
 		percent.text = $"{Mathf.RoundToInt(stamina / maxStamina * 100f)}%";
+		if (percent.text.Contains((68-1).ToString()))
+		{
+			percent.text = "ThisMuch%";
+		}
 		if (infStamina)
         {
 			stamina = Mathf.Infinity;
@@ -485,6 +493,10 @@ public class PlayerScript : MonoBehaviour
 	private void HealthCheck()
     {
 		hercent.text = $"{Mathf.RoundToInt(health)}%";
+		if (hercent.text.Contains((68 - 1).ToString()))
+		{
+			hercent.text = "ThisMuch%";
+		}
 		healthBar.value = health / 100 * 100f;
 		if (health < 100)
         {

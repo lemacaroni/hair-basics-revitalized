@@ -140,7 +140,7 @@ public class PaninoTV : MonoBehaviour
         }
         switch (thing)
         {
-            case 2: washeewashee.SetActive(true); break;
+            case 2: washeewashee.SetActive(true); gc.tc.GetTrophy(28); break;
             case 3: prisonDoor.ItemsAreNowGoingToJail(); break;
             case 4: StartCoroutine(RollOutTheAngryBees()); break;
             case 5:
@@ -179,6 +179,10 @@ public class PaninoTV : MonoBehaviour
     IEnumerator PizzaTime()
     {
         pizzaMusic.volume = 0.7f;
+        for (int i = 0; i < pizzaSlices.transform.childCount; i++)
+        {
+            pizzaSlices.transform.GetChild(i).gameObject.SetActive(true);
+        }
         pizzaHud.SetActive(true);
         pizzaHudText.text = "8";
         count = 8;

@@ -9,6 +9,16 @@ public class BenefondCratesSoCoolBro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.GetInt("devin") == 1)
+        {
+            benefondCreates.SetActive(false);
+            SceneManager.LoadScene("AlgerBeat");
+        }
+        if (PlayerPrefs.GetInt("devin") == 2)
+        {
+            PlayerPrefs.SetInt("devin", 0);
+            FindObjectOfType<TrophyCollectingScript>().GetTrophy(44);
+        }
         if (Random.Range(1, 21) == 2 || TestMode == 1)
         {
             benefondCreatesAud.clip = benefondCratesEasterEggs[Random.Range(0, benefondCratesEasterEggs.Length - 1)];

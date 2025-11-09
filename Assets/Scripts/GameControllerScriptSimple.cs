@@ -12,15 +12,17 @@ public class GameControllerScriptSimple : MonoBehaviour
 {
     private void Start()
     {
+        mode = PlayerPrefs.GetString("CurrentMode");
         AudioListener.volume = PlayerPrefs.GetFloat("volume", 0.5f);
         audioDevice = GetComponent<AudioSource>();
         LockMouse();
-        if (algerBeat)
+        if (mode == "alger")
         {
             ps.walkSpeed = 0;
             ps.runSpeed = 0;
             StartCoroutine(WaitTillTeleport());
         }
+        if (PlayerPrefs.GetInt("devin") == 1) RenderSettings.ambientLight = Color.white;
     }
 
     public void LockMouse()
@@ -48,12 +50,17 @@ public class GameControllerScriptSimple : MonoBehaviour
     {
         ps.walkSpeed = 10;
         ps.runSpeed = 20;
-        PlayerPrefs.SetInt("infItemUnlocked", 1);
-        for (int i = 0; i < 50; i++)
+        if (mode == "alger")
         {
-            Instantiate(balloon, new Vector3(Random.Range(15f, 55f), 5, Random.Range(75f, 115)), Quaternion.identity);
+            PlayerPrefs.SetInt("infItemUnlocked", 1);
+            for (int i = 0; i < 50; i++)
+            {
+                Instantiate(balloon, new Vector3(Random.Range(15f, 55f), 5, Random.Range(75f, 115)), Quaternion.identity);
+            }
         }
-        yield return new WaitForSecondsRealtime(15);
+        if (mode == "devin") foreach (Canvas hud in FindObjectsOfType<Canvas>()) hud.gameObject.SetActive(false);
+        yield return new WaitForSecondsRealtime(mode == "devin" ? 5 : 15);
+        PlayerPrefs.SetInt("devin", 2);
         SceneManager.LoadScene("BenefondCrates");
     }
 
@@ -76,5 +83,5 @@ public class GameControllerScriptSimple : MonoBehaviour
 
     public GameObject balloon;
 
-    public bool algerBeat;
+    public string mode;
 }

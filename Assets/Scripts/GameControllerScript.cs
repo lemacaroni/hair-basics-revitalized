@@ -46,6 +46,7 @@ public class ObjectionItem
 
 public class GameControllerScript : MonoBehaviour
 {
+    public static GameControllerScript Instance;
     public TrophyCollectingScript tc;
     public bool SchoolScene;
     public bool ClassicSchoolScene;
@@ -65,6 +66,8 @@ public class GameControllerScript : MonoBehaviour
 
     private int pCounter;
 
+    public GameObject llaw;
+
     public GameControllerScript()
     {
         itemSelectOffset = new int[4] { -134, -94, -50, -6 };
@@ -81,6 +84,7 @@ public class GameControllerScript : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         if (SceneManager.GetActiveScene().name == "Luck")
         {
             disablePausing = true;
@@ -179,11 +183,7 @@ public class GameControllerScript : MonoBehaviour
             {
                 entrance_4.Lower();
             }
-            if (mode == "speedy")
-            {
-                this.SpeedyStart();
-            }
-            else if (mode == "story" || mode == "endless" || mode == "pizza" || mode == "free")
+            if (mode == "story" || mode == "endless" || mode == "pizza" || mode == "free")
             {
                 this.NormalStart();
 
@@ -204,38 +204,22 @@ public class GameControllerScript : MonoBehaviour
                     asdaa.SetActive(false);
                 }
             }
-            else if (mode == "miko")
+            switch (mode)
             {
-                this.MikoStart();
-            }
-            else if (mode == "triple")
-            {
-                this.TripleStart();
-            }
-            else if (mode == "alger")
-            {
-                this.AlgerStart();
-            }
-            else if (mode == "stealthy")
-            {
-                StealthyStart();
-            }
-            else if (mode == "zombie")
-            {
-                ZombieStart();
-            }
-            else if (mode == "panino")
-            {
-                PaninoStart();
-            }
-            else if (mode == "jackenstein")
-            {
-                JackensteinStart();
+                case "speedy": SpeedyStart(); break;
+                case "miko": MikoStart(); break;
+                case "triple": TripleStart(); break;
+                case "alger": AlgerStart(); break;
+                case "stealthy": StealthyStart(); break;
+                case "zombie": ZombieStart(); break;
+                case "panino": PaninoStart(); break;
+                case "jackenstein": JackensteinStart(); break;
+                case "devin": DevinStart(); break;
             }
 
             if (extraStamina == 1)
             {
-                player.maxStamina = 200;
+                player.maxStamina += 100;
             }
             if (!ClassicSchoolScene)
             {
@@ -274,6 +258,8 @@ public class GameControllerScript : MonoBehaviour
                     break;
                 case "zombie":
                     break;
+                case "stealthy":
+                    break;
             }
             for (int i = 0; i < 4; i++)
             {
@@ -309,7 +295,7 @@ public class GameControllerScript : MonoBehaviour
             this.ClassicStart();
             if (extraStamina == 1)
             {
-                player.maxStamina = 200;
+                player.maxStamina += 100;
             }
             for (int i = 0; i < secretWalls.Length; i++)
             {
@@ -680,6 +666,21 @@ public class GameControllerScript : MonoBehaviour
         playerHudStuff[2].SetActive(false);
     }
 
+    public void DevinStart()
+    {
+        RenderSettings.ambientLight = new Color(4, 1, 0);
+        RenderSettings.skybox = player.blackSky;
+        baldiTutor.SetActive(false);
+        spoopMode = true;
+        llaw.transform.localRotation *= Quaternion.Euler(0, 0, -60);
+        locationText.text = "Panino's Ball, Devin:Devin";
+        locationText.color = Color.red;
+        for (int i = 0; i < tutorals.Length; i++)
+        {
+            tutorals[i].gameObject.SetActive(false);
+        }
+    }
+
     public bool ModifierOn()
     {
         if (speedBoost == 1)
@@ -835,7 +836,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void CleartilIsBetter()
     {
-        if (mode == "classic")
+        if (mode == "classic" || mode == "devin")
         {
             return;
         }
@@ -846,7 +847,6 @@ public class GameControllerScript : MonoBehaviour
             baldi.SetActive(false);
             principal.SetActive(false);
             firstPrize.SetActive(false);
-            craftersTime = false;
             crafters.SetActive(false);
             gottaSweep.SetActive(false);
             bully.SetActive(false);
@@ -859,6 +859,12 @@ public class GameControllerScript : MonoBehaviour
         {
             ActivateSpoopMode();
         }
+        if (mode == "endless")
+        {
+            cleartil.GetComponent<CleartilScript>().Endless();
+        }
+        craftersTime = false;
+        crafters.SetActive(false);
         starstudentWall.SetActive(false);
         urk.SetActive(true);
         fames.SetActive(true);
@@ -885,7 +891,7 @@ public class GameControllerScript : MonoBehaviour
             {
                 pss.AddPoints(-5, 0.5f);
                 scoreDecayTimer = 1;
-                player.stamina += player.maxStamina / 20;
+                player.stamina += player.maxStamina / 18;
             }
             else if (!player.inSecret)
             {
@@ -1134,6 +1140,15 @@ public class GameControllerScript : MonoBehaviour
                 baldiAgent.Warp(player.transform.position);
             }
         }
+        if (mode == "devin" && finaleMode && exitsReached == 5)
+        {
+            environment[Random.Range(0, environment.Length)].localPosition += new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f)) * ((Time.time - timeStamp) / 4);
+            environment[Random.Range(0, environment.Length)].localScale += new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), Random.Range(-0.1f, 0.05f)) * ((Time.time - timeStamp));
+            if (Random.Range(0, 212) == 0) Instantiate(devin).SetActive(true);
+            player.health++;
+            player.walkSpeed += Time.deltaTime;
+            player.runSpeed += Time.deltaTime;
+        }
     }
 
     public void SomeoneTied(GameObject gObject, bool yellow = true)
@@ -1220,22 +1235,23 @@ public class GameControllerScript : MonoBehaviour
             dm.size = notebooks;
             dm.maxSize = maxNoteboos;
         }*/
-        if (mode == "jackenstein")
-        {
-            AddTp(2.8f);
-        }
         int highScoreBotenook = PlayerPrefs.GetInt("HighBooks");
         if (mode != "endless" && SceneManager.GetActiveScene().name != "Luck")
         {
-            notebookCount.text = $"{notebooks}/{maxNoteboos} Dwaynes";
+            notebookCount.text = notebooks + (notebooks == 6 || notebooks == 16 ? $"/This Many" : $"/{maxNoteboos}") + " Dwaynes";
         }
         else if (SceneManager.GetActiveScene().name != "Luck")
         {
-            notebookCount.text = $"{notebooks}/{highScoreBotenook} H.S. Dwaynes";
+            string endless = notebooks == 68-1 ? "This Many" : notebooks.ToString();
+            notebookCount.text = endless + ((notebooks % 10 == 6 && highScoreBotenook % 10 == 7) || notebooks == 68-1 || highScoreBotenook == 68-1 ? (" ") : $"/{highScoreBotenook} H.S. ") + "Dwaynes";
         }
         else
         {
             notebookCount.text = $"{notebooks} left";
+        }
+        if (mode == "endless" && notebooks > 2)
+        {
+            math = 0;
         }
         if ((notebooks == maxNoteboos) & (mode == "story" || mode == "free"))
         {
@@ -1283,6 +1299,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void SpawnEvilLeafy()
     {
+        if (mode == "devin") return;
         if (evilLeafy.activeSelf)
         {
             evilLeafy.GetComponent<EvilLeafyScript>().baldiWait -= 0.2f;
@@ -1652,12 +1669,15 @@ public class GameControllerScript : MonoBehaviour
             escapeCollect.SetActive(true);
         }
         finaleMode = true;
-        entrance_0.Raise();
-        if (mode != "stealthy")
+        if (mode != "devin")
         {
-            entrance_1.Raise();
-            entrance_2.Raise();
-            entrance_3.Raise();
+            entrance_0.Raise();
+            if (mode != "stealthy")
+            {
+                entrance_1.Raise();
+                entrance_2.Raise();
+                entrance_3.Raise();
+            }
         }
         if (mode == "classic")
         {
@@ -1823,6 +1843,10 @@ public class GameControllerScript : MonoBehaviour
         string[] escape = { "Congrattation!", "You found all 7 Dwaynes,", "now all you need to do is...", "GET OUT." };
         float[] duration = { 1.8f, 3f, 2.8f, 1.935f };
         Color[] colors = { Color.white, Color.white, Color.white, Color.white };
+        if (mode == "jackenstein")
+        {
+            AddTp(2.8f);
+        }
         ESCAPEmusic.UnPause();
         cameraNormal.cullingMask = cullingMask;
         learningActive = false; 
@@ -2724,7 +2748,7 @@ public class GameControllerScript : MonoBehaviour
 
     IEnumerator CurseOfRaLogic()
     {
-        yield return new WaitForSeconds(1/60);
+        yield return new WaitForSeconds(1/60f);
         curseOfRaTime += Time.deltaTime / 2;
         if (Random.Range(1, Mathf.RoundToInt(900 / curseOfRaTime)) <= 2)
         {
@@ -2778,7 +2802,7 @@ public class GameControllerScript : MonoBehaviour
                 entrance_2.Raise();
             }
         }
-        else if (mode != "alger" && mode != "classic" && mode != "zombie")
+        else if (mode != "alger" && mode != "classic" && mode != "zombie" && mode != "devin")
         {
             if (exitsReached == 0)
             {
@@ -2896,7 +2920,7 @@ public class GameControllerScript : MonoBehaviour
                 audioDevice.time = 0.02f;
             }
         }
-        else if (mode == "alger" || mode == "zombie")
+        else if (mode == "alger" || mode == "zombie" || mode == "devin")
         {
             if (exitsReached == 1)
             {
@@ -2919,7 +2943,29 @@ public class GameControllerScript : MonoBehaviour
                 notebookCount.text = "4/5 Exits";
                 entrance_4.Raise();
             }
+            if (exitsReached == 5 && mode == "devin")
+            {
+                environment = GameObject.Find("Environment").GetComponentsInChildren<Transform>();
+                notebookCount.text = "NaN";
+                audioDevice.PlayOneShot(Resources.Load<AudioClip>("devin"));
+                StartCoroutine(Devin());
+            }
         }
+    }
+
+    public IEnumerator Devin()
+    {
+        PlayerPrefs.SetInt("devin", 1);
+        timeStamp = Time.time;
+        yield return new WaitForSeconds(97);
+        audioDevice.ignoreListenerPause = true;
+        cameraNormal.cullingMask = 0;
+        disablePausing = true;
+        AudioListener.pause = true;
+        foreach (Canvas hud in FindObjectsOfType<Canvas>()) hud.gameObject.SetActive(false);
+        yield return new WaitForSeconds(5);
+        if (!Application.isEditor) UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.FatalError);
+        yield break;
     }
 
     public void FoundTreasure()
@@ -3023,7 +3069,7 @@ public class GameControllerScript : MonoBehaviour
                 FindObjectOfType<SubtitleManager>().Add3DSubtitle("run", run.length, Color.red, baldiApple.transform);
             }
             paninoAppleTimer -= Time.deltaTime;
-            yield return new WaitForSeconds(1 / 60);
+            yield return new WaitForSeconds(1 / 60f);
         }
         baldi.transform.position = baldiApple.transform.position;
         Destroy(baldiApple);
@@ -3481,4 +3527,7 @@ public class GameControllerScript : MonoBehaviour
     public GameObject retroCanvas;
 
     public GameObject A;
+
+    public Transform[] environment;
+    private float timeStamp;
 }

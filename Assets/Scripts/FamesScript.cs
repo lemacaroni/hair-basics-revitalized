@@ -157,6 +157,7 @@ public class FamesScript : MonoBehaviour
 		stop = true;
 		anim.SetTrigger("Chomp");
 		aud.PlayOneShot(sounds[0]);
+		FindObjectOfType<SubtitleManager>().Add3DSubtitle("*Chomp*", 0.75f, new Color32(32, 96, 35, 255), transform);
 		yield return new WaitForSeconds(0.4f);
 		if (item)
 		{
@@ -169,13 +170,13 @@ public class FamesScript : MonoBehaviour
         }
 		howHungry -= 25;
 		anim.SetInteger("Chew", 1);
-		if (howHungry >= 75)
+		if (howHungry < 75)
 		{
 			yield return new WaitForSeconds(5f);
 		}
         else
 		{
-			yield return new WaitForSeconds(0.6f);
+			yield return new WaitForSeconds(1.28f);
 		}
 		anim.SetInteger("Chew", 0);
 		stop = false;

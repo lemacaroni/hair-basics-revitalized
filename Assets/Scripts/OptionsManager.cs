@@ -365,7 +365,7 @@ public class OptionsManager : MonoBehaviour
 			}
 			else if (Input.GetKeyDown(KeyCode.Period) || Input.GetKeyDown(KeyCode.Comma))
 			{
-				this.scaleFactor.text += ",";
+				this.scaleFactor.text += ".";
 			}
 			else if (Input.GetKeyDown(KeyCode.Backspace))
 			{
@@ -430,6 +430,7 @@ public class OptionsManager : MonoBehaviour
 		PlayerPrefs.SetInt("HighBooks", 0);
 		PlayerPrefs.SetInt("secretEnd", 0);
 		PlayerPrefs.SetInt("did3872643", 0);
+		PlayerPrefs.SetInt("didP", 0);
 		PlayerPrefs.SetInt("pizzaBeat", 0);
 		PlayerPrefs.SetInt("pizzaScoreBest", 0);
 		PlayerPrefs.SetString("pizzaRankBest", "D");
@@ -499,6 +500,8 @@ public class OptionsManager : MonoBehaviour
 		PlayerPrefs.SetInt("urkTrophy", 0);
 		PlayerPrefs.SetInt("medalTrophy", 0);
 		PlayerPrefs.SetInt("obstaclesScore", 0);
+		PlayerPrefs.SetInt("devinTrophy", 0);
+		PlayerPrefs.SetInt("whyTrophy", 0);
 		PlayerPrefs.Save();
 		SceneManager.LoadScene("BenefondCrates");
 	}

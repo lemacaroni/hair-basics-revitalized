@@ -119,6 +119,8 @@ public class FirstPrizeScript : MonoBehaviour
 			}
 		}
 		prevSpeed = agent.velocity.magnitude;
+		motorAudio.volume = Mathf.Clamp(agent.velocity.magnitude / 20, 0, 1);
+		motorAudio.pitch = 0.5f + agent.velocity.magnitude / 50;
 	}
 
 	private void FixedUpdate()
@@ -228,6 +230,7 @@ public class FirstPrizeScript : MonoBehaviour
     {
 		if (other.tag == "Player" || baldiScript.gc.playerScript.hugging)
 		{
+			autoBrakeCool = 1;
 			if (prevSpeed - agent.velocity.magnitude > 85f)
 			{
 				baldiScript.gc.playerScript.health -= 50;

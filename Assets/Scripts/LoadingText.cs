@@ -6,6 +6,10 @@ public class LoadingText : MonoBehaviour
 {
     void Start()
     {
+        if (Random.Range(1, 40) == 5)
+        {
+            music.clip = musicAlt;
+        }
         music.Play();
         StartCoroutine(TextChange());
     }
@@ -17,11 +21,8 @@ public class LoadingText : MonoBehaviour
         yield return new WaitForSeconds(time);
         StartCoroutine(TextChange());
     }
-
     public AudioSource music;
-
     public TMP_Text text;
-
     public string[] loadText;
-
+    public AudioClip musicAlt;
 }
