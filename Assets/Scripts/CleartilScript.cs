@@ -39,6 +39,18 @@ public class CleartilScript : MonoBehaviour
         agent.speed = 0;
     }
 
+    IEnumerator EndlessThing()
+    {
+        yield return new WaitForSeconds(1);
+        waitTime -= 0.001f;
+        StartCoroutine(EndlessThing());
+    }
+
+    public void Endless()
+    {
+        StartCoroutine(EndlessThing());
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.name == "UbrSpray(Clone)")

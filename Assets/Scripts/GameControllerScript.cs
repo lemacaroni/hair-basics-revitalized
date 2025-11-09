@@ -859,6 +859,10 @@ public class GameControllerScript : MonoBehaviour
         {
             ActivateSpoopMode();
         }
+        if (mode == "endless")
+        {
+            cleartil.GetComponent<CleartilScript>().Endless();
+        }
         craftersTime = false;
         crafters.SetActive(false);
         starstudentWall.SetActive(false);
