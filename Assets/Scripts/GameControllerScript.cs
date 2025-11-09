@@ -1245,7 +1245,7 @@ public class GameControllerScript : MonoBehaviour
         {
             notebookCount.text = $"{notebooks} left";
         }
-        if (mode == "endless" && notebooks >= 2)
+        if (mode == "endless" && notebooks > 2)
         {
             math = 0;
         }
