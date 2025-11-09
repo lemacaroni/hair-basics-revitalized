@@ -256,7 +256,7 @@ public class PlayerScript : MonoBehaviour
     {
 		if (pipeGameGravity != 0)
 		{
-			if ((Input.GetMouseButton(0) || Input.GetKey(KeyCode.E)) && stamina > 0)
+			if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftControl)) && stamina > 0)
 			{
 				stamina -= staminaRate * Time.deltaTime;
 				cc.Move(1.8f * runSpeed * Time.deltaTime * transform.forward);
