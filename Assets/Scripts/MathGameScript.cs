@@ -160,7 +160,7 @@ public class MathGameScript : MonoBehaviour
 			{
 				if (gc.mode == "endless")
 				{
-					gc.cleartil.GetComponent<CleartilScript>().waitTime += 0.15f;
+					gc.cleartil.GetComponent<CleartilScript>().waitTime += 0.128f;
 					return;
 				}
 				gc.cleartil.GetComponent<CleartilScript>().waitTime -= 0.09f;

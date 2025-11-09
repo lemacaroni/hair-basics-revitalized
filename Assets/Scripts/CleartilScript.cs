@@ -42,7 +42,7 @@ public class CleartilScript : MonoBehaviour
     IEnumerator EndlessThing()
     {
         yield return new WaitForSeconds(1);
-        waitTime -= 0.001f;
+        waitTime -= 0.0038f;
         StartCoroutine(EndlessThing());
     }
 

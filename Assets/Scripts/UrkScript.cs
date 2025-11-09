@@ -155,7 +155,7 @@ public class UrkScript : MonoBehaviour
 		chase = true;
 		agent.speed = gc.player.runSpeed + 2;
 		audioDevice.loop = true;
-		audioDevice.spatialBlend = 0;
+		audioDevice.spatialBlend = 0.1f;
 		audioDevice.clip = music[7];
 		audioDevice.Play();
 		urkSTimer.gameObject.SetActive(true);
@@ -163,9 +163,11 @@ public class UrkScript : MonoBehaviour
 
 	public void StopChase()
 	{
+		seeCooldown = 5;
 		wandering = true;
 		chase = false;
 		gc.tc.urkTime = 0;
+		audioDevice.spatialBlend = 0f;
 		agent.speed = 15;
 		audioDevice.loop = true;
 		audioDevice.Stop();
@@ -213,7 +215,7 @@ public class UrkScript : MonoBehaviour
 		{
 			if (chase)
 			{
-				urkTimer -= 0.1f * Time.deltaTime;
+				urkTimer -= 0.18f * Time.deltaTime;
 				urkSTimer.value = urkTimer;
 				if (urkTimer <= 0)
 				{

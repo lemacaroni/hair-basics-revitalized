@@ -179,6 +179,10 @@ public class PaninoTV : MonoBehaviour
     IEnumerator PizzaTime()
     {
         pizzaMusic.volume = 0.7f;
+        for (int i = 0; i < pizzaSlices.transform.childCount; i++)
+        {
+            pizzaSlices.transform.GetChild(i).gameObject.SetActive(true);
+        }
         pizzaHud.SetActive(true);
         pizzaHudText.text = "8";
         count = 8;
