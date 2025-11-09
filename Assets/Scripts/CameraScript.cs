@@ -118,12 +118,13 @@ public class CameraScript : MonoBehaviour
 			verticalLook = 0;
 		}
 		if (!FuckingDead & !cutsceneCam)
-        {
+		{
 			base.transform.position = player.transform.position + offset;
 		}
 
 		if (FuckingDead & !cutsceneCam)
 		{
+			cam.fieldOfView = 60;
 			base.transform.position = follow.position + follow.forward * -15f + new Vector3(0f, 7.5f, 0f);
 			cam.useOcclusionCulling = false;
 			transform.LookAt(follow.position);
