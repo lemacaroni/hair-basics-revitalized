@@ -1,9 +1,8 @@
-# hair-basics-classic
+# hair-basics-revitalized
 __Get the latest, compiled versions on Gamebanana or itch.io!__
-https://gamebanana.com/wips/78785
-https://benefond.itch.io/hair
+HAIR BASICS REVITALIZED ISNT ON GAMEBANANA OR ITCH.IO YET YOU IDIOT ITS NOT IN RELEASE
 
-Source code of Hair Basics Classic's latest public release for Unity 2019.4.15f1.
-Feel free to use anything from it I guess. It doesn't have a lot of comments tho.
+Source code of Hair Basics Revitalized, a revival of my friend's game, Hair Basics Classic. This code uses Unity 2019.4.15f1.
+Benefond gave me full on permission to do this, I am not joking.
 
-Dev branch is for changes and stuff I'm working on! Consider it as a playtester branch, but instead literally everyone can see it because uhh yeah. You still have to build it yourself.
+Originally, this fork only has forked the main branch of the repository and will never fork the branches for WebGL and developement.
